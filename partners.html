@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Mungo Partner – List Your Pet Care Business</title>
+  <meta name="description"
+    content="Partner with Mungo to grow your pet care business, reach more pet owners, and manage bookings in one simple platform.">
+  <meta name="keywords"
+    content="mungo partners, list pet care business, pet care provider signup">
+  <meta property="og:title" content="Become a Mungo Partner – List Your Pet Care Business">
+  <meta property="og:description" content="Grow your pet care business by partnering with Mungo.">
+  <meta property="og:url" content="https://mungo.app/partners">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Become a Mungo Partner – List Your Pet Care Business">
+  <meta name="twitter:description" content="List your pet care business on Mungo and reach more owners.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mungo.app/partners">
+  <link rel="stylesheet" href="/style.css?v=27">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="screen-container"
+    style="position: absolute; width: 1920px; height: auto; left: 0; top: 0; background-color: #ffffff;">
+    <div id="root" style="flex: 1; display: flex; flex-direction: column;"></div>
+  </div>
+
+  <script type="module">
+    import React from 'react'
+    import ReactDOM from 'react-dom/client'
+    import Partners from './src/Partners.jsx'
+    import './src/index.css'
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      React.createElement(React.StrictMode, null,
+        React.createElement(Partners)
+      )
+    )
+  </script>
+
+  <script>
+    function resizeToFit() {
+      if (window.innerWidth <= 1024) {
+        document.body.style.height = 'auto';
+        const container = document.querySelector('.screen-container');
+        if (container) container.style.transform = 'none';
+        return;
+      }
+      const container = document.querySelector('.screen-container');
+      if (!container) return;
+      const scale = window.innerWidth / 1920;
+      container.style.transform = `scale(${scale})`;
+      container.style.transformOrigin = 'top left';
+      document.body.style.height = `${container.offsetHeight * scale}px`;
+    }
+    window.addEventListener('resize', resizeToFit);
+
+    const observer = new ResizeObserver(resizeToFit);
+    const container = document.querySelector('.screen-container');
+    if (container) observer.observe(container);
+
+    resizeToFit();
+  </script>
+</body>
+
+</html>
