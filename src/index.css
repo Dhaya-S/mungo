@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-Mungo-dark bg-white font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply font-semibold text-Mungo-dark;
+  }
+}
+
+@layer utilities {
+  .font-jakarta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .font-chewy {
+    font-family: 'Chewy', system-ui;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/features", "destination": "/features.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/careers", "destination": "/careers.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/blog-details", "destination": "/blog-details.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/partners", "destination": "/partners.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/seo", "destination": "/seo.html" }
+  ]
+}

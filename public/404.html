@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Mungo</title>
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      var clean = path.replace(/\/$/, '');
+      var segments = clean.split('/');
+      var lastSegment = segments[segments.length - 1];
+      var pages = ['features', 'about', 'careers', 'blog', 'blog-details', 'how-it-works', 'reviews', 'partners', 'terms', 'privacy', 'seo'];
+      
+      if (pages.indexOf(lastSegment) !== -1) {
+        var newPath = clean + '.html' + window.location.search + window.location.hash;
+        window.location.replace(newPath);
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/style.css?v=27">
+</head>
+<body style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:sans-serif; text-align:center; padding:20px;">
+  <h1 style="font-size:3rem; color:#113c34; margin-bottom:10px;">404</h1>
+  <p style="font-size:1.2rem; color:#64748b; margin-bottom:20px;">Oops! The page you're looking for doesn't exist.</p>
+  <a href="/" style="background:#23B4A2; color:#fff; padding:12px 24px; border-radius:12px; text-decoration:none; font-weight:bold;">Go Home</a>
+</body>
+</html>
