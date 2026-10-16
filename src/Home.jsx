@@ -40,7 +40,7 @@ export default function Home() {
               <img src="https://i.pravatar.cc/150?img=44" alt="User" className="w-12 h-12 rounded-full border-2 border-white shadow-sm" />
             </div>
             <div>
-              <p className="text-[#1E293B] font-bold text-sm mb-1">Loved by 10,000+ pet parents</p>
+
               <div className="flex items-center text-[#FFB800] text-sm gap-1">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                 <span className="text-gray-800 font-bold ml-1">4.9</span>
