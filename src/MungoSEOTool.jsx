@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Copy, Check } from "lucide-react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const PAGES = {
   Home: {
@@ -196,8 +198,10 @@ export default function MungoSEOTool() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 px-6 py-10 sm:px-10 font-sans">
-      <div className="mx-auto max-w-4xl">
+    <>
+      <Navbar currentPage="seo" />
+      <main className="min-h-screen bg-stone-50 px-6 py-10 sm:px-10 font-sans">
+        <div className="mx-auto max-w-4xl">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-slate-900">
             <span className="text-teal-600">mungo</span> — SEO Meta Tags, Slugs
@@ -295,7 +299,9 @@ export default function MungoSEOTool() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

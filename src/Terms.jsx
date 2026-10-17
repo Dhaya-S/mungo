@@ -1,264 +1,313 @@
-import React from "react";
-import {
-    ChevronDown,
-    Download,
-    FileText,
-    Headset,
-    AlertTriangle,
-    User,
-    Calendar,
-    CheckCircle2
-} from "lucide-react";
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-export default function Terms() {
-    const sidebar = [
-        "1. Acceptance of Terms",
-        "2. User Responsibilities",
-        "3. Booking & Services",
-        "4. Payments",
-        "5. Cancellations & Refunds",
-        "6. Intellectual Property",
-        "7. Limitation of Liability",
-        "8. Termination",
-        "9. Governing Law",
-        "10. Contact Us"
-    ];
+/* TODO before launch */
+const EFFECTIVE_DATE = "[DATE]";
+const DOMAIN = "mungo.example";
+const SHOW_DRAFT_NOTES = true;
 
-    const faq = [
-        "Are these terms legally binding?",
-        "Can these terms change?",
-        "How will I be notified of changes?",
-        "Where can I get more help?"
-    ];
+const INTRO = "Please read these Terms of Service carefully before using Mungo.";
+const OPENING =
+  "Welcome to Mungo. These Terms of Service govern your access to and use of Mungo's website, application, marketplace, and related services.";
 
-    const termsContent = [
-        {
-            title: "1. Acceptance of Terms",
-            desc: "By accessing or using Mungo, you agree to be bound by these Terms & Conditions."
-        },
-        {
-            title: "2. User Responsibilities",
-            desc: "You agree to use our platform only for lawful purposes and in a way that doesn't harm others."
-        },
-        {
-            title: "3. Booking & Services",
-            desc: "All bookings are subject to availability and confirmation."
-        },
-        {
-            title: "4. Payments",
-            desc: "All payments must be made through our approved payment methods."
-        },
-        {
-            title: "5. Cancellations & Refunds",
-            desc: "Refunds are processed based on our cancellation policy and service conditions."
-        },
-        {
-            title: "6. Intellectual Property",
-            desc: "All content, logos, and trademarks on Mungo are our property."
-        },
-        {
-            title: "7. Limitation of Liability",
-            desc: "Mungo is not liable for indirect or consequential damages."
-        },
-        {
-            title: "8. Termination",
-            desc: "We may suspend or terminate access if terms are violated."
-        },
-        {
-            title: "9. Governing Law",
-            desc: "These terms are governed by the laws of India."
-        },
-        {
-            title: "10. Contact Us",
-            desc: "For any legal queries, reach out to our support team."
-        }
-    ];
+/* block types: p, list, note (draft: true = hideable), email */
+const SECTIONS = [
+  {
+    id: "acceptance",
+    title: "Acceptance of terms",
+    blocks: [
+      { t: "p", text: "By accessing or using Mungo, you agree to be bound by these Terms of Service. If you do not agree to these Terms, you should not access or use Mungo." },
+      { t: "note", label: "Important", text: "Please review these Terms carefully before using Mungo." },
+    ],
+  },
+  {
+    id: "about-mungo",
+    title: "About Mungo",
+    blocks: [
+      { t: "p", text: "Mungo is a platform that helps connect pet parents with independent pet-care providers, including groomers, veterinary professionals, pet sitters, dog walkers and boarding hosts." },
+      { t: "p", text: "Mungo facilitates discovery and communication between pet parents and providers. The exact nature of Mungo's role in any given service — and the responsibilities of providers — is described further in the sections below." },
+    ],
+  },
+  {
+    id: "eligibility",
+    title: "Eligibility",
+    blocks: [
+      { t: "p", text: "You must be at least 18 years old and have the legal capacity to enter into a binding agreement under applicable law to create an account and use Mungo." },
+      { t: "p", text: "By accessing or using Mungo, you represent and warrant that you meet these eligibility requirements and that all information you provide is accurate and complete." },
+      { t: "p", text: "Mungo is intended for use by adults and is not directed to or intended for persons under 18 years of age. If we learn that an account has been created or used by a person under 18, we may suspend or terminate the account and take reasonable steps to delete the associated information, subject to applicable law." }
+    ],
+  },
+  {
+    id: "accounts",
+    title: "Accounts",
+    blocks: [
+      { t: "p", text: "To use certain features of Mungo, you'll need to create an account. You agree to provide accurate information and to keep that information up to date." },
+      {
+        t: "list",
+        items: [
+          "You are responsible for maintaining the security of your account credentials.",
+          "You are responsible for activity that occurs under your account.",
+          "Let us know promptly if you believe your account has been compromised.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "services",
+    title: "Mungo services",
+    blocks: [
+      { t: "p", text: "Mungo provides access to pet-care services and related experiences, which may include:" },
+      { t: "list", items: ["Grooming", "Veterinary Care", "Pet Boarding", "Pet Sitting", "Dog Walking", "Pet Products"] },
+      { t: "p", text: "Availability of specific services may vary by location and provider." },
+    ],
+  },
+  {
+    id: "providers",
+    title: "Service providers",
+    blocks: [
+      { t: "p", text: "Care providers on Mungo are independent from Mungo. Mungo helps facilitate discovery and communication between pet parents and providers, but the provider is responsible for the care and services they deliver." },
+      { t: "p", text: "This section does not make any representation regarding background checks, certifications, insurance, or guarantees beyond what Mungo has confirmed as an active product feature." },
+    ],
+  },
+  {
+    id: "bookings",
+    title: "Bookings and service experience",
+    blocks: [
+      { t: "p", text: "When you book a service through Mungo, you'll be able to review relevant details before confirming. Once a service is confirmed, you can communicate with your provider and follow the status of the service through the app." },
+      { t: "p", text: "Specific booking, modification and cancellation mechanics are described within the product experience itself and may be updated from time to time." },
+    ],
+  },
+  {
+    id: "payments",
+    title: "Payments and fees",
+    blocks: [
+      { t: "p", text: "Applicable fees, payment terms, and any related policies will be presented to you where relevant before a transaction is completed." },
+      { t: "note", draft: true, label: "Placeholder", text: "Exact fee structures, payment timing, and refund mechanics will be finalized separately and are not represented in this placeholder document." },
+    ],
+  },
+  {
+    id: "user-responsibilities",
+    title: "User responsibilities",
+    blocks: [
+      { t: "p", text: "When using Mungo, you agree to act responsibly and in good faith, including providing accurate information about yourself and your pet, and treating providers and other users respectfully." },
+    ],
+  },
+  {
+    id: "safety",
+    title: "Safety",
+    blocks: [
+      { t: "p", text: "Mungo is designed around clear provider profiles, direct communication and visible service status, with the goal of supporting a trustworthy experience for both pet parents and providers." },
+      { t: "p", text: "This section does not constitute a guarantee of any particular safety outcome." },
+    ],
+  },
+  {
+    id: "content-ip",
+    title: "Content and intellectual property",
+    blocks: [
+      { t: "p", text: "Mungo's branding, application, and platform content are owned by Mungo or its licensors. You may not use Mungo's trademarks or content except as permitted by these Terms." },
+      { t: "p", text: "If you submit content to Mungo (such as a profile description or a message), you retain ownership of that content, and you grant Mungo the rights necessary to operate the platform and display that content as intended." },
+    ],
+  },
+  {
+    id: "third-party",
+    title: "Third-party services and links",
+    blocks: [
+      { t: "p", text: "Mungo may link to or integrate with third-party services. Those services are governed by their own terms and policies, which we encourage you to review." },
+    ],
+  },
+  {
+    id: "disclaimers",
+    title: "Disclaimers",
+    blocks: [
+      { t: "p", text: "This is placeholder legal language. Mungo's services are provided on an “as is” and “as available” basis, without warranties of any kind, to the extent permitted by applicable law." },
+      { t: "note", draft: true, label: "Placeholder", text: "This section requires review by qualified legal counsel before publication." },
+    ],
+  },
+  {
+    id: "liability",
+    title: "Limitation of liability",
+    blocks: [
+      { t: "p", text: "This is placeholder legal language regarding limitation of liability. Final language will be determined by Mungo's legal counsel in accordance with applicable law." },
+    ],
+  },
+  {
+    id: "indemnification",
+    title: "Indemnification",
+    blocks: [
+      { t: "p", text: "This is placeholder legal language regarding indemnification. Final language will be determined by Mungo's legal counsel." },
+    ],
+  },
+  {
+    id: "termination",
+    title: "Termination",
+    blocks: [
+      { t: "p", text: "Mungo may suspend or terminate access to the platform in accordance with these Terms and applicable law. You may also stop using Mungo and close your account at any time." },
+    ],
+  },
+  {
+    id: "changes",
+    title: "Changes to these terms",
+    blocks: [
+      { t: "p", text: "Mungo may update these Terms from time to time. Where required by applicable law, we will provide notice of material changes. Continued use of Mungo after changes take effect constitutes acceptance of the updated Terms." },
+    ],
+  },
+  {
+    id: "governing-law",
+    title: "Governing law / Dispute resolution",
+    blocks: [
+      { t: "p", text: "This is a placeholder section. Governing law, jurisdiction, and dispute resolution terms will be determined by Mungo's legal counsel and are not represented here." },
+      { t: "note", draft: true, label: "Placeholder", text: "Do not treat this section as finalized. Jurisdiction and dispute-resolution terms are not yet defined." },
+    ],
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    blocks: [{ t: "p", text: "Questions about these Terms? Contact Mungo at:" }, { t: "email" }],
+  },
+];
 
-    return (
-        <div className="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
-            <Navbar currentPage="terms" />
+const pad = (n) => String(n + 1).padStart(2, "0");
+const bodyP = "text-base leading-[29px] text-[#17201E]";
 
-            {/* Hero Section */}
-            <section className="bg-white rounded-b-[40px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] pt-32 pb-0 relative overflow-hidden">
-                {/* Decorative blob in background */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-50/60 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
-
-                <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 pt-12 relative z-10">
-                    <div className="text-sm font-medium text-gray-400 mb-8 flex items-center gap-2">
-                        <span>Home</span> <ChevronDown className="w-4 h-4 -rotate-90" /> <span className="text-gray-600">Terms & Conditions</span>
-                    </div>
-
-                    <div className="grid lg:grid-cols-2 gap-10 items-center">
-                        <div>
-                            <h1 className="text-5xl md:text-[56px] font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
-                                Terms & Conditions
-                            </h1>
-                            <p className="text-gray-500 text-lg md:text-xl max-w-lg leading-relaxed mb-14 font-medium">
-                                These terms govern your use of Mungo's website, mobile app, and services. By accessing our platform, you agree to these terms.
-                            </p>
-
-                        </div>
-
-
-                    </div>
-                </div>
-            </section>
-
-            {/* Main Content Layout */}
-            <section className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 py-16">
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-
-                    {/* Left Sidebar */}
-                    <aside className="lg:col-span-3 space-y-6 sticky top-28">
-                        <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 p-6">
-                            <h3 className="font-bold text-lg mb-6 text-slate-800">On this page</h3>
-                            <nav className="space-y-1">
-                                {sidebar.map((item, i) => (
-                                    <button
-                                        key={i}
-                                        className={`w-full flex items-center justify-between text-left px-4 py-3.5 rounded-xl font-semibold transition-colors ${i === 0
-                                            ? "bg-teal-50 text-teal-600 border border-teal-100 shadow-sm"
-                                            : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            {i === 0 ? <User className="w-[18px] h-[18px]" /> : <FileText className="w-[18px] h-[18px]" />}
-                                            <span className="truncate text-[15px]">{item}</span>
-                                        </div>
-                                        {i === 0 && <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>}
-                                    </button>
-                                ))}
-                            </nav>
-                        </div>
-
-                        <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 p-6 text-center">
-                            <div className="w-12 h-12 bg-teal-50 text-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <FileText className="w-6 h-6" />
-                            </div>
-                            <h3 className="font-bold text-lg text-teal-500 mb-2">Download Full Terms</h3>
-                            <p className="text-gray-500 text-sm mb-6 font-medium leading-relaxed">
-                                Get a copy of our Terms & Conditions in PDF format.
-                            </p>
-                            <button className="w-full flex items-center justify-center gap-2 border-2 border-teal-500 text-teal-500 font-bold py-3.5 rounded-xl hover:bg-teal-50 transition-colors">
-                                <Download className="w-5 h-5" /> Download PDF
-                            </button>
-                        </div>
-                    </aside>
-
-                    {/* Middle Content - Accordions */}
-                    <main className="lg:col-span-6 space-y-4">
-                        {termsContent.map((term, i) => (
-                            <div key={i} className="bg-white border border-gray-100 rounded-[20px] p-7 shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                                <div className="flex justify-between items-start gap-4">
-                                    <div>
-                                        <h3 className="font-bold text-[18px] text-slate-800 mb-2 group-hover:text-teal-500 transition-colors">
-                                            {term.title}
-                                        </h3>
-                                        <p className="text-gray-500 leading-relaxed font-medium text-[15px]">
-                                            {term.desc}
-                                        </p>
-                                    </div>
-                                    <ChevronDown className="text-gray-400 w-5 h-5 group-hover:text-teal-500 transition-colors flex-shrink-0 mt-1" />
-                                </div>
-                            </div>
-                        ))}
-                    </main>
-
-                    {/* Right Sidebar */}
-                    <aside className="lg:col-span-3 space-y-6 sticky top-28">
-                        {/* Important Alert */}
-                        <div className="bg-[#fff9eb] rounded-[24px] border border-[#ffebba] p-6 shadow-sm">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="bg-amber-100 p-2 rounded-xl text-amber-500">
-                                    <AlertTriangle className="w-[22px] h-[22px]" />
-                                </div>
-                                <h3 className="font-bold text-[17px] text-amber-600">Important</h3>
-                            </div>
-                            <p className="text-amber-700/80 text-[14px] leading-[1.6] font-medium">
-                                Please read these terms carefully before using our services. Continued use indicates your acceptance.
-                            </p>
-                        </div>
-
-                        {/* FAQ */}
-                        <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 p-6">
-                            <h3 className="font-bold text-[17px] mb-5 text-slate-800">Frequently Asked Questions</h3>
-                            <div className="space-y-3">
-                                {faq.map((q, i) => (
-                                    <div key={i} className="border border-gray-100 rounded-xl p-4 flex justify-between items-center cursor-pointer hover:border-teal-200 hover:bg-teal-50/50 transition-colors">
-                                        <span className="text-[14px] font-bold text-gray-600">{q}</span>
-                                        <ChevronDown className="w-4 h-4 text-gray-400" />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Need Help? */}
-                        <div className="bg-teal-50 rounded-[24px] border border-teal-100 p-6 text-center shadow-sm">
-                            <div className="w-12 h-12 bg-white text-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm border border-teal-100/50">
-                                <Headset className="w-6 h-6" />
-                            </div>
-                            <h3 className="font-bold text-[17px] text-teal-600 mb-2">Need Help?</h3>
-                            <p className="text-teal-700/70 text-[14px] leading-[1.6] mb-6 font-medium">
-                                Our support team is here for you if you have any questions.
-                            </p>
-                            <button className="w-full bg-teal-500 text-white font-bold py-3.5 rounded-xl hover:bg-teal-600 transition-colors shadow-sm shadow-teal-500/20">
-                                Contact Support
-                            </button>
-                        </div>
-                    </aside>
-
-                </div>
-            </section>
-
-            {/* App Banner */}
-            <section className="max-w-[1400px] mx-auto px-6 pb-24 mt-10">
-                <div className="bg-teal-50 rounded-[40px] px-12 py-14 flex flex-col lg:flex-row items-center justify-between gap-10 relative border border-teal-100 shadow-sm overflow-hidden">
-                    {/* Background decoration */}
-                    <div className="absolute top-[-50%] right-[-10%] w-[500px] h-[500px] bg-white rounded-full blur-3xl opacity-60 pointer-events-none"></div>
-
-                    <div className="lg:w-[45%] z-10 text-center lg:text-left">
-                        <h2 className="text-[40px] md:text-[44px] font-extrabold text-[#113c34] mb-5 leading-[1.1] tracking-tight">
-                            Ready to give your pet<br />the best care?
-                        </h2>
-                        <p className="text-[#113c34]/70 font-medium text-[17px] mb-8 max-w-lg leading-relaxed">
-                            Book services, get expert advice, and manage your pet's well-being all in one place.
-                        </p>
-                        <div className="flex items-center justify-center lg:justify-start gap-4">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" className="h-[46px] hover:opacity-90 cursor-pointer shadow-sm rounded-lg" />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="h-[46px] hover:opacity-90 cursor-pointer shadow-sm rounded-lg" />
-                        </div>
-                    </div>
-
-                    <div className="flex items-center gap-12 z-10">
-                        <div className="relative h-[320px] w-[210px] hidden sm:block mt-16 translate-y-10">
-                            {/* Phone Mockup */}
-                            <div className="absolute inset-0 bg-white rounded-[36px] shadow-2xl border-[10px] border-[#1a2b33] overflow-hidden">
-                                <img src="/Image with Blob.jpg" alt="App UI" className="w-full h-full object-cover" onError={(e) => e.target.style.display = 'none'} />
-                                <div className="absolute top-0 w-full h-7 bg-[#1a2b33] flex justify-center"><div className="w-[30%] h-4 bg-black rounded-b-xl"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ---------------- Footer ---------------- */}
-            <Footer />
+function Block({ b }) {
+  switch (b.t) {
+    case "p":
+      return <p className={bodyP}>{b.text}</p>;
+    case "list":
+      return (
+        <ul>
+          {b.items.map((i) => (
+            <li key={i} className="relative py-[5px] pl-[22px] text-base leading-[27px]">
+              <span className="absolute left-0 top-[5px] text-[#22947E]">—</span>
+              {i}
+            </li>
+          ))}
+        </ul>
+      );
+    case "note":
+      if (b.draft && !SHOW_DRAFT_NOTES) return null;
+      return (
+        <div className="flex flex-col gap-2 rounded-[14px] border border-[#2DBB9F]/25 bg-[#EAF8F4] px-[22px] pb-5 pt-[27px]">
+          <span
+            className={`font-semibold uppercase tracking-[0.033em] text-[#22947E] ${
+              b.draft ? "text-[11px] font-normal tracking-[0.06em]" : "text-xl"
+            }`}
+          >
+            {b.label}
+          </span>
+          <p className="text-[15px] leading-[26px]">{b.text}</p>
         </div>
-    );
+      );
+    case "email":
+      return (
+        <p className="text-[17px] leading-[29px]">
+          <a href={`mailto:legal@${DOMAIN}`} className="text-[#22947E] underline">
+            legal@{DOMAIN}
+          </a>
+        </p>
+      );
+    default:
+      return null;
+  }
 }
 
-function HeroCard({ icon, title, desc }) {
-    return (
-        <div className="bg-white border border-gray-100 rounded-[20px] p-5 flex-1 shadow-[0_2px_15px_rgba(0,0,0,0.02)] flex items-start gap-4 hover:-translate-y-1 transition-transform">
-            <div className="bg-teal-50 p-3 rounded-2xl shrink-0">
-                {icon}
-            </div>
-            <div>
-                <h4 className="font-bold text-slate-900 mb-1.5 text-[15px]">{title}</h4>
-                <p className="text-gray-500 text-[13px] font-medium leading-[1.5]">{desc}</p>
-            </div>
-        </div>
+export default function TermsOfService() {
+  const [active, setActive] = useState(SECTIONS[0].id);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActive(hit.target.id);
+      },
+      { rootMargin: "-15% 0px -70% 0px" }
     );
+    SECTIONS.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div className="bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#17201E]">
+      <Navbar currentPage="terms" />
+
+      <main className="mx-auto max-w-[1200px] px-6 md:px-16">
+        <section className="flex flex-col gap-[13px] py-14 md:py-20">
+          <h1 className="text-[36px] font-semibold leading-[62px] tracking-[-0.03em] md:text-[42px]">Terms of service</h1>
+          <p className="text-sm text-[#22947E]">Effective: {EFFECTIVE_DATE}</p>
+          <p className="max-w-[640px] pt-[5px] text-[17px] font-medium leading-[27px] text-[#66716D]">{INTRO}</p>
+        </section>
+
+        <div className="flex flex-col gap-10 border-t border-[#17201E]/[0.06] pb-6 pt-12 md:flex-row md:gap-20 md:pt-16">
+          <aside className="md:w-[240px] md:shrink-0">
+            <nav aria-label="Table of contents" className="md:sticky md:top-24">
+              <p className="mb-4 hidden text-[11px] font-medium uppercase tracking-[0.05em] text-[#66716D] md:block">On this page</p>
+              <ul className="hidden md:block">
+                {SECTIONS.map((s, i) => {
+                  const on = active === s.id;
+                  return (
+                    <li key={s.id}>
+                      <a
+                        href={`#${s.id}`}
+                        className={`flex items-baseline gap-2.5 border-l-2 py-2 pl-3 text-sm ${
+                          on ? "border-[#22947E] font-semibold text-[#22947E]" : "border-transparent text-[#66716D] hover:text-[#17201E]"
+                        }`}
+                      >
+                        <span className={`w-5 shrink-0 text-xs ${on ? "font-semibold" : ""}`}>{pad(i)}</span>
+                        <span className="leading-[21px]">{s.title}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+              <details className="rounded-xl border border-[#17201E]/10 px-4 py-3 md:hidden">
+                <summary className="cursor-pointer text-sm font-semibold">On this page</summary>
+                <ul className="mt-2">
+                  {SECTIONS.map((s, i) => (
+                    <li key={s.id}>
+                      <a href={`#${s.id}`} className="flex gap-2.5 py-1.5 text-sm text-[#66716D]">
+                        <span className="w-5 text-xs">{pad(i)}</span>
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </nav>
+          </aside>
+
+          <article className="min-w-0 max-w-[760px] flex-1">
+            <p className={bodyP}>{OPENING}</p>
+
+            <div className="mt-5 flex flex-col pb-6">
+              {SECTIONS.map((s) => (
+                <section key={s.id} id={s.id} className="flex scroll-mt-24 flex-col gap-[17px] pt-[52px] first:pt-2">
+                  <h2 className="pt-[5px] text-[20px] font-semibold leading-[35px] tracking-[-0.028em]">{s.title}</h2>
+                  {s.blocks.map((b, i) => (
+                    <Block key={i} b={b} />
+                  ))}
+                </section>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2.5 border-t border-[#17201E]/10 pt-10">
+              <h3 className="text-[20px] font-semibold leading-[30px] tracking-[-0.02em]">Questions?</h3>
+              <p className="max-w-[520px] pb-2 text-base leading-[25px] text-[#66716D]">
+                If you have questions about these Terms, please contact Mungo.
+              </p>
+              <a href="/contact.html" className="self-start rounded-full bg-[#2DBB9F] px-[26px] py-3.5 text-sm font-semibold text-white">
+                Contact Mungo
+              </a>
+              <a href="#" className="text-sm text-[#22947E]">Back to top ↑</a>
+            </div>
+          </article>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }

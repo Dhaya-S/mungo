@@ -1,254 +1,296 @@
-import React, { useState } from "react";
-import { Shield, Lock, Calendar, User, Users, PawPrint, Mail, ChevronRight, CheckCircle2, ChevronDown, Headset, ShieldCheck } from "lucide-react";
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+/* TODO before launch */
+const LAST_UPDATED = "[DATE]";
+const DOMAIN = "mungo.example";
+const LEGAL_ADDRESS = "[VERIFIED LEGAL ADDRESS, IF REQUIRED]";
+const SHOW_DRAFT_NOTES = true;
+
+const INTRO =
+  "This Privacy policy explains how Mungo collects, uses, shares and protects information when you use our website, app and services.";
+
+const OPENING =
+  "This Privacy Policy explains how Mungo collects, uses, shares and protects information when you use our website, app and services. This introduction is editable legal copy and must be reviewed before publication.";
+
+/* block types: p, list, note (draft callout), link */
+const SECTIONS = [
+  {
+    id: "overview",
+    title: "Overview",
+    blocks: [
+      { t: "p", text: "Mungo is a pet-care platform that helps pet parents discover and connect with pet-care services and providers. This Privacy Policy explains how we handle personal information collected through our website, app and related services." },
+      { t: "p", text: "This policy applies to Mungo's website, application and services generally. Specific URLs and product names referenced elsewhere on this site are illustrative and subject to change." },
+    ],
+  },
+  {
+    id: "information-we-collect",
+    title: "Information we collect",
+    blocks: [
+      { t: "p", text: "The categories below are structured so Mungo's actual data practices can be confirmed and inserted here by the team responsible for data collection." },
+      { t: "p", text: "This may include information such as your name, email address, phone number, account details, booking or service information, provider information (for care providers), and the content of support enquiries." },
+      { t: "p", text: "Where applicable, this may include device information, browser information, IP address, usage information, and cookies. Only the categories Mungo actually uses should remain in the final version of this policy." },
+    ],
+  },
+  {
+    id: "how-we-use-information",
+    title: "How we use information",
+    blocks: [
+      { t: "p", text: "Where applicable, information may be used to:" },
+      {
+        t: "list",
+        items: [
+          "Provide and operate Mungo's services",
+          "Manage accounts",
+          "Connect pet parents with care providers",
+          "Process requests and bookings",
+          "Communicate with users",
+          "Improve our products and services",
+          "Maintain the security of our platform",
+          "Comply with applicable legal obligations",
+        ],
+      },
+    ],
+  },
+  {
+    id: "how-we-share-information",
+    title: "How we share information",
+    blocks: [
+      { t: "p", text: "Mungo does not share information with a category of recipient unless this is actually true of our practices. Potential categories, to be confirmed, include:" },
+      {
+        t: "list",
+        items: [
+          "Service providers who help us operate Mungo",
+          "Care providers or other users, as needed to facilitate a booking",
+          "Business partners, where applicable",
+          "Legal or regulatory authorities where required by law",
+          "A successor entity in connection with a business transfer, where applicable",
+        ],
+      },
+      { t: "note", label: "Placeholder", text: "This section must be confirmed against Mungo's actual data-sharing practices before publication." },
+    ],
+  },
+  {
+    id: "cookies",
+    title: "Cookies & similar technologies",
+    blocks: [
+      { t: "p", text: "Cookies are small files placed on your device that help a website function and understand how it's used. Mungo may use necessary cookies to support core functionality, and optional cookies for preferences, analytics or marketing where applicable." },
+      { t: "p", text: "You can review and change your cookie choices at any time." },
+      { t: "link", text: "Manage cookie preferences", href: "#" },
+    ],
+  },
+  {
+    id: "your-choices-rights",
+    title: "Your choices & rights",
+    blocks: [
+      { t: "p", text: "Depending on your location and applicable law, you may have choices regarding your information, which may include:" },
+      {
+        t: "list",
+        items: [
+          "Updating your account information",
+          "Managing communication preferences",
+          "Managing cookie preferences",
+          "Submitting a privacy request",
+          "Requesting access, correction or deletion of your information, where legally applicable",
+        ],
+      },
+      { t: "note", label: "Placeholder", text: "Specific legal rights (such as under GDPR or CCPA) must be confirmed for Mungo's operating jurisdictions before publication." },
+    ],
+  },
+  {
+    id: "data-retention",
+    title: "Data retention",
+    blocks: [
+      { t: "p", text: "This is placeholder language. Mungo retains information for as long as necessary to provide our services and for other legitimate business or legal purposes, consistent with applicable law. A specific retention period has not yet been finalized." },
+    ],
+  },
+  {
+    id: "security",
+    title: "Security",
+    blocks: [
+      { t: "p", text: "Mungo uses measures designed to help protect information from unauthorized access, use or disclosure. However, no method of transmission or storage can be guaranteed to be completely secure." },
+      { t: "note", label: "Important", text: "This section must not claim information is “100% secure” or use unverified language such as “bank-level” or “military-grade” security." },
+    ],
+  },
+  {
+    id: "childrens-privacy",
+    title: "Children's privacy",
+    blocks: [
+      { t: "p", text: "Mungo is intended for individuals who are 18 years of age or older. Mungo is not directed to children, and we do not knowingly collect personal information from anyone under 18." },
+      { t: "p", text: "If we learn that we have collected personal information from a person under 18, we will take reasonable steps to delete that information from our systems, subject to applicable law." },
+      { t: "p", text: "If you believe that a person under 18 has provided personal information to Mungo, please contact us using the contact details provided in this Privacy Policy." },
+    ],
+  },
+  {
+    id: "third-party-services",
+    title: "Third-party services",
+    blocks: [
+      { t: "p", text: "Mungo may use third-party services to help operate our website and app, such as analytics, hosting, payments or communications. Specific vendors are not named here and should only be added once verified and implemented." },
+    ],
+  },
+  {
+    id: "changes",
+    title: "Changes to this policy",
+    blocks: [
+      { t: "p", text: "Mungo may update this Privacy Policy from time to time. When we do, we'll update the “Last updated” date at the top of this page." },
+    ],
+  },
+  {
+    id: "contact",
+    title: "Contact us",
+    blocks: [
+      { t: "p", text: "If you have questions about this Privacy Policy or Mungo's privacy practices, please contact us." },
+      { t: "email" },
+      { t: "p", text: `Address: ${LEGAL_ADDRESS}` },
+    ],
+  },
+];
+
+const pad = (n) => String(n + 1).padStart(2, "0");
+const bodyP = "text-base leading-[29px] text-[#17201E]";
+
+function Block({ b }) {
+  switch (b.t) {
+    case "p":
+      return <p className={`${bodyP} font-medium`}>{b.text}</p>;
+    case "list":
+      return (
+        <ul>
+          {b.items.map((i) => (
+            <li key={i} className="relative py-[5px] pl-[22px] text-base font-medium leading-[27px]">
+              <span className="absolute left-0 top-[5px] text-[#22947E]">—</span>
+              {i}
+            </li>
+          ))}
+        </ul>
+      );
+    case "note":
+      return SHOW_DRAFT_NOTES ? (
+        <div className="flex flex-col gap-2 rounded-[14px] border border-[#2DBB9F]/25 bg-[#EAF8F4] px-[22px] pb-5 pt-[27px]">
+          <span className="text-xs font-medium uppercase tracking-[0.055em] text-[#22947E]">{b.label}</span>
+          <p className="text-sm font-medium leading-[26px]">{b.text}</p>
+        </div>
+      ) : null;
+    case "link":
+      return (
+        <a href={b.href} className={`${bodyP} font-medium text-[#22947E] underline`}>
+          {b.text}
+        </a>
+      );
+    case "email":
+      return (
+        <p className={`${bodyP} font-medium`}>
+          Email:{" "}
+          <a href={`mailto:privacy@${DOMAIN}`} className="text-[#22947E] underline">
+            privacy@{DOMAIN}
+          </a>
+        </p>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function PrivacyPolicy() {
-    const sidebar = [
-        { label: "Introduction", active: true },
-        { label: "Information We Collect", active: false },
-        { label: "How We Use Your Data", active: false },
-        { label: "Cookies & Tracking", active: false },
-        { label: "Third-Party Services", active: false },
-        { label: "Data Security", active: false },
-        { label: "Your Rights", active: false },
-        { label: "Contact Us", active: false },
-    ];
+  const [active, setActive] = useState(SECTIONS[0].id);
 
-    const accordions = [
-        "4. Cookies & Tracking Technologies",
-        "5. Third-Party Services",
-        "6. Data Security",
-        "7. Your Rights & Choices"
-    ];
-
-    return (
-        <div className="bg-slate-50 min-h-screen font-sans text-slate-800 flex flex-col overflow-x-hidden">
-            <Navbar currentPage="privacy" />
-
-            {/* ---------------- Hero ---------------- */}
-            <section className="bg-white rounded-b-[40px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] pt-32 pb-20 relative overflow-hidden">
-                {/* Background blobs */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-50/60 rounded-full blur-3xl translate-x-1/3 -translate-y-1/4 pointer-events-none"></div>
-                <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-blue-50/40 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
-
-                <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10 flex flex-col lg:flex-row items-center gap-12">
-
-                    <div className="lg:w-1/2">
-                        {/* Breadcrumb */}
-                        <div className="flex items-center gap-2 text-sm font-medium text-gray-400 mb-8">
-                            <span className="hover:text-teal-500 cursor-pointer">Home</span>
-                            <ChevronRight className="w-4 h-4" />
-                            <span className="text-gray-600">Privacy Policy</span>
-                        </div>
-
-                        <h1 className="text-5xl lg:text-[64px] font-extrabold text-[#113c34] leading-[1.1] mb-6 tracking-tight">
-                            Privacy Policy
-                        </h1>
-                        <p className="text-gray-500 text-lg leading-relaxed max-w-lg font-medium">
-                            Your privacy is important to us. This policy explains how
-                            Mungo collects, uses, and protects your personal information when you use our platform.
-                        </p>
-                    </div>
-
-                    <div className="lg:w-1/2 relative flex justify-center items-center mt-10 lg:mt-0">
-
-                    </div>
-                </div>
-
-                {/* Hero Stat Cards */}
-                <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 mt-16 relative z-10">
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-white border border-gray-100 rounded-[20px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex gap-4 items-center">
-                            <div className="text-teal-500 shrink-0"><Lock className="w-8 h-8" /></div>
-                            <div>
-                                <h3 className="font-bold text-slate-900 mb-1">Secure Data</h3>
-                                <p className="text-gray-500 text-[13px] font-medium leading-relaxed">We use industry-standard security to protect your data.</p>
-                            </div>
-                        </div>
-                        <div className="bg-white border border-gray-100 rounded-[20px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex gap-4 items-center">
-                            <div className="text-teal-500 shrink-0"><Shield className="w-8 h-8" /></div>
-                            <div>
-                                <h3 className="font-bold text-slate-900 mb-1">No Selling of Data</h3>
-                                <p className="text-gray-500 text-[13px] font-medium leading-relaxed">We will never sell your personal information to third parties.</p>
-                            </div>
-                        </div>
-                        <div className="bg-white border border-gray-100 rounded-[20px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex gap-4 items-center">
-                            <div className="text-teal-500 shrink-0"><CheckCircle2 className="w-8 h-8" /></div>
-                            <div>
-                                <h3 className="font-bold text-slate-900 mb-1">User Control</h3>
-                                <p className="text-gray-500 text-[13px] font-medium leading-relaxed">You have full control over your data and communication preferences.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ---------------- Main Content Layout ---------------- */}
-            <section className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 py-20">
-                <div className="grid lg:grid-cols-12 gap-10 items-start">
-
-                    {/* Left Sidebar */}
-                    <div className="lg:col-span-3 space-y-8">
-                        <div className="bg-white border border-gray-100 rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                            <h3 className="font-bold text-slate-900 mb-4 px-2">On this page</h3>
-                            <ul className="space-y-1">
-                                {sidebar.map((item, i) => (
-                                    <li key={i}>
-                                        <button className={`w-full text-left px-4 py-3 rounded-xl font-bold text-[14px] flex items-center justify-between transition-colors ${item.active ? 'bg-teal-50 text-teal-600' : 'text-gray-500 hover:bg-gray-50 hover:text-slate-900'}`}>
-                                            <span className="flex items-center gap-3">
-                                                {i === 0 && <span className="w-4 flex justify-center"><User className="w-4 h-4 opacity-50" /></span>}
-                                                {i === 1 && <span className="w-4 flex justify-center"><User className="w-4 h-4 opacity-50" /></span>}
-                                                {i === 2 && <span className="w-4 flex justify-center"><User className="w-4 h-4 opacity-50" /></span>}
-                                                {i > 2 && <span className="w-4 flex justify-center"><Shield className="w-4 h-4 opacity-50" /></span>}
-                                                {item.label}
-                                            </span>
-                                            {item.active && <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="bg-teal-50 rounded-[24px] border border-teal-100 p-8 text-center">
-                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-teal-500">
-                                <Headset className="w-8 h-8" />
-                            </div>
-                            <h3 className="text-lg font-bold text-teal-900 mb-3">Have questions?</h3>
-                            <p className="text-teal-800/80 text-sm font-medium mb-6 leading-relaxed">
-                                We're here to help you with any privacy related concerns.
-                            </p>
-                            <button className="bg-teal-500 hover:bg-teal-600 text-white font-bold w-full py-3 rounded-xl transition-colors shadow-sm">
-                                Contact Support
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Right Content Area */}
-                    <div className="lg:col-span-9 space-y-8">
-
-                        {/* 1. Introduction */}
-                        <div className="bg-white border border-gray-100 rounded-[32px] p-8 md:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                            <h2 className="text-2xl font-bold text-slate-900 mb-6">1. Introduction</h2>
-                            <p className="text-gray-500 font-medium leading-relaxed mb-8">
-                                Mungo ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, and services.
-                            </p>
-                            <div className="bg-teal-50 rounded-[24px] p-8 relative">
-                                <div className="absolute top-4 left-4 text-teal-200/50">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
-                                </div>
-                                <div className="absolute bottom-4 right-6 text-teal-200">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-5 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-12.5 5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm15 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-7.5 3c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z" />
-                                    </svg>
-                                </div>
-                                <p className="text-slate-800 font-bold text-lg leading-relaxed relative z-10 ml-8 max-w-2xl">
-                                    We believe in transparency and giving you control over your personal information.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* 2. Information We Collect */}
-                        <div className="bg-white border border-gray-100 rounded-[32px] p-8 md:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                            <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Information We Collect</h2>
-                            <p className="text-gray-500 font-medium leading-relaxed mb-8">
-                                We collect information that helps us provide better services for you and your pets.
-                            </p>
-                            <div className="grid md:grid-cols-3 gap-6">
-                                <div className="border border-gray-100 rounded-[20px] p-6 shadow-sm">
-                                    <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-500 mb-4">
-                                        <Users className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-bold text-slate-900 mb-2 text-[15px]">Personal Information</h3>
-                                    <p className="text-gray-500 text-[13px] font-medium leading-relaxed">Name, email, phone number, address, and account details.</p>
-                                </div>
-                                <div className="border border-gray-100 rounded-[20px] p-6 shadow-sm">
-                                    <div className="w-12 h-12 bg-pink-50 rounded-xl flex items-center justify-center text-pink-500 mb-4">
-                                        <PawPrint className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-bold text-slate-900 mb-2 text-[15px]">Pet Information</h3>
-                                    <p className="text-gray-500 text-[13px] font-medium leading-relaxed">Pet name, breed, age, medical history, and preferences.</p>
-                                </div>
-                                <div className="border border-gray-100 rounded-[20px] p-6 shadow-sm">
-                                    <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-500 mb-4">
-                                        <ShieldCheck className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-bold text-slate-900 mb-2 text-[15px]">Usage Information</h3>
-                                    <p className="text-gray-500 text-[13px] font-medium leading-relaxed">Device information, IP address, app usage, and analytics.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 3. How We Use Your Data */}
-                        <div className="bg-white border border-gray-100 rounded-[32px] p-8 md:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                            <h2 className="text-2xl font-bold text-slate-900 mb-4">3. How We Use Your Data</h2>
-                            <p className="text-gray-500 font-medium leading-relaxed mb-8">
-                                We use your information for the following purposes:
-                            </p>
-
-                            <div className="flex flex-col md:flex-row items-center gap-10">
-                                <ul className="space-y-4 flex-1">
-                                    <li className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-teal-500 shrink-0" />
-                                        <span className="text-slate-600 font-bold text-sm">To provide, operate, and maintain our services</span>
-                                    </li>
-                                    <li className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-teal-500 shrink-0" />
-                                        <span className="text-slate-600 font-bold text-sm">To personalize your experience</span>
-                                    </li>
-                                    <li className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-teal-500 shrink-0" />
-                                        <span className="text-slate-600 font-bold text-sm">To communicate with you about updates and offers</span>
-                                    </li>
-                                    <li className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-teal-500 shrink-0" />
-                                        <span className="text-slate-600 font-bold text-sm">To ensure platform safety and prevent fraud</span>
-                                    </li>
-                                </ul>
-                                <div className="shrink-0">
-                                    <img src="/assets/corgi.png" alt="Corgi" className="w-64 h-40 object-cover rounded-3xl" onError={(e) => { e.target.src = 'https://placedog.net/600/400?id=12' }} />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Accordions */}
-                        <div className="space-y-4">
-                            {accordions.map((title, i) => (
-                                <div key={i} className="bg-white border border-gray-100 rounded-[20px] p-6 flex justify-between items-center cursor-pointer hover:border-teal-200 transition-colors shadow-sm">
-                                    <h3 className="font-bold text-slate-900">{title}</h3>
-                                    <ChevronDown className="w-5 h-5 text-gray-400" />
-                                </div>
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* ---------------- Banner ---------------- */}
-            <section className="max-w-[1400px] mx-auto px-6 pb-20">
-                <div className="bg-teal-50 rounded-[40px] px-10 py-12 flex flex-col md:flex-row items-center justify-between gap-10 border border-teal-100">
-
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm text-teal-500">
-                            <ShieldCheck className="w-8 h-8" />
-                        </div>
-                        <div>
-                            <h2 className="text-2xl font-bold text-[#113c34] mb-2">Your trust means everything to us</h2>
-                            <p className="text-teal-800/80 font-medium text-sm">If you have any questions about this Privacy Policy or how we handle your data,<br className="hidden md:block" /> please reach out. We're always here to help.</p>
-                        </div>
-                    </div>
-
-                    <div className="shrink-0 w-full md:w-auto">
-                        <button className="w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white font-bold px-8 py-4 rounded-xl shadow-sm transition-colors">
-                            Contact Us
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* ---------------- Footer ---------------- */}
-            <Footer />
-        </div>
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActive(hit.target.id);
+      },
+      { rootMargin: "-15% 0px -70% 0px" }
     );
+    SECTIONS.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div className="bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#17201E]">
+      <Navbar currentPage="privacy" />
+
+      <main className="mx-auto max-w-[1200px] px-6 md:px-16">
+        {/* Hero */}
+        <section className="flex flex-col gap-2.5 py-14 md:py-20">
+          <h1 className="text-[36px] font-semibold leading-[62px] tracking-[-0.03em] md:text-[42px]">Privacy policy</h1>
+          <p className="pt-[3px] text-sm font-medium text-[#22947E]">Last updated: {LAST_UPDATED}</p>
+          <p className="max-w-[640px] pt-2 text-base font-medium leading-[27px] text-[#66716D]">{INTRO}</p>
+        </section>
+
+        {/* Document */}
+        <div className="flex flex-col gap-10 border-t border-[#17201E]/[0.06] pb-6 pt-12 md:flex-row md:gap-20 md:pt-16">
+          <aside className="md:w-[240px] md:shrink-0">
+            <nav aria-label="Table of contents" className="md:sticky md:top-24">
+              <ul className="hidden md:block">
+                {SECTIONS.map((s, i) => {
+                  const on = active === s.id;
+                  return (
+                    <li key={s.id}>
+                      <a
+                        href={`#${s.id}`}
+                        className={`flex items-baseline gap-2.5 border-l-2 py-2 pl-3 text-sm ${
+                          on ? "border-[#22947E] font-semibold text-[#22947E]" : "border-transparent font-medium text-[#66716D] hover:text-[#17201E]"
+                        }`}
+                      >
+                        <span className={`w-5 shrink-0 ${on ? "font-semibold" : "font-normal"}`}>{pad(i)}</span>
+                        <span className="leading-[21px]">{s.title}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+              {/* mobile: collapsible list */}
+              <details className="rounded-xl border border-[#17201E]/10 px-4 py-3 md:hidden">
+                <summary className="cursor-pointer text-sm font-semibold">On this page</summary>
+                <ul className="mt-2">
+                  {SECTIONS.map((s, i) => (
+                    <li key={s.id}>
+                      <a href={`#${s.id}`} className="flex gap-2.5 py-1.5 text-sm text-[#66716D]">
+                        <span className="w-5">{pad(i)}</span>
+                        {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </nav>
+          </aside>
+
+          <article className="min-w-0 max-w-[760px] flex-1">
+            <p className={bodyP}>{OPENING}</p>
+
+            <div className="mt-5 flex flex-col pb-6">
+              {SECTIONS.map((s) => (
+                <section key={s.id} id={s.id} className="flex scroll-mt-24 flex-col gap-[17px] pt-[52px] first:pt-2">
+                  <h2 className="pt-[5px] text-[20px] font-semibold leading-[35px] tracking-[-0.028em]">{s.title}</h2>
+                  {s.blocks.map((b, i) => (
+                    <Block key={i} b={b} />
+                  ))}
+                </section>
+              ))}
+            </div>
+
+            <a href="#" className="text-sm text-[#22947E]">Back to top ↑</a>
+
+            <div className="mt-6 flex flex-col gap-[9px] border-t border-[#17201E]/10 pt-10">
+              <h3 className="text-[20px] font-semibold leading-[30px] tracking-[-0.02em]">Questions about your privacy?</h3>
+              <p className="max-w-[520px] pb-2 text-base leading-[25px] text-[#66716D]">
+                If you have questions about this Privacy Policy or how your information is handled, please contact Mungo.
+              </p>
+              <a href="/contact.html" className="self-start rounded-full bg-[#2DBB9F] px-[26px] py-3.5 text-sm font-semibold text-white">
+                Contact Mungo
+              </a>
+            </div>
+          </article>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
