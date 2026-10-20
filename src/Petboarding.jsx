@@ -139,7 +139,7 @@ export default function PetBoarding() {
             aria-hidden="true"
             className="absolute right-[8%] top-[7%] h-[82%] w-[57%] rounded-[45%_55%_40%_60%/55%_45%_55%_45%] bg-[#E7F8F3]"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={boarding1}
             alt="A pug and a cat wearing sunglasses in a yellow toy car"
             className="relative h-auto w-full object-contain drop-shadow-[0_8px_18px_rgba(69,69,69,0.35)]"
@@ -153,7 +153,7 @@ export default function PetBoarding() {
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:gap-16">
         {/* Image */}
         <div className="w-full max-w-[485px] shrink-0 overflow-hidden rounded-[28px]">
-          <img
+          <img loading="lazy" decoding="async"
             src={boarding2}
             alt="Sitter & dog, warm companionship at home"
             className="h-auto w-full object-cover"
@@ -188,7 +188,7 @@ export default function PetBoarding() {
               className={`flex min-h-[514px] flex-col overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
             >
               <div className="flex h-[380px] items-end">
-                <img
+                <img loading="lazy" decoding="async"
                   src={card.img}
                   alt={card.title}
                   className="h-[322px] w-full object-cover object-bottom"
@@ -226,7 +226,7 @@ export default function PetBoarding() {
           {steps.map((step) => (
             <div key={step.label} className="flex flex-col items-center gap-6">
               <div className="flex h-[223px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[223px] w-auto max-w-full object-contain"
@@ -261,7 +261,7 @@ export default function PetBoarding() {
               className="flex flex-col items-center text-center"
             >
               <div className="flex h-[191px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[191px] w-auto max-w-full object-contain"
@@ -302,7 +302,7 @@ export default function PetBoarding() {
             <h2 className="mx-auto max-w-[485px] text-center text-[30px] font-semibold leading-[1.3] text-[#17201E] sm:text-[36px] lg:text-[42px]">
               Pet boarding questions, answered.
             </h2>
-            <img
+            <img loading="lazy" decoding="async"
               src={boarding13}
               alt=""
               aria-hidden="true"

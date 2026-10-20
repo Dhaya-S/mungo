@@ -71,7 +71,7 @@ function Block({ block }) {
     case 'p':
       return <p className="text-lg font-medium leading-[33px] text-[#17201E]">{block.text}</p>;
     case 'img':
-      return <img src={block.src} alt={block.alt || ''} className="h-auto w-full rounded-3xl object-cover sm:h-[333px]" />;
+      return <img loading="lazy" decoding="async" src={block.src} alt={block.alt || ''} className="h-auto w-full rounded-3xl object-cover sm:h-[333px]" />;
     case 'checklist':
       return (
         <ul className="flex flex-col gap-[18px] pt-4">
@@ -124,7 +124,7 @@ export default function BlogArticle({ article = ARTICLE, related = RELATED }) {
       <section className="w-full bg-[#EAF8F4]">
         <div className="mx-auto flex max-w-[1440px] flex-col items-stretch gap-8 px-6 py-10 lg:min-h-[560px] lg:flex-row lg:items-center lg:gap-16 lg:p-16">
           <div className="relative min-h-[320px] flex-1 overflow-hidden rounded-3xl lg:h-[625px]">
-            <img src={article.heroImg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <img loading="lazy" decoding="async" src={article.heroImg} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <span className="absolute bottom-4 left-4 rounded-full bg-[rgba(23,32,30,0.55)] px-[11px] py-[7px] text-[11px] leading-4 text-white backdrop-blur-[3px]">
               {article.caption}
             </span>
@@ -169,7 +169,7 @@ export default function BlogArticle({ article = ARTICLE, related = RELATED }) {
             {related.map((r) => (
               <a key={r.title} href={r.href} className="group flex flex-col gap-[10px] pb-[11px]">
                 <div className="overflow-hidden rounded-xl">
-                  <img src={r.img} alt="" className="h-[240px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] lg:h-[270px]" />
+                  <img loading="lazy" decoding="async" src={r.img} alt="" className="h-[240px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] lg:h-[270px]" />
                 </div>
                 <p className="pt-1.5 text-[11px] font-bold uppercase leading-4 tracking-[0.55px] text-[#22947E]">{r.cat}</p>
                 <h4 className="text-[16.5px] font-semibold leading-[22px] tracking-[-0.34px] text-[#17201E]">{r.title}</h4>

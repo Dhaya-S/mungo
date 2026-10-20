@@ -81,7 +81,7 @@ export default function Careers() {
             </div>
           </div>
           <div className="relative min-h-[320px] flex-1 overflow-hidden rounded-[28px] lg:ml-[120px] lg:h-[588px]">
-            <img src={careers1} alt="Two people with golden retrievers" className="absolute inset-0 h-full w-full object-cover" />
+            <img loading="lazy" decoding="async" src={careers1} alt="Two people with golden retrievers" className="absolute inset-0 h-full w-full object-cover" />
           </div>
         </div>
       </section>
@@ -132,7 +132,7 @@ export default function Careers() {
       <section id="life" className="w-full px-6 py-16 lg:px-16 lg:py-[104px]">
         <div className="mx-auto flex max-w-[1152px] flex-col items-stretch gap-10 lg:flex-row lg:items-center lg:gap-14">
           <div className="relative min-h-[300px] overflow-hidden rounded-[28px] lg:h-[466px] lg:flex-[1.7]">
-            <img src={careers2} alt="A couple with their golden retriever outdoors" className="absolute inset-0 h-full w-full object-cover" />
+            <img loading="lazy" decoding="async" src={careers2} alt="A couple with their golden retriever outdoors" className="absolute inset-0 h-full w-full object-cover" />
           </div>
           <div className="flex flex-col gap-2 lg:flex-1">
             <h2 className="pt-1.5 text-[34px] font-semibold leading-[1.05] tracking-[-0.8px] text-[#17201E] md:text-[42px] md:leading-[44px]">

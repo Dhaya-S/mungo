@@ -59,7 +59,7 @@ export default function Navbar({ currentPage = 'home' }) {
       <nav className="grid h-[76px] w-full grid-cols-[1fr_auto] items-center px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-20">
         {/* Logo — flush left */}
         <a href="/" className="flex h-[76px] items-center justify-self-start no-underline">
-          <img
+          <img loading="lazy" decoding="async"
             src={logo}
             alt="Mungo logo"
             className="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"

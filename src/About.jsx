@@ -77,7 +77,7 @@ function Steps({ items }) {
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
       {items.map((s, i) => (
         <div key={s.title} className="flex flex-col items-center gap-4 text-center">
-          <img src={IMG.steps[i]} alt="" className="h-[181px] w-[186px] object-contain" />
+          <img loading="lazy" decoding="async" src={IMG.steps[i]} alt="" className="h-[181px] w-[186px] object-contain" />
           <h4 className="pt-3.5 text-xl font-bold tracking-[0.03em] text-[#22947E]">{s.title}</h4>
           <p className="max-w-[273px] text-base font-medium leading-[22px]">{s.text}</p>
         </div>

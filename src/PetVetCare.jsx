@@ -127,7 +127,7 @@ export default function VeterinaryCare() {
         </div>
 
         <div className="flex justify-center lg:justify-end">
-          <img
+          <img loading="lazy" decoding="async"
             src={vet1}
             alt="A veterinarian in blue gloves holding a tabby cat"
             className="h-auto w-full max-w-[605px] object-contain"
@@ -141,7 +141,7 @@ export default function VeterinaryCare() {
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:gap-16">
         {/* Image */}
         <div className="w-full max-w-[629px] shrink-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={vet2}
             alt="A veterinarian giving a brown dog a gentle checkup"
             className="h-auto w-full object-contain"
@@ -174,7 +174,7 @@ export default function VeterinaryCare() {
               key={card.title}
               className={`flex flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={card.img}
                 alt={card.title}
                 className="h-[380px] w-full object-cover object-bottom"
@@ -210,7 +210,7 @@ export default function VeterinaryCare() {
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
           {steps.map((step) => (
             <div key={step.label} className="flex flex-col items-center gap-6">
-              <img
+              <img loading="lazy" decoding="async"
                 src={step.img}
                 alt={step.label}
                 className="h-[202px] w-auto max-w-full object-contain"
@@ -244,7 +244,7 @@ export default function VeterinaryCare() {
               className="flex flex-col items-center text-center"
             >
               <div className="flex h-[197px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[197px] w-auto max-w-full object-contain"
@@ -281,7 +281,7 @@ export default function VeterinaryCare() {
           <h2 className="mx-auto max-w-[550px] text-center text-[28px] font-semibold leading-[1.3] text-[#17201E] md:text-[42px]">
             Veterinary care questions, answered.
           </h2>
-          <img
+          <img loading="lazy" decoding="async"
             src={vet13}
             alt=""
             aria-hidden="true"

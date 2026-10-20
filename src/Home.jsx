@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -120,7 +120,7 @@ const careItems = [
   },
   {
     id: 'away',
-    title: 'What’s happening while I’m away?',
+    title: 'What�s happening while I�m away?',
     body: 'Get photo and video updates so you always know how your pet is doing.',
     icon: (
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -135,7 +135,7 @@ const careItems = [
   {
     id: 'done',
     title: 'When will the service be done?',
-    body: 'Track every visit in real time and get notified the moment it’s complete.',
+    body: 'Track every visit in real time and get notified the moment it�s complete.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="9" />
@@ -178,7 +178,7 @@ const partners = [
 const faqs = [
   {
     q: "What services can I find on Mungo?",
-    a: "Grooming, veterinary care, boarding, pet sitting, dog walking and pet products — all in one place.",
+    a: "Grooming, veterinary care, boarding, pet sitting, dog walking and pet products � all in one place.",
   },
   {
     q: "How do I book a service?",
@@ -253,7 +253,7 @@ function ServiceRow({ service, reversed }) {
           className={`absolute inset-0 ${reversed ? 'translate-x-[-6.5%]' : 'translate-x-[6.5%]'} translate-y-[3.5%]`}
           style={{ background: service.backBg, borderRadius: service.backBlob }}
         />
-        <img
+        <img loading="lazy" decoding="async"
           src={service.image}
           alt={service.alt}
           className="absolute inset-0 h-full w-full object-cover"
@@ -273,15 +273,15 @@ function CareSection() {
         <div className="flex w-full flex-col lg:w-[587px] lg:shrink-0">
           <div className="flex flex-col gap-3">
             <h2 className="text-[32px] font-semibold leading-[130%] text-[#17201E] md:text-[42px]">
-              Because finding good care shouldn’t be complicated.
+              Because finding good care shouldn�t be complicated.
             </h2>
             <p className="text-base font-medium leading-7 text-[#66716D]">
-              From trusted sitters to easy bookings, we make it simple for you to give your pet the best care even when you’re not around.
+              From trusted sitters to easy bookings, we make it simple for you to give your pet the best care even when you�re not around.
             </p>
           </div>
 
           <div className="relative mt-10 h-[342px] w-full max-w-[547px]">
-            <img
+            <img loading="lazy" decoding="async"
               src={home1}
               alt="Happy border collie"
               className="absolute bottom-0 left-0 h-full w-full object-contain object-left-bottom"
@@ -338,14 +338,14 @@ export default function Home() {
 
       <section className="relative -mt-[77px] w-full overflow-hidden bg-[#E7F8F3]">
         <div className="relative mx-auto h-[856.3px] w-[1440px] max-w-full">
-          <img src={left} alt="" aria-hidden="true" className="pointer-events-none absolute left-[-120px] top-[3px] h-[309px] w-[320px] max-w-none rotate-[10deg]" />
-          <img src={middle} alt="" aria-hidden="true" className="pointer-events-none absolute left-[623.55px] top-[-100px] h-[261px] w-[270px] max-w-none rotate-[-30deg]" />
-          <img src={right} alt="" aria-hidden="true" className="pointer-events-none absolute left-[1280px] top-[-10px] h-[261px] w-[270px] max-w-none rotate-[-20deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={left} alt="" aria-hidden="true" className="pointer-events-none absolute left-[-120px] top-[3px] h-[309px] w-[320px] max-w-none rotate-[10deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={middle} alt="" aria-hidden="true" className="pointer-events-none absolute left-[623.55px] top-[-100px] h-[261px] w-[270px] max-w-none rotate-[-30deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={right} alt="" aria-hidden="true" className="pointer-events-none absolute left-[1280px] top-[-10px] h-[261px] w-[270px] max-w-none rotate-[-20deg]" />
 
-          <img src={rectangle1} alt="" aria-hidden="true" className="absolute left-[-78.99px] top-[580.25px] h-[307.42px] w-[402.85px] max-w-none rotate-[2deg]" />
-          <img src={rectangle2} alt="" aria-hidden="true" className="absolute left-[1036px] top-[630px] h-[257px] w-[435px] max-w-none rotate-[4deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle1} alt="" aria-hidden="true" className="absolute left-[-78.99px] top-[580.25px] h-[307.42px] w-[402.85px] max-w-none rotate-[2deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle2} alt="" aria-hidden="true" className="absolute left-[1036px] top-[630px] h-[257px] w-[435px] max-w-none rotate-[4deg]" />
 
-          <img
+          <img loading="eager" decoding="async" fetchpriority="high"
             src={dog1}
             alt="Happy dog leaning over a ledge"
             className="absolute left-[-50px] top-[303px] h-[474px] w-[339.27px] max-w-none rotate-[10deg] object-contain"
@@ -355,7 +355,7 @@ export default function Home() {
             }}
           />
 
-          <img
+          <img loading="eager" decoding="async" fetchpriority="high"
             src={cat1}
             alt="Ginger cat looking up"
             className="absolute left-[1060px] top-[331px] h-[415.53px] w-[415.53px] max-w-none rotate-[-12deg] object-contain"
@@ -365,14 +365,14 @@ export default function Home() {
             }}
           />
 
-          <img src={bone} alt="" aria-hidden="true" className="absolute left-[320px] top-[400px] h-[161px] w-[161px] max-w-none object-contain" />
-          <img src={yarn} alt="" aria-hidden="true" className="absolute left-[1070px] top-[230px] h-[155px] w-[155px] max-w-none object-contain" />
-          <img src={ball} alt="" aria-hidden="true" className="absolute left-[859px] top-[510px] h-[81px] w-[89px] max-w-none rotate-[-38deg] object-contain" />
-          <img src={star} alt="" aria-hidden="true" className="absolute left-[980px] top-[460px] h-[95px] w-[95px] max-w-none object-contain" />
-          <img src={heart} alt="" aria-hidden="true" className="absolute left-[512px] top-[516px] h-[87px] w-[87px] max-w-none object-contain" />
-          <img src={food} alt="" aria-hidden="true" className="absolute left-[650px] top-[500px] h-[157px] w-[157px] max-w-none object-contain rotate-[-8deg]" />
-          <img src={icon1} alt="" aria-hidden="true" className="absolute left-[375px] top-[300px] h-[52.74px] w-[61.22px] max-w-none object-contain" style={{ transform: 'matrix(-0.73, 0.68, 0.68, 0.73, 0, 0)' }} />
-          <img src={icon2} alt="" aria-hidden="true" className="absolute left-[990px] top-[370px] h-[61.98px] w-[71.94px] max-w-none rotate-[58deg] object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={bone} alt="" aria-hidden="true" className="absolute left-[320px] top-[400px] h-[161px] w-[161px] max-w-none object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={yarn} alt="" aria-hidden="true" className="absolute left-[1070px] top-[230px] h-[155px] w-[155px] max-w-none object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={ball} alt="" aria-hidden="true" className="absolute left-[859px] top-[510px] h-[81px] w-[89px] max-w-none rotate-[-38deg] object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={star} alt="" aria-hidden="true" className="absolute left-[980px] top-[460px] h-[95px] w-[95px] max-w-none object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={heart} alt="" aria-hidden="true" className="absolute left-[512px] top-[516px] h-[87px] w-[87px] max-w-none object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={food} alt="" aria-hidden="true" className="absolute left-[650px] top-[500px] h-[157px] w-[157px] max-w-none object-contain rotate-[-8deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={icon1} alt="" aria-hidden="true" className="absolute left-[375px] top-[300px] h-[52.74px] w-[61.22px] max-w-none object-contain" style={{ transform: 'matrix(-0.73, 0.68, 0.68, 0.73, 0, 0)' }} />
+          <img loading="eager" decoding="async" fetchpriority="high" src={icon2} alt="" aria-hidden="true" className="absolute left-[990px] top-[370px] h-[61.98px] w-[71.94px] max-w-none rotate-[58deg] object-contain" />
 
           <div className="absolute left-[calc(50%-305px)] top-[calc(47%-87.15px)] flex w-[609px] flex-col items-center">
             <h1 className="whitespace-nowrap text-center font-['Newsreader',serif] text-[64px] font-semibold leading-[120%] text-[#17201E]">
@@ -409,7 +409,7 @@ export default function Home() {
         </div>
 
         {/* Image */}
-        <img
+        <img loading="lazy" decoding="async"
           src={home2}
           alt="Golden retriever being brushed at home"
           className="aspect-[712/444] w-full rounded-[20px] object-cover lg:w-[712px]"
@@ -439,7 +439,7 @@ export default function Home() {
     <section className="w-full bg-[#E7F8F3] font-['Plus_Jakarta_Sans'] px-6 py-16 md:px-12 lg:px-20 lg:py-[120px]">
       <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:gap-[63px]">
         {/* Image */}
-        <img
+        <img loading="lazy" decoding="async"
           src={home8}
           alt="Woman relaxing on a bean bag with her golden retriever"
           className="aspect-[574/459] w-full max-w-[574px] shrink-0 rounded-[48px] object-cover lg:rounded-[100px]"
@@ -483,7 +483,7 @@ export default function Home() {
                 <p className="text-lg font-semibold leading-[25px] text-[#17201E]">
                   {b.title}{" "}
                   <span className="text-sm font-medium leading-[22px] text-[#66716D]">
-                    — {b.text}
+                    � {b.text}
                   </span>
                 </p>
               </li>
@@ -501,7 +501,7 @@ export default function Home() {
         </div>
 
         {/* Image */}
-        <img
+        <img loading="lazy" decoding="async"
           src={home9}
           alt="Woman holding a phone showing the Mungo app while her golden retriever rests its head on her lap"
           className="aspect-[453/477] w-full max-w-[453px] shrink-0 rounded-[64px] object-cover lg:rounded-[100px]"
@@ -521,7 +521,7 @@ export default function Home() {
               {/* Image slot: 273 x 235 */}
               <div className="aspect-[273/235] w-full max-w-[273px]">
                 {step.image && (
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={step.image}
                     alt={step.alt}
                     className="h-full w-full object-contain"
@@ -558,7 +558,7 @@ export default function Home() {
         <ul className="mt-8 flex flex-wrap justify-center gap-[22px]">
           {partners.map((p) => (
             <li key={p.label} className="flex w-[222px] flex-col items-center gap-[22px]">
-              <img
+              <img loading="lazy" decoding="async"
                 src={p.image}
                 alt={p.alt}
                 className="aspect-square w-full rounded-[20px] object-cover"
@@ -586,7 +586,7 @@ export default function Home() {
           <h2 className="max-w-[320px] text-center text-[32px] font-semibold leading-[1.15] text-[#17201E] md:text-[42px]">
             Questions? We've got you.
           </h2>
-          <img
+          <img loading="lazy" decoding="async"
             src={home19}
             alt=""
             aria-hidden="true"
@@ -663,7 +663,7 @@ export default function Home() {
           </div>
 
           <a href="/blog" className="flex items-start gap-3 px-1 pt-[26px] text-[16px] font-semibold leading-6 text-[#17201E] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2DBB9F]">
-            Read all stories <span aria-hidden="true">→</span>
+            Read all stories <span aria-hidden="true">?</span>
           </a>
         </div>
       </section>

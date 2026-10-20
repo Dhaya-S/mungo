@@ -28,7 +28,7 @@ const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 
 /* ---------- Decorative blobs (same placement system as BecomeVet) ---------- */
 const Blob = ({ src, className = "" }) => (
-  <img
+  <img loading="lazy" decoding="async"
     src={src}
     alt=""
     aria-hidden="true"
@@ -188,7 +188,7 @@ export default function BecomeWalker() {
             </a>
           </div>
           <div className="w-full max-w-[543px] shrink-0 lg:pr-5">
-            <img src={bewalker1} alt="A golden retriever running on a leash through a green park" className="h-auto w-full object-contain" />
+            <img loading="lazy" decoding="async" src={bewalker1} alt="A golden retriever running on a leash through a green park" className="h-auto w-full object-contain" />
           </div>
         </div>
       </section>
@@ -252,7 +252,7 @@ export default function BecomeWalker() {
       <section className="w-full bg-[#E7F8F3] px-5 py-16 md:px-10 lg:px-20 lg:py-[120px]">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:gap-14">
           <div className="w-full max-w-[582px] shrink-0">
-            <img src={bewalker10} alt="A happy dog running on a forest path while being walked" className="h-auto w-full object-contain" />
+            <img loading="lazy" decoding="async" src={bewalker10} alt="A happy dog running on a forest path while being walked" className="h-auto w-full object-contain" />
           </div>
           <div className="flex w-full max-w-[548px] flex-col items-start gap-8">
             <h2 className="text-[30px] font-semibold leading-[1.3] tracking-[-0.8px] text-[#17201E] md:text-[42px]">
@@ -282,7 +282,7 @@ export default function BecomeWalker() {
           <div className="mt-6 grid w-full grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step) => (
               <div key={step.label} className="flex flex-col items-center gap-4">
-                <img src={step.img} alt="" className="h-[182px] w-[200px] object-contain" />
+                <img loading="lazy" decoding="async" src={step.img} alt="" className="h-[182px] w-[200px] object-contain" />
                 <div className="flex flex-col items-center gap-4 text-center">
                   <h4 className="pt-[14px] text-lg font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{step.label}</h4>
                   <p className="max-w-[290px] text-base font-medium leading-[22px] text-[#17201E]">{step.text}</p>
@@ -308,7 +308,7 @@ export default function BecomeWalker() {
             <CheckList items={SHOWCASE_ITEMS} />
           </div>
           <div className="w-full max-w-[658px] shrink-0">
-            <img src={bewalker11} alt="A tabby cat walking on a harness and leash" className="h-auto w-full object-contain" />
+            <img loading="lazy" decoding="async" src={bewalker11} alt="A tabby cat walking on a harness and leash" className="h-auto w-full object-contain" />
           </div>
         </div>
       </section>
@@ -317,7 +317,7 @@ export default function BecomeWalker() {
       <section className="w-full bg-[#F2FFFB] px-5 py-16 md:px-10 lg:px-20 lg:py-[120px]">
         <div className="mx-auto flex max-w-[1222px] flex-col items-center gap-12 lg:flex-row lg:gap-[93px]">
           <div className="w-full max-w-[649px] shrink-0">
-            <img src={bewalker12} alt="An orange kitten wearing a teal harness and leash" className="h-auto w-full object-contain" />
+            <img loading="lazy" decoding="async" src={bewalker12} alt="An orange kitten wearing a teal harness and leash" className="h-auto w-full object-contain" />
           </div>
           <div className="flex w-full max-w-[480px] flex-col items-start gap-8">
             <h2 className="text-[30px] font-semibold leading-[1.3] tracking-[-0.8px] text-[#17201E] md:text-[42px]">
@@ -350,7 +350,7 @@ export default function BecomeWalker() {
             </p>
           </div>
           <CheckList items={TRUST_POINTS} />
-          <img src={bewalker5} alt="A happy dog and cat with chat bubbles" className="h-[202px] w-[312px] max-w-full shrink-0 object-contain" />
+          <img loading="lazy" decoding="async" src={bewalker5} alt="A happy dog and cat with chat bubbles" className="h-[202px] w-[312px] max-w-full shrink-0 object-contain" />
         </div>
       </section>
 
@@ -362,7 +362,7 @@ export default function BecomeWalker() {
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3 lg:gap-9">
           {CARDS.map((card, i) => (
             <article key={i} className={`flex min-h-[484px] flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}>
-              <img src={card.img} alt="" className="h-[380px] w-full object-cover object-bottom" />
+              <img loading="lazy" decoding="async" src={card.img} alt="" className="h-[380px] w-full object-cover object-bottom" />
               <div className="flex flex-col gap-3 px-6">
                 <h3 className="text-2xl font-semibold leading-[1.1] text-black">{card.title}</h3>
                 <p className="text-base font-medium leading-[23px] text-[#66716D]">{card.text}</p>

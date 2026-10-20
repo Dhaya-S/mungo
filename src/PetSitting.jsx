@@ -125,7 +125,7 @@ export default function PetSitting() {
             aria-hidden="true"
             className="absolute bottom-0 right-0 h-[95%] w-full rounded-[40%_60%_55%_45%/45%_40%_60%_55%] bg-[#D0FAED]"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={sitter1}
             alt="A woman with curly hair petting her dog"
             className="relative ml-4 h-auto w-[92%] object-contain"
@@ -139,7 +139,7 @@ export default function PetSitting() {
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-14">
         {/* Image */}
         <div className="w-full max-w-[571px] shrink-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={sitter2}
             alt="A smiling woman on a couch with a golden puppy and an orange cat"
             className="h-auto w-full object-contain"
@@ -168,7 +168,7 @@ export default function PetSitting() {
               key={card.title}
               className={`flex min-h-[526px] min-w-[410px] flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={card.img}
                 alt={card.title}
                 className="h-[380px] w-full object-cover object-bottom"
@@ -205,7 +205,7 @@ export default function PetSitting() {
           {steps.map((step) => (
             <div key={step.label} className="flex flex-col items-center gap-6">
               <div className="flex h-[202px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[202px] w-auto max-w-full object-contain"
@@ -240,7 +240,7 @@ export default function PetSitting() {
               className="flex flex-col items-center text-center"
             >
               <div className="flex h-[200px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[200px] w-auto max-w-full object-contain"
@@ -281,7 +281,7 @@ export default function PetSitting() {
             <h2 className="mx-auto max-w-[520px] text-center text-[32px] font-semibold leading-[1.3] text-[#17201E] sm:text-[38px] lg:text-[42px]">
               Pet sitting questions, answered.
             </h2>
-            <img
+            <img loading="lazy" decoding="async"
               src={sitter13}
               alt=""
               aria-hidden="true"

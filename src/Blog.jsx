@@ -98,7 +98,7 @@ export default function Blog() {
         <section className="w-full px-6 pt-14 lg:px-16">
           <div className="mx-auto flex max-w-[1168px] flex-col items-stretch gap-8 lg:flex-row lg:items-center lg:justify-between">
             <a href={FEATURED.href} className="relative block w-full overflow-hidden rounded-xl lg:w-[598px] lg:shrink-0">
-              <img src={FEATURED.img} alt="" className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[494px]" />
+              <img loading="lazy" decoding="async" src={FEATURED.img} alt="" className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[494px]" />
               <span className="absolute bottom-4 left-4 rounded-full bg-[rgba(23,32,30,0.55)] px-[11px] py-[7px] text-[11px] leading-4 text-white backdrop-blur-[3px]">
                 {FEATURED.caption}
               </span>
@@ -130,7 +130,7 @@ export default function Blog() {
               {visible.map((a) => (
                 <a key={a.title} href={a.href} className="group flex flex-col gap-[10px] pb-[14px]">
                   <div className="overflow-hidden rounded-xl">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={a.img}
                       alt=""
                       className="h-[260px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] sm:h-[340px] lg:h-[417px]"

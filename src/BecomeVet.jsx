@@ -27,7 +27,7 @@ import blob7 from './assets/icon-7.png';
 /* ---------- decorative blobs (BecomeGroomer-style, class based) ---------- */
 
 const Blob = ({ src, className = "" }) => (
-  <img
+  <img loading="lazy" decoding="async"
     src={src}
     alt=""
     aria-hidden="true"
@@ -229,7 +229,7 @@ export default function BecomeVet() {
 
           {/* Image */}
           <div className="w-full max-w-[650px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={bevet1}
               alt="Expert care when it matters. Explore vet care"
               width={650}
@@ -311,7 +311,7 @@ export default function BecomeVet() {
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-14">
           {/* Image */}
           <div className="w-full max-w-[678px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={bevet2}
               alt="Veterinarian smiling with a golden retriever"
               className="h-auto w-full object-contain"
@@ -351,7 +351,7 @@ export default function BecomeVet() {
           <div className="mt-6 grid w-full grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
               <div key={step.label} className="flex flex-col items-center gap-4">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.alt}
                   className="h-[182px] w-[200px] object-contain"
@@ -403,7 +403,7 @@ export default function BecomeVet() {
 
           {/* Image */}
           <div className="w-full max-w-[658px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={bevet7}
               alt="Veterinarian examining a dog's paw"
               className="h-auto w-full -scale-x-100 object-contain"
@@ -417,7 +417,7 @@ export default function BecomeVet() {
         <div className="mx-auto flex max-w-[1232px] flex-col items-center gap-12 lg:flex-row lg:gap-[93px]">
           {/* Image */}
           <div className="w-full max-w-[614px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={bevet8}
               alt="Veterinarian examining a tabby cat with a stethoscope"
               className="h-auto w-full object-contain"
@@ -458,7 +458,7 @@ export default function BecomeVet() {
                 key={i}
                 className={`flex min-h-[484px] flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={card.img}
                   alt={card.alt}
                   className="h-[380px] w-full object-cover object-bottom"
@@ -509,7 +509,7 @@ export default function BecomeVet() {
           </ul>
 
           {/* Illustration */}
-          <img
+          <img loading="lazy" decoding="async"
             src={bevet12}
             alt="Dog and cat with speech bubbles"
             className="h-[202px] w-[312px] max-w-full shrink-0 object-contain"
@@ -527,7 +527,7 @@ export default function BecomeVet() {
             <h2 className="mx-auto max-w-[520px] text-center text-[32px] font-semibold leading-[1.5] tracking-[-0.76px] text-[#17201E] sm:text-[36px] lg:text-[37.4px]">
               Vet Partner questions, answered.
             </h2>
-            <img
+            <img loading="lazy" decoding="async"
               src={bevet13}
               alt=""
               aria-hidden="true"

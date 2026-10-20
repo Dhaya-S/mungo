@@ -25,7 +25,7 @@ import blob6 from './assets/icon-6.png';
 import blob7 from './assets/icon-7.png';
 
 const Blob = ({ src, className = "" }) => (
-  <img
+  <img loading="lazy" decoding="async"
     src={src}
     alt=""
     aria-hidden="true"
@@ -214,7 +214,7 @@ export default function BecomeGroomer() {
 
           {/* Image */}
           <div className="w-full max-w-[520px] shrink-0 lg:ml-[140px]">
-            <img
+            <img loading="lazy" decoding="async"
               src={begroomer1}
               alt="A border collie being brushed with a mint grooming brush"
               className="h-auto w-full object-contain"
@@ -294,7 +294,7 @@ export default function BecomeGroomer() {
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-[154px]">
           {/* Image */}
           <div className="w-full max-w-[608px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={begroomer2}
               alt="A groomer trimming a shih tzu's fur with scissors"
               className="h-auto w-full object-contain"
@@ -334,7 +334,7 @@ export default function BecomeGroomer() {
           <div className="mt-6 grid w-full grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
               <div key={step.label} className="flex flex-col items-center gap-4">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt=""
                   className="h-[182px] w-[200px] object-contain"
@@ -386,7 +386,7 @@ export default function BecomeGroomer() {
 
           {/* Image */}
           <div className="w-full max-w-[614px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={begroomer7}
               alt="A cat being gently brushed on a couch"
               className="h-auto w-full object-contain"
@@ -400,7 +400,7 @@ export default function BecomeGroomer() {
         <div className="mx-auto flex max-w-[1232px] flex-col items-center gap-12 lg:flex-row lg:gap-[93px]">
           {/* Image */}
           <div className="w-full max-w-[659px] shrink-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={begroomer8}
               alt="A groomer washing a smiling corgi in a purple tub"
               className="h-auto w-full object-contain"
@@ -441,7 +441,7 @@ export default function BecomeGroomer() {
                 key={i}
                 className={`flex min-h-[484px] flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={card.img}
                   alt=""
                   className="h-[380px] w-full object-cover object-bottom"
@@ -491,7 +491,7 @@ export default function BecomeGroomer() {
           </ul>
 
           {/* Illustration */}
-          <img
+          <img loading="lazy" decoding="async"
             src={begroomer12}
             alt="A happy dog and cat with chat bubbles"
             className="h-[202px] w-[312px] max-w-full shrink-0 object-contain"
@@ -509,7 +509,7 @@ export default function BecomeGroomer() {
             <h2 className="mx-auto max-w-[520px] text-center text-[32px] font-semibold leading-[1.5] tracking-[-0.76px] text-[#17201E] sm:text-[36px] lg:text-[37.4px]">
               Groomer questions, answered.
             </h2>
-            <img
+            <img loading="lazy" decoding="async"
               src={begroomer13}
               alt=""
               aria-hidden="true"

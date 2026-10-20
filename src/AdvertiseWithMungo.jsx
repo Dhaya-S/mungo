@@ -127,7 +127,7 @@ export default function AdvertisePage() {
             </a>
           </div>
         </div>
-        <img src={IMG.hero} alt="Dog playing fetch in a park" className="h-[561px] w-full rounded-[28px] object-cover" />
+        <img loading="lazy" decoding="async" src={IMG.hero} alt="Dog playing fetch in a park" className="h-[561px] w-full rounded-[28px] object-cover" />
       </section>
 
       {/* WHO YOU REACH */}

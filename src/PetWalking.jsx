@@ -128,7 +128,7 @@ export default function DogWalking() {
         </a>
       </div>
 
-      <img
+      <img loading="lazy" decoding="async"
         src={walker1}
         alt="Woman walking a corgi"
         className="pointer-events-none absolute right-[165px] top-[11px] hidden h-[578px] w-[453px] -scale-x-100 object-contain md:block rotate-[-180]"
@@ -190,7 +190,7 @@ export default function DogWalking() {
             >
               {/* Image area: 380px tall in Figma */}
               <div className="h-[380px] w-full">
-                <img
+                <img loading="lazy" decoding="async"
                   src={card.img}
                   alt=""
                   className="h-full w-full object-cover object-bottom"
@@ -230,7 +230,7 @@ export default function DogWalking() {
             <div key={step.label} className="flex flex-col items-center">
               {/* Illustration area, bottom-aligned so the ground lines sit level */}
               <div className="flex h-[237px] w-full items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.alt}
                   className="max-h-full w-auto max-w-full object-contain"
@@ -264,7 +264,7 @@ export default function DogWalking() {
             <div key={step.label} className="flex flex-col items-center">
               {/* Fixed 200px art area so labels line up across columns */}
               <div className="flex h-[200px] w-full items-center justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.alt}
                   className="max-h-full w-auto max-w-full object-contain"
@@ -308,7 +308,7 @@ export default function DogWalking() {
             <h2 className="mx-auto max-w-[520px] text-center text-[32px] font-semibold leading-[1.3] text-[#17201E] sm:text-[38px] lg:text-[42px]">
               Dog walking questions, answered.
             </h2>
-            <img
+            <img loading="lazy" decoding="async"
               src={walker13}
               alt=""
               aria-hidden="true"

@@ -166,7 +166,7 @@ export default function Grooming() {
           className="absolute right-0 top-0 h-full w-[94.7%]"
           style={{ clipPath: "url(#hero-blob)" }}
         >
-          <img
+          <img loading="lazy" decoding="async"
             src={groomer1}
             alt="A golden retriever and a border collie playing with a tennis ball and rope toy"
             className="h-full w-full object-cover"
@@ -197,7 +197,7 @@ export default function Grooming() {
           className="absolute bottom-0 left-0 h-[94.85%] w-full"
           style={{ clipPath: "url(#grooming-blob)" }}
         >
-          <img
+          <img loading="lazy" decoding="async"
             src={groomer2}
             alt="An apricot poodle in a grey hoodie looking up at the camera"
             className="h-full w-full object-cover"
@@ -230,7 +230,7 @@ export default function Grooming() {
               key={card.title}
               className={`flex flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={card.img}
                 alt={card.title}
                 className="h-[380px] w-full object-cover object-bottom"
@@ -266,7 +266,7 @@ export default function Grooming() {
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3 md:gap-6">
           {steps.map((step) => (
             <div key={step.label} className="flex flex-col items-center gap-6">
-              <img
+              <img loading="lazy" decoding="async"
                 src={step.img}
                 alt={step.label}
                 className="h-[202px] w-[312px] max-w-full object-contain"
@@ -300,7 +300,7 @@ export default function Grooming() {
               className="flex flex-col items-center text-center"
             >
               <div className="flex h-[160px] items-end justify-center">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.img}
                   alt={step.label}
                   className="max-h-[155px] w-auto max-w-full object-contain"
@@ -338,7 +338,7 @@ export default function Grooming() {
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10">
         {/* Heading */}
         <div className="relative w-full max-w-[720px]">
-          <img
+          <img loading="lazy" decoding="async"
             src={groomer13}
             alt=""
             aria-hidden="true"

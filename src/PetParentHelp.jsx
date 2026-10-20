@@ -123,7 +123,7 @@ export default function HelpCentre() {
             </button>
           </div>
         </div>
-        <img
+        <img loading="lazy" decoding="async"
           src={petparenthelp1}
           alt="Puppy and kitten sitting together"
           className="h-auto w-full max-w-[614px] object-contain"

@@ -177,7 +177,7 @@ export default function HelpArticles() {
             </div>
           </div>
 
-          <img
+          <img loading="lazy" decoding="async"
             src={allarticles1}
             alt="A kitten and a puppy reading a book together"
             className="h-auto w-full max-w-[669px] object-contain lg:h-[400px]"

@@ -33,7 +33,7 @@ export default function ArticleNotFound() {
             </div>
           </div>
 
-          <img
+          <img loading="lazy" decoding="async"
             src={notFoundImg}
             alt="A puppy and kitten searching for a missing article with a magnifying glass"
             className="h-auto w-full max-w-[628px] object-contain"
