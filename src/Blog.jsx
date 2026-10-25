@@ -3,15 +3,15 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 
-import blog1 from './assets/blog-1.png';
-import blog2 from './assets/blog-2.png';
-import blog3 from './assets/blog-3.png';
-import blog4 from './assets/blog-4.png';
-import blog5 from './assets/blog-5.png';
-import blog6 from './assets/blog-6.png';
-import blog7 from './assets/blog-7.png';
-import blog8 from './assets/blog-8.png';
-import blog9 from './assets/blog-9.png';
+import blog1 from './assets/blog-1.webp';
+import blog2 from './assets/blog-2.webp';
+import blog3 from './assets/blog-3.webp';
+import blog4 from './assets/blog-4.webp';
+import blog5 from './assets/blog-5.webp';
+import blog6 from './assets/blog-6.webp';
+import blog7 from './assets/blog-7.webp';
+import blog8 from './assets/blog-8.webp';
+import blog9 from './assets/blog-9.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 

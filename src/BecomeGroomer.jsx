@@ -2,27 +2,35 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import begroomer1 from './assets/begroomer-1.png';
-import begroomer2 from './assets/begroomer-2.png';
-import begroomer3 from './assets/begroomer-3.png';
-import begroomer4 from './assets/begroomer-4.png';
-import begroomer5 from './assets/begroomer-5.png';
-import begroomer6 from './assets/begroomer-6.png';
-import begroomer7 from './assets/begroomer-7.png';
-import begroomer8 from './assets/begroomer-8.png';
-import begroomer9 from './assets/find-1.png';
-import begroomer10 from './assets/find-2.png';
-import begroomer11 from './assets/find-3.png';
-import begroomer12 from './assets/begroomer-12.png';
-import begroomer13 from './assets/begroomer-13.png';
+import begroomer1 from './assets/begroomer-1.webp';
+import begroomer2 from './assets/begroomer-2.webp';
+import begroomer3 from './assets/step-1.webp';
+import begroomer4 from './assets/step-2.webp';
+import begroomer5 from './assets/step-3.webp';
+import begroomer6 from './assets/step-4.webp';
+import begroomer7 from './assets/begroomer-7.webp';
+import begroomer8 from './assets/begroomer-8.webp';
+import begroomer9 from './assets/find-1.webp';
+import begroomer10 from './assets/find-2.webp';
+import begroomer11 from './assets/find-3.webp';
+import begroomer12 from './assets/be-trust.webp';
+import begroomer13 from './assets/begroomer-13.webp';
 
-import blob1 from './assets/icon-1.png'; 
-import blob2 from './assets/icon-2.png';
-import blob3 from './assets/icon-3.png';
-import blob4 from './assets/icon-4.png';
-import blob5 from './assets/icon-5.png';
-import blob6 from './assets/icon-6.png';
-import blob7 from './assets/icon-7.png';
+import blob1 from './assets/icon-1.webp'; 
+import blob2 from './assets/icon-2.webp';
+import blob3 from './assets/icon-3.webp';
+import blob4 from './assets/icon-4.webp';
+import blob5 from './assets/icon-5.webp';
+import blob6 from './assets/icon-6.webp';
+import blob7 from './assets/icon-7.webp';
+import blob8 from './assets/icon-8.webp';
+import blob9 from './assets/icon-9.webp';
+import blob10 from './assets/icon-10.webp';
+
+import user from './assets/user-icon.webp';
+import timer from './assets/timer-icon.webp';
+import heart from './assets/heart-icon.webp';
+import paw from './assets/paw-icon.webp';
 
 const Blob = ({ src, className = "" }) => (
   <img loading="lazy" decoding="async"
@@ -71,51 +79,21 @@ const benefits = [
   { title: "Grow your business", text: "Turn your passion into a steady income", bg: "bg-[#FEFFE8]", Icon: GrowthIcon },
 ];
 
-const UserIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="#2DBB9F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="8" r="3.5" />
-    <path d="M5 19c1.2-3.2 3.8-4.8 7-4.8s5.800 1.600 7 4.800" />
-  </svg>
-);
-
-const ClockIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="#2DBB9F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l2 2" />
-  </svg>
-);
-
-const HeartIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="#2DBB9F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12 20s-7.500-4.600-7.500-10A4.300 4.300 0 0 1 12 7.500 4.300 4.300 0 0 1 19.500 10c0 5.400-7.500 10-7.500 10z" />
-  </svg>
-);
-
-const PawIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 32 32" className={className} fill="#CDF2E7" aria-hidden="true">
-    <ellipse cx="7" cy="14" rx="3" ry="4" />
-    <ellipse cx="13" cy="8" rx="3" ry="4" />
-    <ellipse cx="21" cy="8" rx="3" ry="4" />
-    <ellipse cx="26" cy="15" rx="2.5" ry="3.5" />
-    <path d="M16 15c-4 0-8 4-8 8 0 3 2.5 4 5 3.5 1.2-.3 2-.5 3-.5s1.8.2 3 .5c2.5.5 5-.5 5-3.5 0-4-4-8-8-8z" />
-  </svg>
-);
-
 const cards = [
   {
     title: "Your expertise",
     text: "Get more visibility and reach local pet parents looking for reliable care.",
-    Icon: UserIcon,
+    img: user,
   },
   {
     title: "Your availability",
     text: "Choose when you're available to provide care.",
-    Icon: ClockIcon,
+    img: timer,
   },
   {
     title: "Your connections",
     text: "Communicate directly with pet parents throughout the service journey.",
-    Icon: HeartIcon,
+    img: heart,
   },
 ];
 
@@ -190,7 +168,7 @@ export default function BecomeGroomer() {
         <Blob src={blob2} className="-left-[120px] -top-[20px] -z-10 h-[306px] w-[324px]" />
         <Blob src={blob1} className="left-[544px] -top-[100px] -z-10 h-[306px] w-[324px]" />
         <Blob src={blob3} className="-right-[110px] top-[37px] -z-10 h-[306px] w-[324px]" />
-        <PawIcon className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
+        <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
 
         <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-0">
           {/* Copy */}
@@ -213,11 +191,17 @@ export default function BecomeGroomer() {
           </div>
 
           {/* Image */}
-          <div className="w-full max-w-[520px] shrink-0 lg:ml-[140px]">
+          <div className="relative hidden aspect-[1040/970] w-[520px] shrink-0 lg:block">
+            <img loading="lazy" decoding="async"
+              src={blob8}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full"
+            />
             <img loading="lazy" decoding="async"
               src={begroomer1}
-              alt="A border collie being brushed with a mint grooming brush"
-              className="h-auto w-full object-contain"
+              alt="Border collie being brushed by a groomer"
+              className="absolute left-0 top-0 h-[97.9%] w-[97.1%]"
             />
           </div>
         </div>
@@ -250,8 +234,8 @@ export default function BecomeGroomer() {
       {/* 3. FLEXIBILITY */}
       <section className="relative w-full overflow-hidden bg-white px-5 py-16 font-['Plus_Jakarta_Sans'] md:px-10 lg:px-20 lg:py-[120px]">
         {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob4} className="-left-[130px] top-[10%] h-[306px] w-[324px]" />
-        <Blob src={blob5} className="-right-[50px] top-[10%] h-[315px] w-[305px] " />
+        <Blob src={blob4} className="-left-[130px] top-[150px] h-[306px] w-[324px]" />
+        <Blob src={blob5} className="-right-[50px] top-[120px] h-[315px] w-[305px] " />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
           <div className="relative">
@@ -260,7 +244,7 @@ export default function BecomeGroomer() {
               <br />
               Stay in control.
             </h2>
-            <PawIcon className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
+            <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
           </div>
 
           <p className="max-w-[342px] pt-0.5 text-center text-base font-medium leading-6 text-[#66716D]">
@@ -269,14 +253,12 @@ export default function BecomeGroomer() {
           </p>
 
           <div className="mt-6 grid w-full max-w-[856px] grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-20">
-            {cards.map(({ title, text, Icon }) => (
+            {cards.map(({ title, text, img }) => (
               <div
                 key={title}
                 className="flex flex-col items-start gap-[15px] rounded-2xl bg-[#E7F8F3] p-4 shadow-[0_23px_9px_rgba(79,79,79,0.01),0_13px_8px_rgba(79,79,79,0.04),0_6px_6px_rgba(79,79,79,0.07),0_1px_3px_rgba(79,79,79,0.08)] sm:min-h-[222px]"
               >
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">
                   {title}
                 </h3>
@@ -292,27 +274,32 @@ export default function BecomeGroomer() {
       {/* 4. WHAT YOU CAN OFFER */}
       <section className="w-full bg-[#F2FFFB] px-5 py-16 font-['Plus_Jakarta_Sans'] md:px-10 lg:px-20 lg:py-[120px]">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-[154px]">
-          {/* Image */}
-          <div className="w-full max-w-[608px] shrink-0">
+          <div className="relative hidden aspect-[1217/940] w-[608px] shrink-0 lg:block">
+            <img loading="lazy" decoding="async"
+              src={blob9}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full"
+            />
             <img loading="lazy" decoding="async"
               src={begroomer2}
-              alt="A groomer trimming a shih tzu's fur with scissors"
-              className="h-auto w-full object-contain"
+              alt="Groomer trimming a Shih Tzu with scissors"
+              className="absolute left-[2.4%] top-[1.1%] h-[98.9%] w-[97.6%] [filter:drop-shadow(7px_4px_4px_#CDF2E7)]"
             />
           </div>
 
-          {/* Copy */}
-          <div className="flex w-full max-w-[592px] flex-col items-start gap-8">
-            <h2 className="text-[30px] font-semibold leading-[1.3] tracking-[-0.8px] text-[#17201E] md:text-[42px]">
-              Your grooming expertise, your way.
-            </h2>
-            <p className="max-w-[470px] text-base font-medium leading-[26px] text-[#66716D]">
-              Set your service, showcase what you do best and reach more pet
-              parents who need your care
-            </p>
+          <div className="flex w-full max-w-[520px] flex-col items-start gap-[111px]">
+            <div className="flex flex-col gap-10">
+              <h2 className="text-[32px] font-semibold leading-[1.3] tracking-[-0.8px] text-[#17201E] md:text-[42px]">
+                Your grooming expertise, your way.
+              </h2>
+              <p className="max-w-[480px] text-base font-medium leading-[26px] text-[#66716D]">
+                Set your service, showcase what you do best and reach more pet parents who need your care
+              </p>
+            </div>
             <a
-              href="/become-a-partner"
-              className="mt-2 inline-flex h-[52px] items-center justify-center rounded-full bg-[#2DBB9F] px-[26px] text-sm font-semibold leading-[22px] text-white transition hover:bg-[#25a78d] lg:mt-12"
+              href="/become-vet-partner"
+              className="inline-flex h-[52px] items-center rounded-full bg-[#2DBB9F] px-[26px] text-sm font-semibold leading-[22px] text-white transition hover:bg-[#25a78d]"
             >
               Become a Vet Partner
             </a>
@@ -323,7 +310,7 @@ export default function BecomeGroomer() {
       {/* 5. HOW MUNGO WORKS */}
       <section className="relative w-full overflow-hidden bg-[#FEFEFE] px-5 py-16 font-['Plus_Jakarta_Sans'] lg:px-20 lg:py-[120px]">
         {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob6} className="-right-[98px] top-[80px] h-[306px] w-[324px]" />
+        <Blob src={blob6} className="-right-[98px] top-[30px] h-[306px] w-[324px]" />
         <Blob src={blob7} className="-left-[88px] top-[180px] h-[306px] w-[324px]" />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
@@ -385,11 +372,17 @@ export default function BecomeGroomer() {
           </div>
 
           {/* Image */}
-          <div className="w-full max-w-[614px] shrink-0">
+          <div className="relative hidden aspect-[1227/954] w-[614px] shrink-0 lg:block">
+            <img loading="lazy" decoding="async"
+              src={blob10}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full"
+            />
             <img loading="lazy" decoding="async"
               src={begroomer7}
-              alt="A cat being gently brushed on a couch"
-              className="h-auto w-full object-contain"
+              alt="Cat being brushed on a sofa"
+              className="absolute right-0 top-0 h-[97.5%] w-[96.7%]"
             />
           </div>
         </div>
@@ -573,11 +566,11 @@ export default function BecomeGroomer() {
         style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 lg:px-16">
-          <div className="flex w-full max-w-[594px] flex-col items-center gap-[18px]">
+          <div className="flex w-full max-w-[1152px] flex-col items-center gap-[18px]">
             <h2 className="text-center text-[38px] font-bold leading-[1.3] tracking-[-0.5px] text-white sm:text-[50px] lg:text-[63px]">
               Ready to let your<br />work be discovered?
             </h2>
-            <p className="max-w-[420px] pb-[14px] text-center text-[18px] leading-[1.5] text-white">
+            <p className="max-w-[480px] pb-[14px] text-center text-[18px] leading-[1.5] text-white">
               Join Mungo and connect with pet parents looking for grooming
               care.
             </p>

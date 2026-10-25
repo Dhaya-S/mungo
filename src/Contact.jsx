@@ -4,9 +4,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 
-import contact1 from './assets/contact-1.png';
+import contact1 from './assets/contact-1.webp';
 
-/* TODO: set your real domain (the Figma file uses the placeholder [MUNGO_DOMAIN]) */
 const DOMAIN = "mungo.example";
 const HERO_IMG = contact1;
 

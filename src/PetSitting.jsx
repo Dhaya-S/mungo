@@ -2,19 +2,19 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import sitter1 from './assets/sitter-1.png';
-import sitter2 from './assets/sitter-2.png';
-import sitter3 from './assets/sitter-3.png';
-import sitter4 from './assets/sitter-4.png';
-import sitter5 from './assets/sitter-5.png';
-import sitter6 from './assets/sitter-6.png';
-import sitter7 from './assets/sitter-7.png';
-import sitter8 from './assets/sitter-8.png';
-import sitter9 from './assets/sitter-9.png';
-import sitter10 from './assets/sitter-10.png';
-import sitter11 from './assets/sitter-11.png';
-import sitter12 from './assets/sitter-12.png';
-import sitter13 from './assets/sitter-13.png';
+import sitter1 from './assets/sitter-1.webp';
+import sitter2 from './assets/sitter-2.webp';
+import sitter3 from './assets/sitter-3.webp';
+import sitter4 from './assets/sitter-4.webp';
+import sitter5 from './assets/sitter-5.webp';
+import sitter6 from './assets/sitter-6.webp';
+import sitter7 from './assets/sitter-7.webp';
+import sitter8 from './assets/sitter-8.webp';
+import sitter9 from './assets/sitter-9.webp';
+import sitter10 from './assets/sitter-10.webp';
+import sitter11 from './assets/sitter-11.webp';
+import sitter12 from './assets/sitter-12.webp';
+import sitter13 from './assets/sitter-13.webp';
 
 const cards = [
   {
@@ -84,15 +84,19 @@ export default function PetSitting() {
       <Navbar currentPage="features" />
 
       {/* BREADCRUMB */}
-      <div
-        className="w-full px-6 pt-6 lg:px-20"
-        style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
-      >
-        <div className="mx-auto w-full max-w-[1280px] lg:px-16">
-          <p className="text-[13px] font-semibold leading-5 text-[#66716D]">
-            Services / <span className="text-[#17201E]">Pet Sitting</span>
-          </p>
-        </div>
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start pt-6">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center font-['Plus_Jakarta_Sans'] text-[13px] font-semibold leading-5 text-[#66716D]"
+        >
+          <a href="/services" className="hover:text-[#1A1F1D] transition-colors">
+            Services
+          </a>
+          <span className="mx-1" aria-hidden="true">/</span>
+          <span aria-current="page" className="text-[#1A1F1D]">
+            Pet Sitting
+          </span>
+        </nav>
       </div>
 
       {/* 1. HERO */}
@@ -123,12 +127,12 @@ export default function PetSitting() {
           {/* Mint blob */}
           <div
             aria-hidden="true"
-            className="absolute bottom-0 right-0 h-[95%] w-full rounded-[40%_60%_55%_45%/45%_40%_60%_55%] bg-[#D0FAED]"
+            className="absolute bottom-0 right-0 h-[100%] w-full rounded-[40%_60%_55%_45%/45%_40%_60%_55%] bg-[#D0FAED]"
           />
           <img loading="lazy" decoding="async"
             src={sitter1}
             alt="A woman with curly hair petting her dog"
-            className="relative ml-4 h-auto w-[92%] object-contain"
+            className="relative ml-4 h-auto w-[100%] object-contain"
           />
         </div>
       </div>
@@ -136,13 +140,13 @@ export default function PetSitting() {
 
       {/* 2. SOMETIMES THEY DON'T NEED A NEW PLACE */}
     <section className="w-full bg-white px-5 py-16 font-['Plus_Jakarta_Sans'] md:px-10 lg:px-20 lg:py-[120px]">
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-14">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10 lg:flex-row lg:justify-start lg:gap-14">
         {/* Image */}
-        <div className="w-full max-w-[571px] shrink-0">
+        <div className="w-full max-w-[571px] shrink-0 lg:max-w-[547.88px]">
           <img loading="lazy" decoding="async"
             src={sitter2}
             alt="A smiling woman on a couch with a golden puppy and an orange cat"
-            className="h-auto w-full object-contain"
+            className="h-auto w-full object-contain lg:h-[452.13px] lg:w-[547.88px] "
           />
         </div>
 
@@ -345,9 +349,9 @@ export default function PetSitting() {
         style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 lg:px-16">
-          <div className="flex w-full max-w-[521px] flex-col items-center gap-[18px]">
+          <div className="flex w-full max-w-[580px] flex-col items-center gap-[18px]">
             <h2 className="text-center text-[38px] font-bold leading-[1.3] tracking-[-0.5px] text-white sm:text-[50px] lg:text-[63px]">
-              Keep their day<br />feeling like home.
+              Keep their day feeling like home.
             </h2>
             <p className="max-w-[480px] pb-[14px] text-center text-[18px] leading-[1.5] text-white">
               Find a sitter who can keep their routine familiar.

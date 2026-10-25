@@ -3,17 +3,17 @@ import { Plus } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import about1 from './assets/about-1.png';
-import about2 from './assets/about-2.png';
-import about3 from './assets/about-3.png';
-import about4 from './assets/about-4.png';
-import about5 from './assets/about-5.png';
-import about6 from './assets/about-6.png';
-import about7 from './assets/about-7.png';
-import about8 from './assets/about-8.png';
-import about9 from './assets/about-9.png';
-import about10 from './assets/about-10.png';
-import about11 from './assets/about-11.png';
+import about1 from './assets/about-1.webp';
+import about2 from './assets/about-2.webp';
+import about3 from './assets/about-3.webp';
+import about4 from './assets/about-4.webp';
+import about5 from './assets/about-5.webp';
+import about6 from './assets/about-6.webp';
+import about7 from './assets/about-7.webp';
+import about8 from './assets/about-8.webp';
+import about9 from './assets/about-9.webp';
+import about10 from './assets/about-10.webp';
+import about11 from './assets/about-11.webp';
 
 const IMG = {
   hero: about1,

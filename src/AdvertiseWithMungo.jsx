@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Advertise1 from './assets/Advertise-1.png';
-import Advertise2 from './assets/Advertise-2.png';
-import Advertise3 from './assets/Advertise-3.png';
-import Advertise4 from './assets/Advertise-4.png';
+import Advertise1 from './assets/Advertise-1.webp';
+import Advertise2 from './assets/Advertise-2.webp';
+import Advertise3 from './assets/Advertise-3.webp';
+import Advertise4 from './assets/Advertise-4.webp';
 
 const IMG = {
   hero: Advertise1,

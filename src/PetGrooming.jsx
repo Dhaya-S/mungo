@@ -2,20 +2,22 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import groomer1 from './assets/groomer-1.png';
-import groomer2 from './assets/groomer-2.png';
-import groomer3 from './assets/groomer-3.png';
-import groomer4 from './assets/groomer-4.png';
-import groomer5 from './assets/groomer-5.png';
-import groomer6 from './assets/groomer-6.png';
-import groomer7 from './assets/groomer-7.png';
-import groomer8 from './assets/groomer-8.png';
-import groomer9 from './assets/groomer-9.png';
-import groomer10 from './assets/groomer-10.png';
-import groomer11 from './assets/groomer-11.png';
-import groomer12 from './assets/groomer-12.png';
-import groomer13 from './assets/groomer-13.png';
+import groomer1 from './assets/groomer-1.webp';
+import groomer2 from './assets/groomer-2.webp';
+import groomer3 from './assets/groomer-3.webp';
+import groomer4 from './assets/groomer-4.webp';
+import groomer5 from './assets/groomer-5.webp';
+import groomer6 from './assets/groomer-6.webp';
+import groomer7 from './assets/groomer-7.webp';
+import groomer8 from './assets/groomer-8.webp';
+import groomer9 from './assets/groomer-9.webp';
+import groomer10 from './assets/groomer-10.webp';
+import groomer11 from './assets/groomer-11.webp';
+import groomer12 from './assets/groomer-12.webp';
+import groomer13 from './assets/groomer-13.webp';
+import groomer14 from './assets/groomer-14.webp';
 
+const blob = "58% 42% 50% 50% / 62% 52% 48% 38%";
 const BLOB_RADIUS = '58% 42% 50% 50% / 45% 55% 45% 55%';
 const BLOB_PATH1 ="M0.58,0 C0.68,0 0.78,0.1 0.9,0.28 C1.02,0.46 1,0.75 0.85,0.9 C0.7,1.02 0.4,1 0.2,0.85 C0,0.7 -0.02,0.5 0.12,0.35 C0.3,0.15 0.45,0 0.58,0 Z";
 const BLOB_PATH2 ="M0.44,0 C0.5,0 0.56,0.03 0.63,0.1 C0.68,0.15 0.72,0.14 0.8,0.15 C0.9,0.17 0.96,0.24 1,0.45 C1.01,0.58 0.98,0.65 0.91,0.69 C0.84,0.73 0.78,0.76 0.72,0.84 C0.67,0.92 0.65,1 0.57,1 C0.5,1 0.44,0.94 0.36,0.9 C0.28,0.86 0.18,0.9 0.15,0.8 C0.12,0.68 0.12,0.58 0.08,0.48 C0.04,0.4 0,0.37 0,0.29 C0,0.18 0.1,0.12 0.2,0.07 C0.3,0.02 0.38,0 0.44,0 Z";
@@ -116,62 +118,41 @@ export default function Grooming() {
     <div className="font-sans min-h-screen bg-white text-gray-900 flex flex-col relative overflow-hidden">
       <Navbar currentPage="features" />
 
-    <section
-      className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-6 py-16 font-['Plus_Jakarta_Sans',sans-serif] md:px-12 md:py-20 lg:flex-row lg:px-20 lg:py-[120px]"
-    >
-      {/* Text column */}
-      <div className="flex w-full flex-col items-start justify-center gap-9 lg:w-[576px] lg:flex-1">
-        <div className="flex w-full flex-col gap-[18px]">
-          <h1 className="text-[42px] font-semibold leading-[120%] text-[#17201E]">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-6 pb-16 pt-6 font-['Plus_Jakarta_Sans'] md:px-12 lg:flex-row lg:px-20 lg:pb-[120px] lg:pt-[40px]">
+      <div className="flex w-full flex-col items-start gap-9 lg:w-[576px] lg:flex-1">
+        <div className="flex flex-col gap-[18px]">
+          <h1 className="text-[42px] font-semibold leading-[1.2] text-[#17201E]">
             Fresh coat.
             <br />
             Happy pup.
           </h1>
-
-          <p className="max-w-[480px] pt-0.5 text-base font-medium leading-[130%] text-[#66716D]">
-            Find grooming care that fits your pet&apos;s needs, routine, and
-            personality.
+          <p className="max-w-[480px] pt-0.5 text-base font-medium leading-[1.3] text-[#66716D]">
+            Find grooming care that fits your pet's needs, routine, and personality.
           </p>
         </div>
 
-        <div className="flex w-full flex-wrap gap-x-2">
+        <div className="flex flex-wrap gap-x-2">
           <a
             href="/become-groomer"
-            className="inline-flex items-center rounded-full bg-[#2DBB9F] px-[26px] py-3 text-sm font-semibold leading-[22px] text-white transition-colors hover:bg-[#25a58b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2DBB9F]"
+            className="inline-flex items-center rounded-full bg-[#2DBB9F] px-[26px] py-3 text-sm font-semibold leading-[22px] text-white transition hover:brightness-95"
           >
             Find a groomer
           </a>
         </div>
       </div>
 
-      {/* Visual */}
-      <div className="relative aspect-[704/568] w-full max-w-[704px] flex-none">
-        {/* Clip path shared by both blobs */}
-        <svg width="0" height="0" className="absolute" aria-hidden="true">
-          <defs>
-            <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-              <path d={BLOB_PATH1} />
-            </clipPath>
-          </defs>
-        </svg>
-
-        {/* Mint backdrop */}
-        <div
-          className="absolute left-0 top-0 h-full w-[94.7%] bg-[#D3EAE3]"
-          style={{ clipPath: "url(#hero-blob)" }}
+      <div className="relative w-[704px] h-[568px] flex-none">
+        <img loading="lazy" decoding="async"
+          src={groomer14}
+          alt=""
+          aria-hidden="true"
+          className="absolute left-0 top-0 w-[667.04px] h-[568px] object-contain"
         />
-
-        {/* Photo */}
-        <div
-          className="absolute right-0 top-0 h-full w-[94.7%]"
-          style={{ clipPath: "url(#hero-blob)" }}
-        >
-          <img loading="lazy" decoding="async"
-            src={groomer1}
-            alt="A golden retriever and a border collie playing with a tennis ball and rope toy"
-            className="h-full w-full object-cover"
-          />
-        </div>
+        <img loading="lazy" decoding="async"
+          src={groomer1}
+          alt="Two dogs playing with a tennis ball and a rope toy"
+          className="absolute left-[36.96px] top-0 w-[667.04px] h-[568px] object-contain"
+        />
       </div>
     </section>
 
@@ -194,7 +175,7 @@ export default function Grooming() {
 
         {/* Photo blob */}
         <div
-          className="absolute bottom-0 left-0 h-[94.85%] w-full"
+          className="absolute bottom-0 left-0 h-[97%] w-full"
           style={{ clipPath: "url(#grooming-blob)" }}
         >
           <img loading="lazy" decoding="async"
@@ -218,8 +199,8 @@ export default function Grooming() {
     </section>
 
       {/* 3. FIND GROOMING THAT FITS */}
-    <section className="w-full bg-white px-5 py-16 md:px-10 lg:px-20 lg:py-[120px] font-['Plus_Jakarta_Sans']">
-      <div className="mx-auto flex max-w-[1302px] flex-col items-center gap-[30px]">
+    <section className="w-full bg-white px-5 py-16 md:px-10 lg:py-[120px] font-['Plus_Jakarta_Sans']">
+      <div className="mx-auto flex w-full max-w-[1302px] flex-col items-center gap-[30px]">
         <h2 className="text-center text-[28px] font-semibold leading-[1.3] tracking-[-0.88px] text-[#17201E] md:text-[42px] md:leading-[66px]">
           Find grooming that fits.
         </h2>
@@ -228,12 +209,14 @@ export default function Grooming() {
           {cards.map((card) => (
             <article
               key={card.title}
-              className={`flex flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
+              className={`flex h-full flex-col gap-5 overflow-hidden rounded-[24px] pb-6 ${card.bg}`}
             >
-              <img loading="lazy" decoding="async"
+              <img
+                loading="lazy"
+                decoding="async"
                 src={card.img}
                 alt={card.title}
-                className="h-[380px] w-full object-cover object-bottom"
+                className="h-[380px] w-full flex-none object-cover object-center"
               />
               <div className="flex flex-col gap-3 px-6">
                 <h3 className="text-2xl font-semibold leading-[30px] tracking-[-0.4px] text-[#17201E]">
@@ -342,7 +325,7 @@ export default function Grooming() {
             src={groomer13}
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 left-0 hidden h-[117px] w-[178px] object-contain md:block lg:-left-[10px] lg:-bottom-[2px]"
+            className="pointer-events-none absolute bottom-0 left-0 hidden h-[117px] w-[178px] object-contain md:block lg:-left-[20px] lg:-bottom-[45px]"
           />
           <h2 className="mx-auto max-w-[450px] text-center text-[28px] font-semibold leading-[1.3] text-[#17201E] md:text-[42px]">
             Grooming questions, answered.

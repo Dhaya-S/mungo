@@ -2,19 +2,20 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import vet1 from './assets/vet-1.png';
-import vet2 from './assets/vet-2.png';
-import vet3 from './assets/vet-3.png';
-import vet4 from './assets/vet-4.png';
-import vet5 from './assets/vet-5.png';
-import vet6 from './assets/vet-6.png';
-import vet7 from './assets/vet-7.png';
-import vet8 from './assets/vet-8.png';
-import vet9 from './assets/vet-9.png';
-import vet10 from './assets/vet-10.png';
-import vet11 from './assets/vet-11.png';
-import vet12 from './assets/vet-12.png';
-import vet13 from './assets/vet-13.png';
+import vet1 from './assets/vet-1.webp';
+import vet2 from './assets/vet-2.webp';
+import vet3 from './assets/vet-3.webp';
+import vet4 from './assets/vet-4.webp';
+import vet5 from './assets/vet-5.webp';
+import vet6 from './assets/vet-6.webp';
+import vet7 from './assets/vet-7.webp';
+import vet8 from './assets/vet-8.webp';
+import vet9 from './assets/vet-9.webp';
+import vet10 from './assets/vet-10.webp';
+import vet11 from './assets/vet-11.webp';
+import vet12 from './assets/vet-12.webp';
+import vet13 from './assets/vet-13.webp';
+import vet14 from './assets/vet-14.webp';
 
 const cards = [
   {
@@ -95,15 +96,19 @@ export default function VeterinaryCare() {
       <Navbar currentPage="features" />
 
       {/* BREADCRUMB */}
-      <div
-        className="w-full px-6 pt-6 lg:px-20"
-        style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
-      >
-        <div className="mx-auto w-full max-w-[1280px] lg:px-16">
-          <p className="text-[13px] font-semibold leading-5 text-[#66716D]">
-            Services / <span className="text-[#17201E]">Veterinary Care</span>
-          </p>
-        </div>
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start pt-6">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center font-['Plus_Jakarta_Sans'] text-[13px] font-semibold leading-5 text-[#66716D]"
+        >
+          <a href="/services" className="hover:text-[#1A1F1D] transition-colors">
+            Services
+          </a>
+          <span className="mx-1" aria-hidden="true">/</span>
+          <span aria-current="page" className="text-[#1A1F1D]">
+            Veterinary Care
+          </span>
+        </nav>
       </div>
 
       {/* 1. HERO */}
@@ -126,11 +131,17 @@ export default function VeterinaryCare() {
           </a>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div className="relative hidden aspect-[1241/1188] w-[606px] shrink-0 lg:-mt-20 lg:block">
+          <img loading="lazy" decoding="async"
+            src={vet14}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full"
+          />
           <img loading="lazy" decoding="async"
             src={vet1}
-            alt="A veterinarian in blue gloves holding a tabby cat"
-            className="h-auto w-full max-w-[605px] object-contain"
+            alt="Veterinarian holding a tabby cat"
+            className="absolute left-0 top-[5.7%] h-[94.3%] w-[97.7%]"
           />
         </div>
       </div>
@@ -314,7 +325,7 @@ export default function VeterinaryCare() {
         style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 lg:px-16">
-          <div className="flex w-full max-w-[632px] flex-col items-center gap-[18px]">
+          <div className="flex w-full max-w-[820px] flex-col items-center gap-[18px]">
             <h2 className="text-center text-[38px] font-bold leading-[1.3] tracking-[-0.5px] text-white sm:text-[50px] lg:text-[63px]">
               When they need care,<br />know where to start.
             </h2>

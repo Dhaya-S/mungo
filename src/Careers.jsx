@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import careers1 from './assets/careers-1.png';
-import careers2 from './assets/careers-2.png';
+import careers1 from './assets/careers-1.webp';
+import careers2 from './assets/careers-2.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 

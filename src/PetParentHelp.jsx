@@ -12,7 +12,7 @@ import {
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import petparenthelp1 from './assets/petparenthelp-1.png';
+import petparenthelp1 from './assets/petparenthelp-1.webp';
 
 const articleSlug = (label) =>
   label.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-');

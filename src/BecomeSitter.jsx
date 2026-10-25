@@ -2,30 +2,34 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import besitter1 from './assets/besitter-1.png';
-import besitter2 from './assets/besitter-2.png';
-import besitter3 from './assets/besitter-3.png';
-import besitter4 from './assets/besitter-4.png';
-import besitter5 from './assets/besitter-5.png';
-import besitter6 from './assets/besitter-6.png';
-import besitter12 from './assets/besitter-12.png';
-import besitter7 from './assets/besitter-7.png';
-import besitter8 from './assets/find-1.png';
-import besitter9 from './assets/find-2.png';
-import besitter10 from './assets/find-3.png';
-import besitter11 from './assets/besitter-11.png';
+import besitter1 from './assets/besitter-1.webp';
+import besitter2 from './assets/besitter-2.webp';
+import besitter3 from './assets/step-1.webp';
+import besitter4 from './assets/step-2.webp';
+import besitter5 from './assets/step-3.webp';
+import besitter6 from './assets/step-4.webp';
+import besitter7 from './assets/besitter-7.webp';
+import besitter8 from './assets/find-1.webp';
+import besitter9 from './assets/find-2.webp';
+import besitter10 from './assets/find-3.webp';
+import besitter11 from './assets/be-trust.webp';
+import besitter12 from './assets/besitter-12.webp';
 
-import blob1 from './assets/icon-1.png';
-import blob2 from './assets/icon-2.png';
-import blob3 from './assets/icon-3.png';
-import blob4 from './assets/icon-4.png';
-import blob5 from './assets/icon-5.png';
-import blob6 from './assets/icon-6.png';
-import blob7 from './assets/icon-7.png';
+import blob4 from './assets/icon-4.webp';
+import blob5 from './assets/icon-5.webp';
+import blob6 from './assets/icon-6.webp';
+import blob7 from './assets/icon-7.webp';
+
+import home from './assets/home-icon.webp';
+import dog from './assets/dog-icon.webp';
+import heart from './assets/heart-icon.webp';
+import protection from './assets/protection-icon.webp';
+import user from './assets/user-icon.webp';
+import timer from './assets/timer-icon.webp';
+import paw from './assets/paw-icon.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 
-/* ---------- Decorative blobs (same placement system as BecomeVet) ---------- */
 const Blob = ({ src, className = "" }) => (
   <img loading="lazy" decoding="async"
     src={src}
@@ -34,83 +38,18 @@ const Blob = ({ src, className = "" }) => (
     className={`pointer-events-none absolute hidden select-none object-contain lg:block ${className}`}
   />
 );
-
-const PawIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 32 32" className={className} fill="#CDF2E7" aria-hidden="true">
-    <ellipse cx="7" cy="14" rx="3" ry="4" />
-    <ellipse cx="13" cy="8" rx="3" ry="4" />
-    <ellipse cx="21" cy="8" rx="3" ry="4" />
-    <ellipse cx="26" cy="15" rx="2.5" ry="3.5" />
-    <path d="M16 15c-4 0-8 4-8 8 0 3 2.5 4 5 3.5 1.2-.3 2-.5 3-.5s1.8.2 3 .5c2.5.5 5-.5 5-3.5 0-4-4-8-8-8z" />
-  </svg>
-);
-
-/* ---------- Icons ---------- */
-const svgProps = {
-  fill: 'none',
-  stroke: '#2DBB9F',
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-};
-
-const HomePawIcon = () => (
-  <svg viewBox="0 0 28 28" className="h-7 w-7" strokeWidth="2" {...svgProps}>
-    <path d="M4 13L14 4l10 9v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V13z" />
-    <circle cx="12" cy="14" r="1" />
-    <circle cx="16" cy="14" r="1" />
-    <circle cx="10.5" cy="17.5" r="1" />
-    <circle cx="17.5" cy="17.5" r="1" />
-    <path d="M14 17c-1.5 0-2.5 1.2-2.5 2.2 0 .8.7 1.2 1.3 1.1.5-.1.8-.2 1.2-.2s.7.1 1.2.2c.6.1 1.3-.3 1.3-1.1C16.5 18.2 15.5 17 14 17z" />
-  </svg>
-);
-
-const DogIcon = () => (
-  <svg viewBox="0 0 32 28" className="h-7 w-8" strokeWidth="2" {...svgProps}>
-    <path d="M3 4c2-2 5 0 5 2l4 1 10 2c2 .5 3 2 3 4v8h-3v-5H15v5h-3v-6c-3 0-5-2-5-5L3 4z" />
-    <circle cx="9" cy="8" r=".6" />
-  </svg>
-);
-
-const HeartIcon = () => (
-  <svg viewBox="0 0 28 28" className="h-7 w-7" strokeWidth="2" {...svgProps}>
-    <path d="M14 24S4 18 4 11a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 7-10 13-10 13z" />
-  </svg>
-);
-
-const ShieldIcon = () => (
-  <svg viewBox="0 0 28 28" className="h-7 w-7" strokeWidth="2" {...svgProps}>
-    <path d="M14 3l9 3v7c0 6-4 10-9 12-5-2-9-6-9-12V6l9-3z" />
-    <path d="M10 14l3 3 5-6" />
-  </svg>
-);
-
-const UserIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" strokeWidth="1.8" {...svgProps}>
-    <circle cx="12" cy="8" r="3.5" />
-    <path d="M5 19c1.2-3.2 3.8-4.8 7-4.8s5.8 1.6 7 4.8" />
-  </svg>
-);
-
-const ClockIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" strokeWidth="1.8" {...svgProps}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l2 2" />
-  </svg>
-);
-
 /* ---------- Data ---------- */
 const WHY_JOIN = [
-  { title: 'Showcase your approach to pet care', text: 'Let pet parents see how you care for the pets you look after.', bg: 'bg-[#E8FFEC]', Icon: HomePawIcon },
-  { title: 'Choose the services you offer', text: 'Decide what kind of sitting care you provide.', bg: 'bg-[#FFF7E9]', Icon: DogIcon },
-  { title: 'Connect with pet parents', text: 'Chat and coordinate through Mungo, one to one.', bg: 'bg-[#E9E4F4]', Icon: HeartIcon },
-  { title: 'Build trusted relationships', text: 'Keep conversations and service status organized in one place.', bg: 'bg-[#FEFFE8]', Icon: ShieldIcon },
+  { title: 'Showcase your approach to pet care', text: 'Let pet parents see how you care for the pets you look after.', bg: 'bg-[#E8FFEC]', img: home },
+  { title: 'Choose the services you offer', text: 'Decide what kind of sitting care you provide.', bg: 'bg-[#FFF7E9]', img: dog },
+  { title: 'Connect with pet parents', text: 'Chat and coordinate through Mungo, one to one.', bg: 'bg-[#E9E4F4]', img: heart },
+  { title: 'Build trusted relationships', text: 'Keep conversations and service status organized in one place.', bg: 'bg-[#FEFFE8]', img: protection },
 ];
 
 const FLEXIBILITY = [
-  { title: 'Your expertise', text: 'Showcase the services and experience that make your care different.', Icon: UserIcon },
-  { title: 'Your availability', text: "Choose when you're available to provide care.", Icon: ClockIcon },
-  { title: 'Your connections', text: 'Communicate directly with pet parents throughout the service journey.', Icon: HeartIcon },
+  { title: 'Your expertise', text: 'Showcase the services and experience that make your care different.', img: user },
+  { title: 'Your availability', text: "Choose when you're available to provide care.", img: timer },
+  { title: 'Your connections', text: 'Communicate directly with pet parents throughout the service journey.', img: heart },
 ];
 
 const OFFER_TAGS = ['In-home sitting', 'Pet companionship', 'Feeding routines', 'Play & enrichment', 'Check-ins'];
@@ -173,11 +112,6 @@ export default function BecomeSitter() {
 
       {/* HERO */}
       <section className="relative isolate w-full overflow-hidden bg-white px-5 py-16 md:px-10 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob2} className="-left-[120px] -top-[20px] -z-10 h-[306px] w-[324px]" />
-        <Blob src={blob1} className="left-[544px] -top-[100px] -z-10 h-[306px] w-[324px]" />
-        <Blob src={blob3} className="-right-[110px] top-[37px] -z-10 h-[306px] w-[324px]" />
-        <PawIcon className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
 
         <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex w-full max-w-[480px] flex-col items-start gap-12 lg:gap-[72px]">
@@ -218,11 +152,9 @@ export default function BecomeSitter() {
           </p>
 
           <div className="mt-4 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-20">
-            {WHY_JOIN.map(({ title, text, bg, Icon }) => (
+            {WHY_JOIN.map(({ title, text, bg, img }) => (
               <div key={title} className={`flex min-h-[218px] flex-col items-start gap-[15px] rounded-2xl p-4 ${CARD_SHADOW} ${bg}`}>
-                <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{title}</h3>
                 <p className="text-base font-medium leading-[22px] text-[#66716D]">{text}</p>
               </div>
@@ -234,8 +166,8 @@ export default function BecomeSitter() {
       {/* FLEXIBILITY */}
       <section className="relative w-full overflow-hidden bg-white px-5 py-16 md:px-10 lg:px-20 lg:py-[120px]">
         {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob4} className="-left-[130px] top-[10%] h-[306px] w-[324px]" />
-        <Blob src={blob5} className="-right-[50px] top-[10%] h-[315px] w-[305px] " />
+        <Blob src={blob4} className="-left-[130px] top-[150px] h-[306px] w-[324px]" />
+        <Blob src={blob5} className="-right-[50px] top-[120px] h-[315px] w-[305px] " />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
           <div className="relative">
@@ -244,18 +176,16 @@ export default function BecomeSitter() {
               <br />
               Stay in control.
             </h2>
-            <PawIcon className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
+            <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
           </div>
           <p className="max-w-[342px] pt-0.5 text-center text-base font-medium leading-6 text-[#66716D]">
             Mungo helps connect you with pet parents. You bring the expertise and care.
           </p>
 
           <div className="mt-6 grid w-full max-w-[856px] grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-20">
-            {FLEXIBILITY.map(({ title, text, Icon }) => (
+            {FLEXIBILITY.map(({ title, text, img }) => (
               <div key={title} className={`flex flex-col items-start gap-[15px] rounded-2xl bg-[#E7F8F3] p-4 sm:min-h-[222px] ${CARD_SHADOW}`}>
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{title}</h3>
                 <p className="text-sm font-medium leading-[22px] text-[#17201E]">{text}</p>
               </div>
@@ -291,8 +221,7 @@ export default function BecomeSitter() {
 
       {/* HOW MUNGO WORKS */}
       <section className="relative w-full overflow-hidden bg-[#FEFEFE] px-5 py-16 lg:px-20 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob6} className="-right-[98px] top-[80px] h-[306px] w-[324px]" />
+        <Blob src={blob6} className="-right-[98px] top-[30px] h-[306px] w-[324px]" />
         <Blob src={blob7} className="-left-[88px] top-[180px] h-[306px] w-[324px]" />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">

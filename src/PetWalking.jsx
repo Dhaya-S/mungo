@@ -2,19 +2,19 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import walker1 from './assets/walker-1.png';
-import walker2 from './assets/walker-2.png';
-import walker3 from './assets/walker-3.png';
-import walker4 from './assets/walker-4.png';
-import walker5 from './assets/walker-5.png';
-import walker6 from './assets/walker-6.png';
-import walker7 from './assets/walker-7.png';
-import walker8 from './assets/walker-8.png';
-import walker9 from './assets/walker-9.png';
-import walker10 from './assets/walker-10.png';
-import walker11 from './assets/walker-11.png';
-import walker12 from './assets/walker-12.png';
-import walker13 from './assets/walker-13.png';
+import walker1 from './assets/walker-1.webp';
+import walker2 from './assets/walker-2.webp';
+import walker3 from './assets/walker-3.webp';
+import walker4 from './assets/walker-4.webp';
+import walker5 from './assets/walker-5.webp';
+import walker6 from './assets/walker-6.webp';
+import walker7 from './assets/walker-7.webp';
+import walker8 from './assets/walker-8.webp';
+import walker9 from './assets/walker-9.webp';
+import walker10 from './assets/walker-10.webp';
+import walker11 from './assets/walker-11.webp';
+import walker12 from './assets/walker-12.webp';
+import walker13 from './assets/walker-13.webp';
 
 const BLOB_PATH ="M300 0C380 0 450 60 500 150C540 230 545 330 520 430C495 530 420 610 330 660C250 700 150 690 90 620C30 550 0 450 0 350C0 250 50 170 110 100C170 30 230 0 300 0Z";
 
@@ -93,15 +93,19 @@ export default function DogWalking() {
       <Navbar currentPage="features" />
 
       {/* BREADCRUMB */}
-      <div
-        className="w-full px-6 pt-6 lg:px-20"
-        style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
-      >
-        <div className="mx-auto w-full max-w-[1280px] lg:px-16">
-          <p className="text-[13px] font-semibold leading-5 text-[#66716D]">
-            Services / <span className="text-[#17201E]">Dog Walking</span>
-          </p>
-        </div>
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start pt-6">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center font-['Plus_Jakarta_Sans'] text-[13px] font-semibold leading-5 text-[#66716D]"
+        >
+          <a href="/services" className="hover:text-[#1A1F1D] transition-colors">
+            Services
+          </a>
+          <span className="mx-1" aria-hidden="true">/</span>
+          <span aria-current="page" className="text-[#1A1F1D]">
+            Dog Walking
+          </span>
+        </nav>
       </div>
 
       {/* 1. HERO */}
@@ -138,29 +142,14 @@ export default function DogWalking() {
       {/* 2. EVERY WALK IS MORE THAN A WALK */}
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-6 py-16 md:flex-row md:gap-14 md:px-20 md:py-[120px]">
       {/* Blob image group */}
-      <div className="relative aspect-[576/687] w-full max-w-[576px] shrink-0">
-        {/* Mint back shape */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 545 687"
-          className="absolute left-0 top-0 h-full w-[94.6%]"
-          preserveAspectRatio="none"
-        >
-        </svg>
-
-        {/* Photo, clipped to the same blob, shifted right by 31px */}
-        <svg
-          viewBox="0 0 545 687"
-          className="absolute right-0 top-0 h-full w-[94.6%]"
-          preserveAspectRatio="none"
-        >
-          <image
-            href={walker2}
-            width="545"
-            height="687"
-            preserveAspectRatio="xMidYMid slice"
-          />
-        </svg>
+      <div className="relative aspect-[544.97/686.78] w-full max-w-[544.97px] shrink-0 md:ml-[31px]">
+        <img
+          loading="lazy"
+          decoding="async"
+          src={walker2}
+          alt="A dog wearing a pink leash outdoors"
+          className="h-full w-full object-contain"
+        />
       </div>
 
       {/* Text */}

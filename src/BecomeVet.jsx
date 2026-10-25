@@ -2,29 +2,39 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import bevet1 from './assets/bevet-1.png';
-import bevet2 from './assets/bevet-2.png';
-import bevet3 from './assets/bevet-3.png';
-import bevet4 from './assets/bevet-4.png';
-import bevet5 from './assets/bevet-5.png';
-import bevet6 from './assets/bevet-6.png';
-import bevet7 from './assets/bevet-7.png';
-import bevet8 from './assets/bevet-8.png';
-import bevet9 from './assets/find-1.png';
-import bevet10 from './assets/find-2.png';
-import bevet11 from './assets/find-3.png';
-import bevet12 from './assets/bevet-12.png';
-import bevet13 from './assets/bevet-13.png';
+import bevet1 from './assets/bevet-1.webp';
+import bevet2 from './assets/bevet-2.webp';
+import bevet3 from './assets/step-1.webp';
+import bevet4 from './assets/step-2.webp';
+import bevet5 from './assets/step-3.webp';
+import bevet6 from './assets/step-4.webp';
+import bevet7 from './assets/bevet-7.webp';
+import bevet8 from './assets/bevet-8.webp';
+import bevet9 from './assets/find-1.webp';
+import bevet10 from './assets/find-2.webp';
+import bevet11 from './assets/find-3.webp';
+import bevet12 from './assets/be-trust.webp';
+import bevet13 from './assets/bevet-13.webp';
 
-import blob1 from './assets/icon-1.png';
-import blob2 from './assets/icon-2.png';
-import blob3 from './assets/icon-3.png';
-import blob4 from './assets/icon-4.png';
-import blob5 from './assets/icon-5.png';
-import blob6 from './assets/icon-6.png';
-import blob7 from './assets/icon-7.png';
+import blob1 from './assets/icon-1.webp';
+import blob2 from './assets/icon-2.webp';
+import blob3 from './assets/icon-3.webp';
+import blob4 from './assets/icon-4.webp';
+import blob5 from './assets/icon-5.webp';
+import blob6 from './assets/icon-6.webp';
+import blob7 from './assets/icon-7.webp';
+import blob8 from './assets/icon-11.webp';
+import blob9 from './assets/icon-12.webp';
 
-/* ---------- decorative blobs (BecomeGroomer-style, class based) ---------- */
+import plus from './assets/plus-icon.webp';
+import heart from './assets/heart-icon.webp';
+import user from './assets/user-icon.webp';
+import timer from './assets/timer-icon.webp';
+import explore from './assets/explore-icon.webp';
+import paw from './assets/paw-icon.webp';
+
+const CARD_SHADOW =
+  'shadow-[0_23px_9px_rgba(79,79,79,0.01),0_13px_8px_rgba(79,79,79,0.04),0_6px_6px_rgba(79,79,79,0.07),0_1px_3px_rgba(79,79,79,0.08)]';
 
 const Blob = ({ src, className = "" }) => (
   <img loading="lazy" decoding="async"
@@ -35,82 +45,29 @@ const Blob = ({ src, className = "" }) => (
   />
 );
 
-const PawIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 32 32" className={className} fill="#CDF2E7" aria-hidden="true">
-    <ellipse cx="7" cy="14" rx="3" ry="4" />
-    <ellipse cx="13" cy="8" rx="3" ry="4" />
-    <ellipse cx="21" cy="8" rx="3" ry="4" />
-    <ellipse cx="26" cy="15" rx="2.5" ry="3.5" />
-    <path d="M16 15c-4 0-8 4-8 8 0 3 2.5 4 5 3.5 1.2-.3 2-.5 3-.5s1.8.2 3 .5c2.5.5 5-.5 5-3.5 0-4-4-8-8-8z" />
-  </svg>
-);
-
-/* ---------- icons ---------- */
-
-const iconProps = {
-  viewBox: '0 0 24 24',
-  className: 'h-7 w-7',
-  fill: 'none',
-  stroke: '#2DBB9F',
-  strokeWidth: '1.8',
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-};
-
-const HeartIcon = () => (
-  <svg {...iconProps}>
-    <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" />
-  </svg>
-);
-const PlusIcon = () => (
-  <svg {...iconProps}>
-    <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" />
-  </svg>
-);
-const UserIcon = () => (
-  <svg {...iconProps}>
-    <circle cx="12" cy="8" r="4" />
-    <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" />
-  </svg>
-);
-const CompassIcon = () => (
-  <svg {...iconProps}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M15.5 8.5l-2 5-5 2 2-5z" />
-  </svg>
-);
-const ClockIcon = () => (
-  <svg {...iconProps}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l2.5 2.5" />
-  </svg>
-);
-
 /* ---------- data ---------- */
-
 const benefits = [
-  { title: 'Help pet parents find your practice', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#E8FFEC]', Icon: PlusIcon },
-  { title: 'Build a professional presence', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#FFF7E9]', Icon: UserIcon },
-  { title: 'Connect with pet parents', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#E9E4F4]', Icon: HeartIcon },
-  { title: 'Make care easier to discover', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#FEFFE8]', Icon: CompassIcon },
+  { title: 'Help pet parents find your practice', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#E8FFEC]', img: plus },
+  { title: 'Build a professional presence', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#FFF7E9]', img: user },
+  { title: 'Connect with pet parents', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#E9E4F4]', img: heart },
+  { title: 'Make care easier to discover', text: 'Keep requests, conversations and service status in one place.', bg: 'bg-[#FEFFE8]', img: explore },
 ];
 
 const cards = [
   {
     title: 'Your expertise',
     text: 'Get more visibility and reach local pet parents looking for reliable care.',
-    Icon: UserIcon,
+    img: user,
   },
   {
     title: 'Your availability',
     text: "Choose when you're available to provide care.",
-    Icon: ClockIcon,
+    img: timer,
   },
   {
     title: 'Your connections',
     text: 'Communicate directly with pet parents throughout the service journey.',
-    Icon: HeartIcon,
+    img: heart,
   },
 ];
 
@@ -200,14 +157,12 @@ export default function BecomeVet() {
 
       {/* 1. HERO */}
       <section className="relative isolate w-full overflow-hidden bg-white px-5 py-16 font-['Plus_Jakarta_Sans'] md:px-10 lg:px-20 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob2} className="-left-[120px] -top-[20px] -z-10 h-[306px] w-[324px]" />
-        <Blob src={blob1} className="left-[544px] -top-[100px] -z-10 h-[306px] w-[324px]" />
+        <Blob src={blob9} className="-left-[120px] -top-[-334px] -z-10 h-[306px] w-[324px]" />
+        <Blob src={blob1} className="left-[650px] -top-[100px] -z-10 h-[306px] w-[324px]" />
         <Blob src={blob3} className="-right-[110px] top-[37px] -z-10 h-[306px] w-[324px]" />
-        <PawIcon className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
+        <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
 
         <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-0">
-          {/* Copy */}
           <div className="flex w-full max-w-[630px] flex-col items-start justify-between gap-12 lg:min-h-[485px] lg:gap-[193px]">
             <div className="flex flex-col gap-[18px]">
               <h1 className="text-[40px] font-semibold leading-[1.2] text-[#17201E] md:text-[64px]">
@@ -228,56 +183,57 @@ export default function BecomeVet() {
           </div>
 
           {/* Image */}
-          <div className="w-full max-w-[650px] shrink-0">
+          <div className="relative hidden aspect-[1300/1071] w-[650px] shrink-0 lg:block">
+            <img loading="lazy" decoding="async"
+              src={blob8}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full"
+            />
             <img loading="lazy" decoding="async"
               src={bevet1}
-              alt="Expert care when it matters. Explore vet care"
-              width={650}
-              height={535}
-              className="h-auto w-full object-contain"
+              alt="Veterinarian examining a beagle"
+              className="absolute left-0 top-0 h-full w-[96.7%]"
             />
           </div>
         </div>
       </section>
 
       {/* 2. WHY JOIN — BENEFIT LIST */}
-      <section className="w-full bg-white px-5 py-10 font-['Plus_Jakarta_Sans'] md:px-8 lg:py-[52px]">
-        <div className="mx-auto grid max-w-[1313px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
-          {benefits.map(({ title, text, bg, Icon }) => (
-            <div
-              key={title}
-              className={`flex min-h-[134px] items-center gap-[13px] rounded-[24px] px-4 py-7 ${bg}`}
-            >
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center">
-                <Icon />
+      <section className="w-full bg-[#F5FBF9] px-5 py-16 md:px-10 lg:px-20 lg:py-[120px]">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8">
+          <h2 className="max-w-[559px] text-center text-[30px] font-semibold leading-[1.3] tracking-[-0.88px] text-[#17201E] md:text-[42px]">
+            More ways to grow your pet-care work.
+          </h2>
+          <p className="max-w-[342px] pt-0.5 text-center text-base font-medium leading-6 text-[#66716D]">
+            Mungo helps connect you with pet parents. You bring the expertise and care.
+          </p>
+
+          <div className="mt-4 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-20">
+            {benefits.map(({ title, text, bg, img }) => (
+              <div key={title} className={`flex min-h-[218px] flex-col items-start gap-[15px] rounded-2xl p-4 ${CARD_SHADOW} ${bg}`}>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
+                <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{title}</h3>
+                <p className="w-[200px] text-base font-medium leading-[22px] text-[#66716D]">{text}</p>
               </div>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-[18px] font-semibold leading-7 tracking-[-0.38px] text-[#17201E]">
-                  {title}
-                </h3>
-                <p className="text-base font-medium leading-[22px] text-[#66716D]">
-                  {text}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* 3. FLEXIBILITY */}
       <section className="relative w-full overflow-hidden bg-white px-5 py-16 font-['Plus_Jakarta_Sans'] md:px-10 lg:px-20 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob4} className="-left-[130px] top-[10%] h-[306px] w-[324px]" />
-        <Blob src={blob5} className="-right-[50px] top-[10%] h-[315px] w-[305px] " />
+        <Blob src={blob4} className="-left-[130px] top-[150px] h-[306px] w-[324px]" />
+        <Blob src={blob5} className="-right-[50px] top-[120px] h-[315px] w-[305px] " />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
           <div className="relative">
             <h2 className="max-w-[479px] text-center text-[30px] font-semibold leading-[1.3] tracking-[-0.88px] text-[#17201E] md:text-[42px]">
-              You&apos;re the expert.
+              You're the expert.
               <br />
               Stay in control.
             </h2>
-            <PawIcon className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
+            <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
           </div>
 
           <p className="max-w-[342px] pt-0.5 text-center text-base font-medium leading-6 text-[#66716D]">
@@ -286,14 +242,12 @@ export default function BecomeVet() {
           </p>
 
           <div className="mt-6 grid w-full max-w-[856px] grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-20">
-            {cards.map(({ title, text, Icon }) => (
+            {cards.map(({ title, text, img }) => (
               <div
                 key={title}
                 className="flex flex-col items-start gap-[15px] rounded-2xl bg-[#E7F8F3] p-4 shadow-[0_23px_9px_rgba(79,79,79,0.01),0_13px_8px_rgba(79,79,79,0.04),0_6px_6px_rgba(79,79,79,0.07),0_1px_3px_rgba(79,79,79,0.08)] sm:min-h-[222px]"
               >
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">
                   {title}
                 </h3>
@@ -339,8 +293,7 @@ export default function BecomeVet() {
 
       {/* 5. HOW MUNGO WORKS */}
       <section className="relative w-full overflow-hidden bg-[#FEFEFE] px-5 py-16 font-['Plus_Jakarta_Sans'] lg:px-20 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob6} className="-right-[98px] top-[80px] h-[306px] w-[324px]" />
+        <Blob src={blob6} className="-right-[98px] top-[30px] h-[306px] w-[324px]" />
         <Blob src={blob7} className="-left-[88px] top-[180px] h-[306px] w-[324px]" />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
@@ -531,7 +484,7 @@ export default function BecomeVet() {
               src={bevet13}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute -right-[80px] top-0 hidden h-[120px] w-[246px] -scale-x-100 object-contain lg:block"
+              className="pointer-events-none absolute -right-[60px] top-0 hidden h-[120px] w-[246px] -scale-x-100 object-contain lg:block"
             />
           </div>
 
@@ -570,11 +523,11 @@ export default function BecomeVet() {
         style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 lg:px-16">
-          <div className="flex w-full max-w-[610px] flex-col items-center gap-[18px]">
+          <div className="flex w-full max-w-[1152px] flex-col items-center gap-[18px]">
             <h2 className="text-center text-[38px] font-bold leading-[1.3] tracking-[-0.5px] text-white sm:text-[50px] lg:text-[63px]">
-              Ready to make great care easier to find?
+              Ready to make great <br /> care easier to find?
             </h2>
-            <p className="max-w-[420px] pb-[14px] text-center text-[18px] leading-[1.5] text-white">
+            <p className="max-w-[480px] pb-[14px] text-center text-[18px] leading-[1.5] text-white">
               Join Mungo and connect with pet parents looking for veterinary care.
             </p>
           </div>

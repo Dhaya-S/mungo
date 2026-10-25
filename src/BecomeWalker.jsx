@@ -3,26 +3,30 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 
-import bewalker1 from './assets/bewalker-1.png';
-import bewalker2 from './assets/find-1.png';
-import bewalker3 from './assets/find-2.png';
-import bewalker4 from './assets/find-3.png';
-import bewalker5 from './assets/bewalker-5.png';
-import bewalker6 from './assets/bewalker-6.png';
-import bewalker7 from './assets/bewalker-7.png';
-import bewalker8 from './assets/bewalker-8.png';
-import bewalker9 from './assets/bewalker-9.png';
-import bewalker10 from './assets/bewalker-10.png';
-import bewalker11 from './assets/bewalker-11.png';
-import bewalker12 from './assets/bewalker-12.png';
+import bewalker1 from './assets/bewalker-1.webp';
+import bewalker2 from './assets/find-1.webp';
+import bewalker3 from './assets/find-2.webp';
+import bewalker4 from './assets/find-3.webp';
+import bewalker5 from './assets/step-1.webp';
+import bewalker6 from './assets/step-2.webp';
+import bewalker7 from './assets/step-3.webp';
+import bewalker8 from './assets/step-4.webp';
+import bewalker9 from './assets/be-trust.webp';
+import bewalker10 from './assets/bewalker-10.webp';
+import bewalker11 from './assets/bewalker-11.webp';
+import bewalker12 from './assets/bewalker-12.webp';
 
-import blob1 from './assets/icon-1.png';
-import blob2 from './assets/icon-2.png';
-import blob3 from './assets/icon-3.png';
-import blob4 from './assets/icon-4.png';
-import blob5 from './assets/icon-5.png';
-import blob6 from './assets/icon-6.png';
-import blob7 from './assets/icon-7.png';
+import blob4 from './assets/icon-4.webp';
+import blob5 from './assets/icon-5.webp';
+import blob6 from './assets/icon-6.webp';
+import blob7 from './assets/icon-7.webp';
+
+import heart from './assets/heart-icon.webp';
+import user from './assets/user-icon.webp';
+import timer from './assets/timer-icon.webp';
+import walker from './assets/walker-icon.webp';
+import protection from './assets/protection-icon.webp';
+import paw from './assets/paw-icon.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 
@@ -35,76 +39,21 @@ const Blob = ({ src, className = "" }) => (
     className={`pointer-events-none absolute hidden select-none object-contain lg:block ${className}`}
   />
 );
-
-const PawIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 32 32" className={className} fill="#CDF2E7" aria-hidden="true">
-    <ellipse cx="7" cy="14" rx="3" ry="4" />
-    <ellipse cx="13" cy="8" rx="3" ry="4" />
-    <ellipse cx="21" cy="8" rx="3" ry="4" />
-    <ellipse cx="26" cy="15" rx="2.5" ry="3.5" />
-    <path d="M16 15c-4 0-8 4-8 8 0 3 2.5 4 5 3.5 1.2-.3 2-.5 3-.5s1.8.2 3 .5c2.5.5 5-.5 5-3.5 0-4-4-8-8-8z" />
-  </svg>
-);
-
-/* ---------- Icons ---------- */
-const svgProps = {
-  fill: 'none',
-  stroke: '#2DBB9F',
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-};
-
-const WalkerIcon = () => (
-  <svg viewBox="0 0 28 28" className="h-7 w-7" strokeWidth="2" {...svgProps}>
-    <circle cx="19" cy="5" r="2" />
-    <path d="M19 8v5l-3 4M19 11l3 3M16 17l2 6" />
-    <path d="M3 17v-3h3v3M3 23v-6h3v6M8 23v-6M11 23v-6" />
-  </svg>
-);
-
-const ClockIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" strokeWidth="1.8" {...svgProps}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l2 2" />
-  </svg>
-);
-
-const HeartIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" strokeWidth="1.8" {...svgProps}>
-    <path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.5 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z" />
-  </svg>
-);
-
-const ShieldIcon = () => (
-  <svg viewBox="0 0 28 28" className="h-7 w-7" strokeWidth="2" {...svgProps}>
-    <path d="M14 3l9 3v7c0 6-4 10-9 12-5-2-9-6-9-12V6l9-3z" />
-    <path d="M10 14l3 3 5-6" />
-  </svg>
-);
-
-const UserIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-7 w-7" strokeWidth="1.8" {...svgProps}>
-    <circle cx="12" cy="8" r="3.5" />
-    <path d="M5 19c1.2-3.2 3.8-4.8 7-4.8s5.8 1.6 7 4.8" />
-  </svg>
-);
-
 /* ---------- Data ---------- */
 const CARD_SHADOW =
   'shadow-[0_23px_9px_rgba(79,79,79,0.01),0_13px_8px_rgba(79,79,79,0.04),0_6px_6px_rgba(79,79,79,0.07),0_1px_3px_rgba(79,79,79,0.08)]';
 
 const WALKER_BENEFITS = [
-  { title: 'Connect with local pet parents', text: 'Let pet parents see how you care for the pets you look after.', bg: 'bg-[#E8FFEC]', Icon: WalkerIcon },
-  { title: 'Showcase your availability', text: "Decide what kind of sitting care you provide.", bg: 'bg-[#FFF7E9]', Icon: ClockIcon },
-  { title: 'Build repeat relationships', text: 'Chat and coordinate through Mungo, one to one.', bg: 'bg-[#E9E4F4]', Icon: HeartIcon },
-  { title: 'Keep communication simple', text: 'Keep conversations and service status organized in one place.', bg: 'bg-[#FEFFE8]', Icon: ShieldIcon },
+  { title: 'Connect with local pet parents', text: 'Let pet parents see how you care for the pets you look after.', bg: 'bg-[#E8FFEC]', img: walker },
+  { title: 'Showcase your availability', text: "Decide what kind of sitting care you provide.", bg: 'bg-[#FFF7E9]', img: timer },
+  { title: 'Build repeat relationships', text: 'Chat and coordinate through Mungo, one to one.', bg: 'bg-[#E9E4F4]', img: heart },
+  { title: 'Keep communication simple', text: 'Keep conversations and service status organized in one place.', bg: 'bg-[#FEFFE8]', img: protection },
 ];
 
 const EXPERT_CARDS = [
-  { title: 'Your expertise', text: 'Get more visibility and reach local pet parents looking for reliable care.', Icon: UserIcon },
-  { title: 'Your availability', text: "Choose when you're available to provide care.", Icon: ClockIcon },
-  { title: 'Your connections', text: 'Communicate directly with pet parents throughout the service journey.', Icon: HeartIcon },
+  { title: 'Your expertise', text: 'Get more visibility and reach local pet parents looking for reliable care.', img: user },
+  { title: 'Your availability', text: "Choose when you're available to provide care.", img: timer },
+  { title: 'Your connections', text: 'Communicate directly with pet parents throughout the service journey.', img: heart },
 ];
 
 const OFFER_TAGS = ['Dog walking', 'Regular walks', 'Individual attention', 'Outdoor activity', 'Updates to pet parents'];
@@ -164,12 +113,6 @@ export default function BecomeWalker() {
 
       {/* HERO */}
       <section className="relative isolate w-full overflow-hidden bg-white px-5 py-16 md:px-10 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob2} className="-left-[120px] -top-[20px] -z-10 h-[306px] w-[324px]" />
-        <Blob src={blob1} className="left-[544px] -top-[100px] -z-10 h-[306px] w-[324px]" />
-        <Blob src={blob3} className="-right-[110px] top-[37px] -z-10 h-[306px] w-[324px]" />
-        <PawIcon className="pointer-events-none absolute bottom-[110px] right-[140px] hidden h-12 w-12 rotate-12 lg:block" />
-
         <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-12 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex w-full max-w-[505px] flex-col items-start gap-12 lg:gap-[72px]">
             <div className="flex flex-col gap-[18px]">
@@ -203,11 +146,9 @@ export default function BecomeWalker() {
             Mungo helps connect you with pet parents. You bring the expertise and care.
           </p>
           <div className="mt-4 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-20">
-            {WALKER_BENEFITS.map(({ title, text, bg, Icon }) => (
+            {WALKER_BENEFITS.map(({ title, text, bg, img }) => (
               <div key={title} className={`flex min-h-[218px] flex-col items-start gap-[15px] rounded-2xl p-4 ${CARD_SHADOW} ${bg}`}>
-                <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{title}</h3>
                 <p className="text-base font-medium leading-[22px] text-[#66716D]">{text}</p>
               </div>
@@ -219,8 +160,8 @@ export default function BecomeWalker() {
       {/* FLEXIBILITY */}
       <section className="relative w-full overflow-hidden bg-white px-5 py-16 md:px-10 lg:px-20 lg:py-[120px]">
         {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob4} className="-left-[130px] top-[10%] h-[306px] w-[324px]" />
-        <Blob src={blob5} className="-right-[50px] top-[10%] h-[315px] w-[305px] " />
+        <Blob src={blob4} className="-left-[130px] top-[150px] h-[306px] w-[324px]" />
+        <Blob src={blob5} className="-right-[50px] top-[120px] h-[315px] w-[305px] " />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">
           <div className="relative">
@@ -229,17 +170,15 @@ export default function BecomeWalker() {
               <br />
               Stay in control.
             </h2>
-            <PawIcon className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
+            <img loading="lazy" decoding="async" src={paw} alt="Paw print icon" className="absolute -right-[110px] top-[55%] hidden h-9 w-9 rotate-[15deg] lg:block" />
           </div>
           <p className="max-w-[342px] pt-0.5 text-center text-base font-medium leading-6 text-[#66716D]">
             Mungo helps connect you with pet parents. You bring the expertise and care.
           </p>
           <div className="mt-6 grid w-full max-w-[856px] grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-20">
-            {EXPERT_CARDS.map(({ title, text, Icon }) => (
+            {EXPERT_CARDS.map(({ title, text, img }) => (
               <div key={title} className={`flex flex-col items-start gap-[15px] rounded-2xl bg-[#E7F8F3] p-4 sm:min-h-[222px] ${CARD_SHADOW}`}>
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-white">
-                  <Icon />
-                </div>
+                <img loading="lazy" decoding="async" src={img} alt="" className="h-[52px] w-[52px] shrink-0 object-contain" />
                 <h3 className="text-base font-bold leading-[18px] tracking-[0.6px] text-[#22947E]">{title}</h3>
                 <p className="text-sm font-medium leading-[22px] text-[#17201E]">{text}</p>
               </div>
@@ -271,8 +210,7 @@ export default function BecomeWalker() {
 
       {/* HOW MUNGO WORKS */}
       <section className="relative w-full overflow-hidden bg-white px-5 py-16 lg:px-20 lg:py-[120px]">
-        {/* Decorative blobs (custom PNGs) */}
-        <Blob src={blob6} className="-right-[98px] top-[80px] h-[306px] w-[324px]" />
+        <Blob src={blob6} className="-right-[98px] top-[30px] h-[306px] w-[324px]" />
         <Blob src={blob7} className="-left-[88px] top-[180px] h-[306px] w-[324px]" />
 
         <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-[22px]">

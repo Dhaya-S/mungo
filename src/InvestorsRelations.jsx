@@ -3,12 +3,12 @@ import { ArrowRight, ArrowDown, Check, Plus } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import investor1 from './assets/investor-1.png';
-import investor2 from './assets/investor-2.png';
-import investor3 from './assets/investor-3.png';
-import investor4 from './assets/investor-4.png';
-import investor5 from './assets/investor-5.png';
-import investor6 from './assets/investor-6.png';
+import investor1 from './assets/investor-1.webp';
+import investor2 from './assets/investor-2.webp';
+import investor3 from './assets/investor-3.webp';
+import investor4 from './assets/investor-4.webp';
+import investor5 from './assets/investor-5.webp';
+import investor6 from './assets/investor-6.webp';
 
 const IMG = {
   hero: investor1,

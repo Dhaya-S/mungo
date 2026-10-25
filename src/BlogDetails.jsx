@@ -2,11 +2,11 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import blogdetails1 from './assets/blog-details-1.png';
-import blogdetails2 from './assets/blog-details-2.png';
-import blogdetails3 from './assets/blog-details-3.png';
-import blogdetails4 from './assets/blog-details-4.png';
-import blogdetails5 from './assets/blog-details-5.png';
+import blogdetails1 from './assets/blog-details-1.webp';
+import blogdetails2 from './assets/blog-details-2.webp';
+import blogdetails3 from './assets/blog-details-3.webp';
+import blogdetails4 from './assets/blog-details-4.webp';
+import blogdetails5 from './assets/blog-details-5.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 

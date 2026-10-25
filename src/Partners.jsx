@@ -3,12 +3,12 @@ import { ArrowRight, Check, Plus } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import partners1 from './assets/partners-1.png';
-import partners2 from './assets/partners-2.png';
-import partners3 from './assets/partners-3.png';
-import partners4 from './assets/partners-4.png';
-import partners5 from './assets/partners-5.png';
-import partners6 from './assets/partners-6.png';
+import partners1 from './assets/partners-1.webp';
+import partners2 from './assets/partners-2.webp';
+import partners3 from './assets/partners-3.webp';
+import partners4 from './assets/partners-4.webp';
+import partners5 from './assets/partners-5.webp';
+import partners6 from './assets/partners-6.webp';
 
 /* Replace image paths with your exported Figma images */
 const IMG = {

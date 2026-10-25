@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import allarticles1 from './assets/allarticles-1.png';
+import allarticles1 from './assets/allarticles-1.webp';
 
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 

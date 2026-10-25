@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import notFoundImg from "./assets/articlenotfound-1.png";
+import notFoundImg from "./assets/articlenotfound-1.webp";
 
 export default function ArticleNotFound() {
   return (

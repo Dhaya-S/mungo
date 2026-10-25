@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieConsent from './components/Cookie';
 
-import home1 from './assets/home-1.png';
-import home2 from './assets/home-2.png';
-import home3 from './assets/home-3.png';
-import home4 from './assets/home-4.png';
-import home5 from './assets/home-5.png';
-import home6 from './assets/home-6.png';
-import home7 from './assets/home-7.png';
-import home8 from './assets/home-8.png';
-import home9 from './assets/home-9.png';
-import home10 from './assets/home-10.png';
-import home11 from './assets/home-11.png';
-import home12 from './assets/home-12.png';
-import home13 from './assets/home-13.png';
-import home14 from './assets/home-14.png';
-import home15 from './assets/home-15.png';
-import home16 from './assets/home-16.png';
-import home17 from './assets/home-17.png';
-import home18 from './assets/home-18.png';
-import home19 from './assets/home-19.png';
-import icon1 from './assets/icon1.png';
-import icon2 from './assets/icon2.png';
-import middle from './assets/top-middle.png';
-import left from './assets/top-left.png';
-import right from './assets/top-right.png';
-import dog1 from './assets/dog-1.png';
-import cat1 from './assets/cat-1.png';
-import yarn from './assets/yarn-ball.png';
-import star from './assets/star-icon.png';
-import ball from './assets/ball-icon.png';
-import food from './assets/food-icon.png';
-import bone from './assets/bone-icon.png';
-import heart from './assets/heart-icon.png';
-import rectangle1 from './assets/rectangle-1.png';
-import rectangle2 from './assets/rectangle-2.png';
-import blog5 from './assets/blog-5.png';
-import blog6 from './assets/blog-6.png';
-import blog8 from './assets/blog-8.png';
+import home1 from './assets/home-1.webp';
+import home2 from './assets/home-2.webp';
+import home3 from './assets/home-3.webp';
+import home4 from './assets/home-4.webp';
+import home5 from './assets/home-5.webp';
+import home6 from './assets/home-6.webp';
+import home7 from './assets/home-7.webp';
+import home8 from './assets/home-8.webp';
+import home9 from './assets/home-9.webp';
+import home10 from './assets/home-10.webp';
+import home11 from './assets/home-11.webp';
+import home12 from './assets/home-12.webp';
+import home13 from './assets/home-13.webp';
+import home14 from './assets/home-14.webp';
+import home15 from './assets/home-15.webp';
+import home16 from './assets/home-16.webp';
+import home17 from './assets/home-17.webp';
+import home18 from './assets/home-18.webp';
+import home19 from './assets/home-19.webp';
+import icon1 from './assets/icon1.webp';
+import icon2 from './assets/icon2.webp';
+import middle from './assets/top-middle.webp';
+import left from './assets/top-left.webp';
+import right from './assets/top-right.webp';
+import dog1 from './assets/dog-1.webp';
+import cat1 from './assets/cat-1.webp';
+import yarn from './assets/yarn-ball.webp';
+import star from './assets/star-icon.webp';
+import ball from './assets/ball-icon.webp';
+import food from './assets/food-icon.webp';
+import bone from './assets/bone-icon.webp';
+import heart from './assets/hearts-icon.webp';
+import rectangle1 from './assets/rectangle-1.webp';
+import rectangle2 from './assets/rectangle-2.webp';
+import blog5 from './assets/blog-5.webp';
+import blog6 from './assets/blog-6.webp';
+import blog8 from './assets/blog-8.webp';
 
 
 const pillars = [
@@ -48,51 +49,46 @@ const pillars = [
   "Support when you need it",
 ];
 
-  const services = [
+const services = [
   {
-    id: "grooming",
-    href: "/grooming",
     title: "Fresh, clean, happy.",
     desc: "Book trusted groomers who treat every visit like your pet's own spa day.",
     cta: "Explore grooming",
-    image: home3,
-    alt: "Dog relaxing with cucumber slices on its eyes",
+    img: home3,
+    href: "/grooming",
+    blob: "58% 42% 55% 45% / 45% 55% 45% 55%",
   },
   {
-    id: "vet",
-    href: "/veterinary-care",
     title: "Expert care when it matters.",
     desc: "Connect with veterinary professionals for check-ups and care your pet can count on.",
     cta: "Explore vet care",
-    image: home4,
-    alt: "Kitten getting a check-up from a vet",
+    img: home4,
+    href: "/veterinary-care",
+    blob: "45% 55% 40% 60% / 55% 45% 60% 40%",
   },
   {
-    id: "boarding",
-    href: "/pet-boarding",
     title: "A comfortable home away from home.",
     desc: "Safe, welcoming spaces for your pet to stay when you can't be there.",
     cta: "Explore boarding",
-    image: home5,
-    alt: "Dog sitting on a play ramp in a boarding room",
+    img: home5,
+    href: "/pet-boarding",
+    blob: "50% 50% 45% 55% / 60% 40% 60% 40%",
   },
   {
-    id: "sitting",
-    href: "/pet-sitting",
-    title: "Expert care when it matters.",
-    desc: "Connect with veterinary professionals for check-ups and care your pet can count on.",
+    title: "Pets at ease, right at home.",
+    desc: "Caring sitters who keep your pet comfortable and loved while you're away.",
     cta: "Explore sitting",
-    image: home6,
-    alt: "Woman relaxing with a golden retriever and a cat",
+    img: home6,
+    href: "/pet-sitting",
+    blob: "55% 45% 50% 50% / 45% 55% 50% 50%",
   },
   {
-    id: "walking",
-    href: "/dog-walking",
     title: "Because every walk matters.",
     desc: "Reliable walkers who keep your dog active, happy, and on schedule.",
     cta: "Explore walking",
-    image: home7,
-    alt: "Dog out for a walk in a sunny park",
+    img: home7,
+    href: "/pet-walking",
+    blob: "60% 40% 50% 50% / 50% 50% 55% 45%",
   },
 ];
 
@@ -120,7 +116,7 @@ const careItems = [
   },
   {
     id: 'away',
-    title: 'What�s happening while I�m away?',
+    title: "What's happening while I'm away?",
     body: 'Get photo and video updates so you always know how your pet is doing.',
     icon: (
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -135,7 +131,7 @@ const careItems = [
   {
     id: 'done',
     title: 'When will the service be done?',
-    body: 'Track every visit in real time and get notified the moment it�s complete.',
+    body: "Track every visit in real time and get notified the moment it's complete.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="9" />
@@ -166,7 +162,6 @@ const steps = [
   { title: "Complete", text: "Know when the service is finished.", image: home13, alt: "Complete" },
 ];
 
-
 const partners = [
   { label: "Groomers", image: home14, alt: "Terrier with shampoo foam on its head" },
   { label: "Veterinary Partners", image: home15, alt: "Vet examining a border collie" },
@@ -178,7 +173,7 @@ const partners = [
 const faqs = [
   {
     q: "What services can I find on Mungo?",
-    a: "Grooming, veterinary care, boarding, pet sitting, dog walking and pet products � all in one place.",
+    a: "Grooming, veterinary care, boarding, pet sitting, dog walking and pet products-all in one place.",
   },
   {
     q: "How do I book a service?",
@@ -247,7 +242,7 @@ function ServiceRow({ service, reversed }) {
         </a>
       </div>
 
-      <div className="relative aspect-[430/384] w-full max-w-[430px] shrink-0">
+      <div className="relative aspect-[401.48260498046875/383.7781066894531] w-full max-w-[401.48260498046875px] shrink-0">
         <div
           aria-hidden="true"
           className={`absolute inset-0 ${reversed ? 'translate-x-[-6.5%]' : 'translate-x-[6.5%]'} translate-y-[3.5%]`}
@@ -270,13 +265,13 @@ function CareSection() {
   return (
     <section className="w-full bg-white font-['Plus_Jakarta_Sans'] px-6 py-16 md:px-12 lg:px-20 lg:py-[120px]">
       <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-12 lg:flex-row lg:gap-[93px]">
-        <div className="flex w-full flex-col lg:w-[587px] lg:shrink-0">
+        <div className="flex w-full flex-col lg:w-[548px] lg:shrink-0">
           <div className="flex flex-col gap-3">
             <h2 className="text-[32px] font-semibold leading-[130%] text-[#17201E] md:text-[42px]">
-              Because finding good care shouldn�t be complicated.
+              Because finding good care shouldn't be complicated.
             </h2>
             <p className="text-base font-medium leading-7 text-[#66716D]">
-              From trusted sitters to easy bookings, we make it simple for you to give your pet the best care even when you�re not around.
+              From trusted sitters to easy bookings, we make it simple for you to give your pet the best care even when you're not around.
             </p>
           </div>
 
@@ -342,13 +337,13 @@ export default function Home() {
           <img loading="eager" decoding="async" fetchpriority="high" src={middle} alt="" aria-hidden="true" className="pointer-events-none absolute left-[623.55px] top-[-100px] h-[261px] w-[270px] max-w-none rotate-[-30deg]" />
           <img loading="eager" decoding="async" fetchpriority="high" src={right} alt="" aria-hidden="true" className="pointer-events-none absolute left-[1280px] top-[-10px] h-[261px] w-[270px] max-w-none rotate-[-20deg]" />
 
-          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle1} alt="" aria-hidden="true" className="absolute left-[-78.99px] top-[580.25px] h-[307.42px] w-[402.85px] max-w-none rotate-[2deg]" />
-          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle2} alt="" aria-hidden="true" className="absolute left-[1036px] top-[630px] h-[257px] w-[435px] max-w-none rotate-[4deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle1} alt="" aria-hidden="true" className="absolute left-[-78.99px] top-[560.25px] h-[307.42px] w-[402.85px] max-w-none rotate-[-8 deg]" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={rectangle2} alt="" aria-hidden="true" className="absolute left-[1036px] top-[610px] h-[257px] w-[435px] max-w-none rotate-[4deg]" />
 
           <img loading="eager" decoding="async" fetchpriority="high"
             src={dog1}
             alt="Happy dog leaning over a ledge"
-            className="absolute left-[-50px] top-[303px] h-[474px] w-[339.27px] max-w-none rotate-[10deg] object-contain"
+            className="absolute left-[-34.99px] top-[289px] h-[474px] w-[339.27px] max-w-none rotate-[8deg] object-contain"
             style={{
               filter:
                 'drop-shadow(-8px 45px 18px rgba(0,0,0,0.02)) drop-shadow(-4px 25px 15px rgba(0,0,0,0.07)) drop-shadow(-2px 11px 11px rgba(0,0,0,0.12)) drop-shadow(0px 3px 6px rgba(0,0,0,0.14))',
@@ -358,7 +353,7 @@ export default function Home() {
           <img loading="eager" decoding="async" fetchpriority="high"
             src={cat1}
             alt="Ginger cat looking up"
-            className="absolute left-[1060px] top-[331px] h-[415.53px] w-[415.53px] max-w-none rotate-[-12deg] object-contain"
+            className="absolute left-[1000px] top-[331px] h-[415.53px] w-[415.53px] max-w-none rotate-[-12deg] object-contain"
             style={{
               filter:
                 'drop-shadow(53px 98px 44px rgba(0,0,0,0.01)) drop-shadow(30px 55px 38px rgba(0,0,0,0.05)) drop-shadow(13px 24px 28px rgba(0,0,0,0.09)) drop-shadow(3px 6px 15px rgba(0,0,0,0.1))',
@@ -366,7 +361,7 @@ export default function Home() {
           />
 
           <img loading="eager" decoding="async" fetchpriority="high" src={bone} alt="" aria-hidden="true" className="absolute left-[320px] top-[400px] h-[161px] w-[161px] max-w-none object-contain" />
-          <img loading="eager" decoding="async" fetchpriority="high" src={yarn} alt="" aria-hidden="true" className="absolute left-[1070px] top-[230px] h-[155px] w-[155px] max-w-none object-contain" />
+          <img loading="eager" decoding="async" fetchpriority="high" src={yarn} alt="" aria-hidden="true" className="absolute left-[1000px] top-[230px] h-[155px] w-[155px] max-w-none object-contain" />
           <img loading="eager" decoding="async" fetchpriority="high" src={ball} alt="" aria-hidden="true" className="absolute left-[859px] top-[510px] h-[81px] w-[89px] max-w-none rotate-[-38deg] object-contain" />
           <img loading="eager" decoding="async" fetchpriority="high" src={star} alt="" aria-hidden="true" className="absolute left-[980px] top-[460px] h-[95px] w-[95px] max-w-none object-contain" />
           <img loading="eager" decoding="async" fetchpriority="high" src={heart} alt="" aria-hidden="true" className="absolute left-[512px] top-[516px] h-[87px] w-[87px] max-w-none object-contain" />
@@ -417,22 +412,57 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="flex w-full justify-center bg-white font-['Plus_Jakarta_Sans']">
-      <div className="flex w-full max-w-[1280px] flex-col items-center gap-6 px-0 py-20">
-        <div className="flex w-full flex-col items-center gap-[10px] px-6 pb-12 text-center">
-          <h2 className="max-w-[460px] text-[32px] font-semibold leading-[130%] tracking-[-0.92px] text-[#17201E] md:text-[42px]">
-            Whatever they need. Mungo's got it.
-          </h2>
-          <p className="text-base font-medium leading-[130%] text-[#66716D]">
-            Everyday essentials, expert care, and everything in between.
-          </p>
-        </div>
+    <section className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 py-20 font-['Plus_Jakarta_Sans']">
+      <header className="px-6 text-center">
+        <h2 className="text-[42px] font-semibold leading-[1.3] tracking-[-0.92px] text-[#17201E]">
+          Whatever they need.
+          <br />
+          Mungo's got it.
+        </h2>
+        <p className="mt-2.5 text-base font-medium text-[#66716D]">
+          Everyday essentials, expert care, and everything in between.
+        </p>
+      </header>
 
-        <div className="flex w-full flex-col">
-          {services.map((service, i) => (
-            <ServiceRow key={service.id} service={service} reversed={i % 2 === 1} />
-          ))}
-        </div>
+      <div className="flex w-full flex-col gap-[72px]">
+        {services.map((s, i) => {
+          const reversed = i % 2 === 1;
+          return (
+            <div
+              key={s.title + i}
+              className={`flex flex-col items-center justify-between gap-16 px-16 py-12 md:flex-row ${
+                reversed ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Text */}
+              <div className="flex max-w-[544px] flex-1 flex-col items-start gap-6">
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-[36px] font-semibold leading-[1.3] text-[#17201E]">
+                    {s.title}
+                  </h3>
+                  <p className="max-w-[400px] text-base font-medium leading-6 text-[#66716D]">
+                    {s.desc}
+                  </p>
+                </div>
+                <a
+                  href={s.href}
+                  className="rounded-full bg-[#2DBB9F] px-[26px] py-3 text-base font-semibold text-white transition hover:bg-[#22947E]"
+                >
+                  {s.cta}
+                </a>
+              </div>
+
+              <div className="relative w-full max-w-[489px] shrink-0">
+                <img loading="lazy" decoding="async"
+                  src={s.img}
+                  alt=""
+                  className="block h-auto w-auto max-w-full object-contain"
+                  style={{ borderRadius: s.blob }}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
 
@@ -474,7 +504,7 @@ export default function Home() {
         {/* Text */}
         <div className="flex w-full max-w-[534px] flex-col gap-[13px]">
           <h2 className="text-[32px] font-semibold leading-[1.15] tracking-[-0.88px] text-[#17201E] md:text-[42px]">
-            You take care of them. We'll make the rest easier.
+            You take care of them.<br /> We'll make the rest easier.
           </h2>
 
           <ul className="flex flex-col gap-[22px] pt-[19px]">
@@ -483,7 +513,7 @@ export default function Home() {
                 <p className="text-lg font-semibold leading-[25px] text-[#17201E]">
                   {b.title}{" "}
                   <span className="text-sm font-medium leading-[22px] text-[#66716D]">
-                    � {b.text}
+                    — {b.text}
                   </span>
                 </p>
               </li>
@@ -511,14 +541,13 @@ export default function Home() {
 
     <section className="w-full bg-[#E7F8F3] font-['Plus_Jakarta_Sans'] px-6 pb-16 pt-16 md:px-12 lg:px-20 lg:pb-20 lg:pt-[120px]">
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-10">
-        <h2 className="max-w-[468px] text-center text-[32px] font-semibold leading-[130%] text-[#17201E] md:text-[42px]">
+        <h2 className="max-w-[478px] text-center text-[32px] font-semibold leading-[130%] text-[#17201E] md:text-[42px]">
           From "I need care" to "they're taken care of."
         </h2>
 
         <ol className="grid w-full grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[51px]">
           {steps.map((step) => (
             <li key={step.title} className="flex flex-col items-center">
-              {/* Image slot: 273 x 235 */}
               <div className="aspect-[273/235] w-full max-w-[273px]">
                 {step.image && (
                   <img loading="lazy" decoding="async"
@@ -590,7 +619,7 @@ export default function Home() {
             src={home19}
             alt=""
             aria-hidden="true"
-            className="absolute right-0 top-0 hidden h-[144px] w-[154px] object-contain md:block lg:-right-[60px]"
+            className="absolute right-0 hidden left-[590px] top-[-50px] h-[144px] w-[154px] object-contain md:block lg:-right-[60px]"
           />
         </div>
 
@@ -653,7 +682,7 @@ export default function Home() {
             {blogPosts.map((post) => (
               <a key={post.title} href="/blog" className="group flex flex-col items-start gap-[10.8px] pb-[13px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2DBB9F]">
                 <div className="h-[220px] w-full overflow-hidden rounded-[28px] transition-transform duration-200 group-hover:-translate-y-1 sm:h-[272px]" style={post.art}>
-                  <img src={post.img} alt={post.title} loading="lazy" className="h-full w-full object-cover" />
+                  <img decoding="async" src={post.img} alt={post.title} loading="lazy" className="h-full w-full object-cover" />
                 </div>
                 <p className="pt-[7px] text-[14px] font-semibold uppercase leading-[17px] tracking-[0.46px] text-[#22947E]">{post.cat}</p>
                 <h3 className="text-[18.4px] font-semibold leading-[1.3] text-[#17201E] group-hover:underline">{post.title}</h3>
@@ -684,7 +713,9 @@ export default function Home() {
           </a>
         </div>
       </section>
-
+      
+      
+      <CookieConsent />
       <Footer />
     </div>
   );

@@ -2,19 +2,19 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-import boarding1 from './assets/boarding-1.png';
-import boarding2 from './assets/boarding-2.png';
-import boarding3 from './assets/boarding-3.png';
-import boarding4 from './assets/boarding-4.png';
-import boarding5 from './assets/boarding-5.png';
-import boarding6 from './assets/boarding-6.png';
-import boarding7 from './assets/boarding-7.png';
-import boarding8 from './assets/boarding-8.png';
-import boarding9 from './assets/boarding-9.png';
-import boarding10 from './assets/boarding-10.png';
-import boarding11 from './assets/boarding-11.png';
-import boarding12 from './assets/boarding-12.png';
-import boarding13 from './assets/boarding-13.png';
+import boarding1 from './assets/boarding-1.webp';
+import boarding2 from './assets/boarding-2.webp';
+import boarding3 from './assets/boarding-3.webp';
+import boarding4 from './assets/boarding-4.webp';
+import boarding5 from './assets/boarding-5.webp';
+import boarding6 from './assets/boarding-6.webp';
+import boarding7 from './assets/boarding-7.webp';
+import boarding8 from './assets/boarding-8.webp';
+import boarding9 from './assets/boarding-9.webp';
+import boarding10 from './assets/boarding-10.webp';
+import boarding11 from './assets/boarding-11.webp';
+import boarding12 from './assets/boarding-12.webp';
+import boarding13 from './assets/boarding-13.webp';
 
 const cards = [
   {
@@ -133,7 +133,7 @@ export default function PetBoarding() {
         </div>
 
         {/* Image */}
-        <div className="relative w-full max-w-[673px]">
+        <div className="relative aspect-[739/488] w-full max-w-[673px]">
           {/* Mint blob behind the car */}
           <div
             aria-hidden="true"
@@ -141,8 +141,8 @@ export default function PetBoarding() {
           />
           <img loading="lazy" decoding="async"
             src={boarding1}
-            alt="A pug and a cat wearing sunglasses in a yellow toy car"
-            className="relative h-auto w-full object-contain drop-shadow-[0_8px_18px_rgba(69,69,69,0.35)]"
+            alt="Pug and cat in sunglasses driving a yellow toy car"
+            className="absolute inset-0 h-full w-full [filter:drop-shadow(0_33px_33px_rgba(69,69,69,0.31))_drop-shadow(0_8px_18px_rgba(69,69,69,0.35))]"
           />
         </div>
       </div>
@@ -299,14 +299,14 @@ export default function PetBoarding() {
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-10">
           <div className="relative w-full max-w-[720px]">
-            <h2 className="mx-auto max-w-[485px] text-center text-[30px] font-semibold leading-[1.3] text-[#17201E] sm:text-[36px] lg:text-[42px]">
+            <h2 className="mx-auto max-w-[495px] text-center text-[30px] font-semibold leading-[1.3] text-[#17201E] sm:text-[36px] lg:text-[42px]">
               Pet boarding questions, answered.
             </h2>
             <img loading="lazy" decoding="async"
               src={boarding13}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute -left-[40px] top-[0] hidden h-[120px] w-[180px] object-contain lg:block"
+              className="pointer-events-none absolute -left-[150px] top-[-95px] hidden h-[209px] w-[246px] object-contain lg:block"
             />
           </div>
 
@@ -339,7 +339,7 @@ export default function PetBoarding() {
         style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, Roboto, sans-serif' }}
       >
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-6 lg:px-16">
-          <div className="flex w-full max-w-[590px] flex-col items-center gap-[18px]">
+          <div className="flex w-full max-w-[680px] flex-col items-center gap-[18px]">
             <h2 className="text-center text-[38px] font-bold leading-[1.3] tracking-[-0.5px] text-white sm:text-[50px] lg:text-[63px]">
               Give them a stay<br />that feels like home.
             </h2>

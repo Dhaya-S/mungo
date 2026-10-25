@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 
 const FONT = '"Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
 
