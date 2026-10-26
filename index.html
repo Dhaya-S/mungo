@@ -3,19 +3,123 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mungo – Better Care, Happier Pets, Stronger Bond</title>
+
+    <!-- Primary Meta Tags -->
     <meta
       name="description"
-      content="Mungo connects pet owners with trusted care providers for grooming, walking, boarding, and more."
+      content="Mungo connects pet owners with trusted care providers for grooming, walking, boarding, veterinary care, and sitting. Better care, happier pets, stronger bonds."
     />
-    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="pet care app, dog walking, pet grooming, pet boarding, pet sitting, vet care, veterinary services, find pet sitters, book dog walker, pet parent help, Mungo"
+    />
+    <meta name="author" content="Mungo" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://mungo.app/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="apple-touch-icon" href="/logo.webp" />
+    <meta name="theme-color" content="#FF6B6B" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mungo" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mungo" />
+    <meta property="og:url" content="https://mungo.app/" />
+    <meta property="og:title" content="Mungo – Better Care, Happier Pets, Stronger Bond" />
+    <meta
+      property="og:description"
+      content="Mungo connects pet owners with trusted care providers for grooming, walking, boarding, and veterinary care. Book verified pet care easily."
+    />
+    <meta property="og:image" content="https://mungo.app/og-image.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mungo - Trusted Pet Care Platform" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mungoapp" />
+    <meta name="twitter:creator" content="@mungoapp" />
+    <meta name="twitter:url" content="https://mungo.app/" />
+    <meta name="twitter:title" content="Mungo – Better Care, Happier Pets, Stronger Bond" />
+    <meta
+      name="twitter:description"
+      content="Mungo connects pet owners with trusted care providers for grooming, walking, boarding, and veterinary care. Better care, happier pets."
+    />
+    <meta name="twitter:image" content="https://mungo.app/og-image.webp" />
+    <meta name="twitter:image:alt" content="Mungo Pet Care Platform" />
+
+    <!-- Fonts & Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Chewy&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Mungo – Better Care, Happier Pets, Stronger Bond</title>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://mungo.app/#organization",
+            "name": "Mungo",
+            "url": "https://mungo.app/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://mungo.app/logo.webp",
+              "caption": "Mungo Pet Care"
+            },
+            "sameAs": [
+              "https://twitter.com/mungoapp",
+              "https://facebook.com/mungoapp",
+              "https://instagram.com/mungoapp"
+            ],
+            "description": "Mungo connects pet owners with verified care providers for grooming, dog walking, pet boarding, sitting, and vet care."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://mungo.app/#website",
+            "url": "https://mungo.app/",
+            "name": "Mungo",
+            "publisher": {
+              "@id": "https://mungo.app/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://mungo.app/help?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://mungo.app/#app",
+            "name": "Mungo",
+            "operatingSystem": "iOS, Android",
+            "applicationCategory": "LifestyleApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "1280"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
