@@ -31,6 +31,7 @@ import ArticleNotFound from './ArticleNotFound.jsx'
 import InvestorRelations from './InvestorsRelations.jsx'
 import AdvertiseWithMungo from './AdvertiseWithMungo.jsx'
 import './index.css'
+import { updatePageSEO } from './seoMetadata'
 
 const pages = {
   '/': Home,
@@ -117,17 +118,12 @@ const pagePath = normalizedPath.toLowerCase()
 const root = document.getElementById('root')
 const Page = pages[pagePath] || (pagePath.startsWith('/help/') ? ArticleNotFound : NotFound)
 
-document.title =
-  pageTitles[pagePath] ||
-  (Page === ArticleNotFound
-    ? 'Article Not Found | Mungo'
-    : Page === NotFound
-      ? 'Page Not Found | Mungo'
-      : pageTitles['/'])
-
-const canonical = document.querySelector('link[rel="canonical"]')
-if (canonical) {
-  canonical.href = `https://mungo.app${pagePath === '/' ? '/' : pagePath}`
+if (Page === ArticleNotFound) {
+  document.title = 'Article Not Found | Mungo'
+} else if (Page === NotFound) {
+  document.title = 'Page Not Found | Mungo'
+} else {
+  updatePageSEO(pagePath)
 }
 
 ReactDOM.createRoot(root).render(
