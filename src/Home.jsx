@@ -80,6 +80,43 @@ const CSS = `
     from{ stroke-dashoffset:400; }
     to  { stroke-dashoffset:0; }
   }
+  @keyframes pawStepIn {
+    0%   { opacity:0; transform:scale(0.55) translateY(18px); }
+    65%  { opacity:1; transform:scale(1.12) translateY(-2px); }
+    100% { opacity:1; transform:scale(1) translateY(0); }
+  }
+  @keyframes rippleRing {
+    0%   { transform:scale(0.7); opacity:0.85; }
+    100% { transform:scale(2.4); opacity:0; }
+  }
+  @keyframes typingDot {
+    0%,80%,100% { transform:scale(0.6); opacity:0.35; }
+    40%         { transform:scale(1.25); opacity:1; }
+  }
+  @keyframes chatPop {
+    0%   { opacity:0; transform:scale(0.86) translateY(12px); }
+    70%  { opacity:1; transform:scale(1.03) translateY(-2px); }
+    100% { opacity:1; transform:scale(1) translateY(0); }
+  }
+  @keyframes driftPattern {
+    0%   { background-position: 0 0; }
+    100% { background-position: 120px 120px; }
+  }
+  @keyframes wiggle {
+    0%,100% { transform:rotate(0deg); }
+    25%     { transform:rotate(-14deg) scale(1.1); }
+    75%     { transform:rotate(14deg) scale(1.1); }
+  }
+  @keyframes pulseGlow {
+    0%,100% { box-shadow:0 0 0 0 rgba(27,182,174,0.65); }
+    70%     { box-shadow:0 0 0 16px rgba(27,182,174,0); }
+  }
+  @keyframes fadePawOut {
+    0%   { opacity: 0; transform: scale(0.65); }
+    20%  { opacity: 0.88; transform: scale(1); }
+    75%  { opacity: 0.88; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.85); }
+  }
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{
       animation-duration:0.01ms!important;
@@ -101,19 +138,125 @@ const Paw = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
+/* ─────────────────────────────────────────────
+   Hero Paw Print SVG (Clean, no outline circles)
+───────────────────────────────────────────── */
+const HeroPaw = ({ size = 52, color = 'rgba(255, 255, 255, 0.85)', className = '' }) => (
+  <div className={`relative inline-block ${className}`} style={{ filter: 'drop-shadow(0 4px 14px rgba(0,0,0,0.18))' }}>
+    <svg width={size} height={size} viewBox="0 0 100 100" fill={color} aria-hidden="true" className="transition-all duration-300">
+      <ellipse cx="28" cy="24" rx="8" ry="11" transform="rotate(-15 28 24)" />
+      <ellipse cx="48" cy="17" rx="8.5" ry="11.5" />
+      <ellipse cx="70" cy="22" rx="8" ry="11" transform="rotate(15 70 22)" />
+      <ellipse cx="14" cy="42" rx="7.5" ry="10" transform="rotate(-30 14 42)" />
+      <path d="M49 42 C30 42 20 57 20 68 C20 78 28 85 41 85 C46 85 48 83 49 83 C50 83 52 85 57 85 C70 85 78 78 78 68 C78 57 68 42 49 42 Z" />
+    </svg>
+  </div>
+);
+
 /* ═══════════════════════════════════════════════════════════════
    SECTION 1 — HERO
-   Blue gradient bg | Laptop mockup (cat on top, notif chips) | Headline right
+   Blue gradient bg | Laptop mockup | Headline right |
+   Paws ONLY come when user scrolls (Zero paws before scroll)
 ════════════════════════════════════════════════════════════════ */
 function HeroSection() {
   const [ready, setReady] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setReady(true), 120); return () => clearTimeout(t); }, []);
+  const heroRef = useRef(null);
+  const [scrollStep, setScrollStep] = useState(0);
+  const [dynamicPaws, setDynamicPaws] = useState([]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 120);
+    return () => clearTimeout(t);
+  }, []);
+
+  // 1. Detect scroll: ONLY when user scrolls down from top, paws appear!
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (y < 20) {
+        setScrollStep(0); // Top of page: ZERO PAWS!
+      } else if (y < 70) {
+        setScrollStep(1); // 1st paw appears
+      } else if (y < 130) {
+        setScrollStep(2); // 2nd paw appears
+      } else if (y < 200) {
+        setScrollStep(3); // 3rd paw appears
+      } else {
+        setScrollStep(4); // 4th paw appears
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 2. When user scrolls/wheels ANYWHERE in the Hero section, drop a clean paw print
+  const handleHeroWheel = (e) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = Date.now() + Math.random();
+    const rotate = (Math.random() - 0.5) * 40;
+    setDynamicPaws(prev => [...prev.slice(-8), { id, x, y, rotate }]);
+  };
+
+  // 4 Stepping trail paws positioned naturally in open vertical space
+  const HERO_TRAIL_PAWS = [
+    { id: 1, top: '26%', left: '50%', rotate: 16 },
+    { id: 2, top: '44%', left: '46%', rotate: -14 },
+    { id: 3, top: '62%', left: '52%', rotate: 18 },
+    { id: 4, top: '80%', left: '48%', rotate: -8 },
+  ];
 
   return (
     <section
-      className="relative -mt-[76px] w-full overflow-hidden pt-[76px]"
-      style={{ background: 'linear-gradient(150deg,#0c7a75 0%,#1bb6ae 55%,#13d4cb 100%)', minHeight: '90vh' }}
+      ref={heroRef}
+      onWheel={handleHeroWheel}
+      className="relative -mt-[76px] w-full overflow-hidden pt-[76px] select-none"
+      style={{
+        background: 'linear-gradient(150deg,#0c7a75 0%,#1bb6ae 55%,#13d4cb 100%)',
+        minHeight: '92vh',
+      }}
     >
+      {/* Scroll-activated Stepping Paws — ONLY rendered when user scrolls! */}
+      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+        {scrollStep > 0 && HERO_TRAIL_PAWS.map((paw) => {
+          if (scrollStep < paw.id) return null;
+          return (
+            <div
+              key={paw.id}
+              className="absolute pointer-events-none"
+              style={{
+                top: paw.top,
+                left: paw.left,
+                transform: `translate(-50%, -50%) rotate(${paw.rotate}deg)`,
+                animation: 'pawStepIn 0.5s ease both',
+              }}
+            >
+              <HeroPaw size={54} color="rgba(255, 255, 255, 0.88)" />
+            </div>
+          );
+        })}
+
+        {/* Dynamic Paws Spawned when user wheels anywhere in the hero section */}
+        {dynamicPaws.map((dp) => (
+          <div
+            key={dp.id}
+            className="absolute pointer-events-none"
+            style={{
+              left: dp.x,
+              top: dp.y,
+              transform: `translate(-50%, -50%) rotate(${dp.rotate}deg)`,
+              animation: 'fadePawOut 2s ease forwards',
+            }}
+          >
+            <HeroPaw size={50} color="rgba(255, 255, 255, 0.9)" />
+          </div>
+        ))}
+      </div>
+
       {/* Dot grid — far left */}
       <div aria-hidden className="pointer-events-none absolute left-5 top-36 hidden lg:grid"
         style={{ display: 'grid', gridTemplateColumns: 'repeat(5,10px)', gap: 10 }}
@@ -127,7 +270,7 @@ function HeroSection() {
       <div aria-hidden className="pointer-events-none absolute bottom-10 right-10 hidden h-28 w-28 rounded-full border-4 border-white/10 lg:block" />
       <div aria-hidden className="pointer-events-none absolute bottom-20 right-20 hidden h-14 w-14 rounded-full border-2 border-white/10 lg:block" />
 
-      <div className="relative mx-auto flex min-h-[calc(90vh-76px)] max-w-[1380px] flex-col items-center gap-10 px-6 pb-20 pt-8 lg:flex-row lg:items-center lg:gap-16 lg:px-20">
+      <div className="relative mx-auto flex min-h-[calc(90vh-76px)] max-w-[1380px] flex-col items-center gap-10 px-6 pb-20 pt-8 lg:flex-row lg:items-center lg:gap-16 lg:px-20 z-20">
 
         {/* ── LEFT: Laptop mockup ── */}
         <div
@@ -280,9 +423,9 @@ function HeroSection() {
       </div>
 
       {/* Bottom wave into next section */}
-      <div aria-hidden className="absolute bottom-0 left-0 w-full leading-[0]">
+      <div aria-hidden className="absolute bottom-0 left-0 w-full leading-[0] z-20">
         <svg viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full">
-          <path d="M0 72 V36 Q360 0 720 36 Q1080 72 1440 36 V72 Z" fill="#1bb6ae"/>
+          <path d="M0 72 V36 Q360 0 720 36 Q1080 72 1440 36 V72 Z" fill="#1d62c2"/>
         </svg>
       </div>
     </section>
@@ -290,71 +433,258 @@ function HeroSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SECTION 2 — NEW POSSIBILITIES
-   Teal bg | "NEW POSSIBILITIES FOR YOU" label | Dog left | 4 pastel tilted cards
+   SECTION 2 — NEW POSSIBILITIES (IMAGE 2)
+   Blue bg | "NEW POSSIBILITIES FOR YOU" label | Peeking dog left |
+   8 LARGE Pastel Tilted Cards (Increased card size + Many cards on scroll)
 ════════════════════════════════════════════════════════════════ */
 const FEATURE_CARDS = [
-  { title: 'Booking automation', desc: 'No more phone calls or missed entries. Your clients can book services online at any convenient moment.', bg: '#e8e0f5', rotate: '-3deg', img: home9 },
-  { title: 'Convenient bookings management', desc: 'All bookings are gathered in one place, which makes it easy to track each booking and avoid any misunderstandings.', bg: '#fce4ec', rotate: '2deg', img: home3 },
-  { title: 'Improved customer experience', desc: 'Customers value convenience and speed. They can choose free slots and rest assured their pet gets the attention it deserves.', bg: '#e3f5e8', rotate: '-1.5deg', img: home4 },
-  { title: 'Grow your network', desc: 'Attract more customers through Mungo and enable clients to book a visit directly through your profile page.', bg: '#fdf6dd', rotate: '2.5deg', img: home5 },
+  {
+    title: 'Booking automation',
+    desc: 'No more phone calls or missed entries. Your clients can book services online at any convenient moment.',
+    bg: '#e8e0f5', // Soft lavender
+    rotate: '-2.5deg',
+    img: home9,
+    tag: '24/7 Booking',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Convenient bookings management',
+    desc: 'All bookings are gathered in one place, which makes it easy to track each booking and avoid any misunderstandings.',
+    bg: '#fce4ec', // Soft pink
+    rotate: '2deg',
+    img: home3,
+    tag: 'Calendar Sync',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Improved customer experience',
+    desc: 'Customers value convenience and speed. They can choose free slots and rest assured their pet gets the attention it deserves.',
+    bg: '#e3f5e8', // Soft pastel mint
+    rotate: '-1.5deg',
+    img: home4,
+    tag: 'Care First',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Grow your network',
+    desc: 'Attract more customers through Mungo and enable clients to book a visit directly through your profile page.',
+    bg: '#fdf6dd', // Soft cream yellow
+    rotate: '2.5deg',
+    img: home5,
+    tag: 'New Clients',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Smart automated reminders',
+    desc: 'Cut no-shows to near zero with WhatsApp, SMS, and push notifications sent automatically before every appointment.',
+    bg: '#ffe8dc', // Soft peach
+    rotate: '-2deg',
+    img: home6,
+    tag: 'Zero No-Shows',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Direct pet parent chat',
+    desc: 'Stay in touch with owners before and during care with direct messaging, arrival alerts, and adorable photo check-ins.',
+    bg: '#e0f2fe', // Soft ice blue
+    rotate: '1.8deg',
+    img: home7,
+    tag: 'Live Updates',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Instant cashless payouts',
+    desc: 'Enjoy effortless cashless checkout, automatic tip collection, and direct bank deposits without paperwork.',
+    bg: '#f3e8ff', // Soft lilac
+    rotate: '-2.2deg',
+    img: home8,
+    tag: 'Fast Payouts',
+    imgShape: 'rounded-[26px]',
+  },
+  {
+    title: 'Verified badges & reviews',
+    desc: 'Showcase verified credentials, insurance badges, and 5-star customer reviews to win pet parents trust instantly.',
+    bg: '#e6f9ed', // Soft honeydew
+    rotate: '2deg',
+    img: home14,
+    tag: 'Verified Trust',
+    imgShape: 'rounded-[26px]',
+  },
 ];
 
 function FeaturesSection() {
   const [ref, vis] = useReveal(0.08);
-  return (
-    <section className="w-full py-20 lg:py-24" style={{ background: '#1bb6ae' }}>
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-16">
-        {/* Label */}
-        <p
-          ref={ref}
-          className="mb-10 text-[13px] font-extrabold uppercase tracking-[4px] text-white"
-          style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(18px)', transition: 'opacity .5s,transform .5s' }}
-        >
-          NEW POSSIBILITIES FOR YOU
-        </p>
+  const scrollContainerRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-        <div className="flex items-end gap-6 lg:gap-8">
-          {/* Dog mascot */}
+  // Check scroll position to toggle navigation buttons
+  const updateScrollButtons = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 20);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', updateScrollButtons, { passive: true });
+    updateScrollButtons();
+    return () => el.removeEventListener('scroll', updateScrollButtons);
+  }, []);
+
+  const scrollBy = (offset) => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+  };
+
+  // Enable mouse wheel horizontal scrolling when hovered over cards
+  const handleWheel = (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && scrollContainerRef.current) {
+      const atStart = scrollContainerRef.current.scrollLeft === 0 && e.deltaY < 0;
+      const atEnd = scrollContainerRef.current.scrollLeft >= scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth - 5 && e.deltaY > 0;
+      if (!atStart && !atEnd) {
+        scrollContainerRef.current.scrollLeft += e.deltaY * 1.5;
+        e.preventDefault();
+      }
+    }
+  };
+
+  return (
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden" style={{ background: '#1d62c2' }}>
+      <div className="mx-auto max-w-[1500px] px-6 lg:px-14">
+        {/* Header row with Title & Interactive Scroll Controls */}
+        <div className="mb-10 flex items-center justify-between">
+          <p
+            ref={ref}
+            className="text-[14px] md:text-[15px] font-extrabold uppercase tracking-[4px] text-white flex items-center gap-3"
+            style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(18px)', transition: 'opacity .5s,transform .5s' }}
+          >
+            NEW POSSIBILITIES FOR YOU
+            <span className="hidden sm:inline-block h-2 w-2 rounded-full bg-white/70 animate-ping" />
+          </p>
+
+          {/* Left / Right scroll navigation arrows */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scrollBy(-380)}
+              disabled={!canScrollLeft}
+              className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-lg font-bold text-white shadow-md transition-all ${canScrollLeft ? 'bg-white/20 hover:bg-white/35 active:scale-95' : 'bg-white/5 opacity-40 cursor-not-allowed'}`}
+              aria-label="Scroll cards left"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => scrollBy(380)}
+              disabled={!canScrollRight}
+              className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-lg font-bold text-white shadow-md transition-all ${canScrollRight ? 'bg-white/20 hover:bg-white/35 active:scale-95' : 'bg-white/5 opacity-40 cursor-not-allowed'}`}
+              aria-label="Scroll cards right"
+            >
+              →
+            </button>
+          </div>
+        </div>
+
+        {/* Mascot Dog (Image 2) on Left + Large Cards Row */}
+        <div className="flex items-end gap-5 lg:gap-8">
+          {/* Peeking Dog Mascot matching Image 2 perfectly */}
           <div
-            className="hidden shrink-0 lg:block"
+            className="hidden md:block shrink-0 relative z-20"
             style={{
-              width: 160,
+              width: 190,
+              marginBottom: -4,
               opacity: vis ? 1 : 0,
-              transform: vis ? 'none' : 'translateX(-20px)',
+              transform: vis ? 'none' : 'translateX(-24px)',
               transition: 'opacity .6s .1s, transform .6s .1s',
             }}
           >
-            <img
-              src={dog1} alt="Illustrated pet mascot" loading="lazy"
-              className="h-[280px] w-full object-contain object-bottom"
-              style={{ filter: 'drop-shadow(0 12px 28px rgba(0,0,0,0.2))', animation: 'float 5s ease-in-out infinite' }}
-            />
+            <div className="relative group">
+              <img
+                src={dog1}
+                alt="Happy puppy mascot resting paws on border"
+                loading="lazy"
+                className="h-[310px] w-full object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                style={{
+                  filter: 'drop-shadow(0 14px 28px rgba(0,0,0,0.24))',
+                  animation: 'float 5s ease-in-out infinite',
+                }}
+              />
+              {/* Cute speech bubble on hover */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap bg-white text-[#17201E] text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg pointer-events-none">
+                🐾 More cards this way! →
+              </div>
+            </div>
           </div>
 
-          {/* Cards scroll row */}
-          <div className="flex flex-1 gap-5 overflow-x-auto pb-4 lg:overflow-visible lg:pb-0" style={{ scrollSnapType: 'x mandatory' }}>
+          {/* Large Cards Scroll Container */}
+          <div
+            ref={scrollContainerRef}
+            onWheel={handleWheel}
+            className="flex flex-1 gap-6 overflow-x-auto pb-6 pt-2 scrollbar-none"
+            style={{
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
             {FEATURE_CARDS.map((card, i) => (
               <div
                 key={card.title}
-                className="min-w-[240px] flex-1 overflow-hidden rounded-3xl p-6 shadow-xl lg:min-w-0"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] p-7 md:p-8 shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0"
                 style={{
+                  minWidth: '320px',
+                  width: '350px',
+                  maxWidth: '380px',
+                  minHeight: '490px',
                   background: card.bg,
                   transform: `rotate(${card.rotate})`,
                   scrollSnapAlign: 'start',
                   opacity: vis ? 1 : 0,
-                  transition: `opacity 0.55s ease ${0.1 + i * 0.12}s, transform 0.55s ease ${0.1 + i * 0.12}s`,
+                  transition: `opacity 0.55s ease ${0.08 + i * 0.08}s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)`,
                   transformOrigin: 'bottom center',
+                  border: '1px solid rgba(255,255,255,0.6)',
                 }}
               >
-                {/* Card image */}
-                <div className="mb-5 h-[120px] w-full overflow-hidden rounded-2xl bg-white/70">
-                  <img loading="lazy" decoding="async" src={card.img} alt={card.title}
-                    className="h-full w-full object-cover"
-                  />
+                {/* Top Badge Tag */}
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="rounded-full bg-white/80 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#17201E] shadow-sm backdrop-blur-sm">
+                    {card.tag}
+                  </span>
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/60 text-[12px] text-[#17201E] font-bold">
+                    0{i + 1}
+                  </span>
                 </div>
-                <h3 className="mb-2 text-[16px] font-extrabold leading-[1.3] text-[#17201E]">{card.title}</h3>
-                <p className="text-[13px] leading-[1.65] text-[#4a5a56]">{card.desc}</p>
+
+                {/* Large Card Image Container (matching Image 2 soft organic look) */}
+                <div className="relative mb-6 h-[200px] w-full overflow-hidden rounded-[24px] bg-white/80 p-2 shadow-inner transition-transform duration-500 group-hover:scale-[1.03]">
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={card.img}
+                    alt={card.title}
+                    className="h-full w-full object-cover rounded-[20px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none rounded-[20px]" />
+                </div>
+
+                {/* Card Title & Description */}
+                <div>
+                  <h3 className="mb-3 text-[20px] font-extrabold leading-[1.3] text-[#17201E] group-hover:text-[#1d62c2] transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.7] text-[#4a5a56]">
+                    {card.desc}
+                  </p>
+                </div>
+
+                {/* Bottom link indicator */}
+                <div className="mt-5 flex items-center gap-1.5 text-[12px] font-bold text-[#1d62c2]">
+                  <span>Explore feature</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                </div>
               </div>
             ))}
           </div>
@@ -500,58 +830,113 @@ function CompanySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SECTION 4 — 3 EASY STEPS
-   Light blue bg | "3 EASY STEPS TO GET STARTED" | Phones + big numbers | Animals + speech bubble
+   SECTION 4 — 3 EASY STEPS (IMAGE 3)
+   Light blue bg | "3 EASY STEPS TO GET STARTED" | Large Mobile Phones | Animals + speech bubble
 ════════════════════════════════════════════════════════════════ */
 const STEPS = [
-  { num: '01', label: 'Sign up', title: 'Create your account', text: 'Download the Mungo app, create your account and browse the care your pet needs.', img: home10 },
-  { num: '02', label: 'Book a service', title: 'Find and book', text: 'Browse providers, view profiles, message directly, and confirm your booking in a few taps.', img: home11 },
-  { num: '03', label: 'Receive great care', title: 'Stay connected', text: "Track the service in real time. You'll know exactly when it starts and when it's done.", img: home12 },
+  {
+    num: '01',
+    label: 'Sign up',
+    title: 'Create your account',
+    text: 'Download the Mungo app, create your account and browse the care your pet needs.',
+    img: home10,
+    petName: 'Playful pup',
+  },
+  {
+    num: '02',
+    label: 'Book a service',
+    title: 'Find and book',
+    text: 'Browse providers, view profiles, message directly, and confirm your booking in a few taps.',
+    img: home11,
+    petName: 'Curious cat',
+  },
+  {
+    num: '03',
+    label: 'Receive great care',
+    title: 'Stay connected',
+    text: "Track the service in real time. You'll know exactly when it starts and when it's done.",
+    img: home12,
+    petName: 'Happy terrier',
+  },
 ];
 
-function PhoneMockup({ img, alt, label, index, vis }) {
+function LargePhoneMockup({ step, index, vis }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
-      className="relative flex flex-col items-center"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex flex-col items-center group"
       style={{
         opacity: vis ? 1 : 0,
-        transform: vis ? 'translateY(0)' : 'translateY(32px)',
-        transition: `opacity .65s ease ${index * 0.18}s, transform .65s ease ${index * 0.18}s`,
+        transform: vis ? (hovered ? 'translateY(-10px)' : 'translateY(0)') : 'translateY(36px)',
+        transition: `opacity .65s ease ${index * 0.18}s, transform .4s cubic-bezier(0.34, 1.56, 0.64, 1)`,
       }}
     >
-      {/* Phone frame */}
+      {/* Large Mobile Phone Chassis (Matching Image 3) */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden transition-all duration-500"
         style={{
-          width: 175,
-          borderRadius: 34,
-          border: '6px solid #1a1a2e',
-          background: '#1a1a2e',
-          boxShadow: '0 16px 48px rgba(0,0,0,0.22)',
+          width: '100%',
+          maxWidth: '315px',
+          minWidth: '275px',
+          borderRadius: 44,
+          border: '8px solid #161729',
+          background: '#161729',
+          boxShadow: hovered
+            ? '0 32px 70px -12px rgba(22,23,41,0.45)'
+            : '0 20px 52px -10px rgba(22,23,41,0.28)',
         }}
       >
-        {/* Notch */}
-        <div className="flex items-center justify-center py-2" style={{ background: '#1a1a2e' }}>
-          <div style={{ width: 60, height: 14, background: '#0d0d1e', borderRadius: 10 }} />
+        {/* Top Notch with Camera Lens & Speaker */}
+        <div className="flex items-center justify-center py-2.5 bg-[#161729]">
+          <div className="flex items-center justify-between px-3" style={{ width: 96, height: 16, background: '#090a14', borderRadius: 12 }}>
+            <span className="h-2 w-2 rounded-full bg-[#1e2338]" />
+            <span className="h-1.5 w-7 rounded-full bg-[#202538]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#159a93]/60" />
+          </div>
         </div>
-        {/* Screen */}
-        <div className="overflow-hidden bg-white">
-          <img loading="lazy" decoding="async" src={img} alt={alt || label}
-            className="h-auto w-full object-contain"
+
+        {/* Screen with Pet Photo & Mint Background */}
+        <div className="relative overflow-hidden bg-[#e0f4ef] flex items-center justify-center p-3" style={{ minHeight: '270px' }}>
+          <img
+            loading="lazy"
+            decoding="async"
+            src={step.img}
+            alt={step.title}
+            className="h-[240px] w-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
+          {/* Subtle soft shine */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/25" />
         </div>
-        {/* Home indicator */}
-        <div className="flex items-center justify-center py-2" style={{ background: '#1a1a2e' }}>
-          <div style={{ width: 50, height: 4, background: '#3a3a5a', borderRadius: 4 }} />
+
+        {/* Home Indicator Bar */}
+        <div className="flex items-center justify-center py-2.5 bg-[#161729]">
+          <div style={{ width: 75, height: 4, background: '#3b3e5a', borderRadius: 4 }} />
         </div>
       </div>
 
-      {/* CTA chip below phone */}
-      <div
-        className="mt-3 rounded-xl px-5 py-2.5 shadow-lg"
-        style={{ background: '#1bb6ae' }}
+      {/* Prominent Teal CTA Button (Matching Image 3) */}
+      <a
+        href="/download"
+        className="mt-5 inline-flex items-center justify-center rounded-2xl px-8 py-3 text-[14px] md:text-[15px] font-extrabold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
+        style={{
+          background: '#1bb6ae',
+          boxShadow: '0 8px 20px -4px rgba(27,182,174,0.45)',
+        }}
       >
-        <span className="text-[13px] font-extrabold text-white">{label}</span>
+        {step.label}
+      </a>
+
+      {/* Step Title & Description */}
+      <div className="mt-4 text-center">
+        <h4 className="text-[20px] md:text-[22px] font-extrabold text-[#17201E] group-hover:text-[#0c7a75] transition-colors">
+          {step.title}
+        </h4>
+        <p className="mx-auto mt-2 max-w-[260px] text-[14px] leading-[1.65] text-[#66716D]">
+          {step.text}
+        </p>
       </div>
     </div>
   );
@@ -559,9 +944,10 @@ function PhoneMockup({ img, alt, label, index, vis }) {
 
 function StepsSection() {
   const [ref, vis] = useReveal(0.08);
+
   return (
     <section className="w-full overflow-hidden py-20 lg:py-28" style={{ background: '#eaf4f8' }}>
-      <div className="mx-auto max-w-[1380px] px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-14">
         {/* Header row */}
         <div
           ref={ref}
@@ -572,32 +958,35 @@ function StepsSection() {
             <p className="text-[13px] font-extrabold uppercase tracking-[4px] text-[#1bb6ae]">
               3 EASY STEPS TO GET STARTED
             </p>
-            <h2 className="mt-1 text-[30px] font-extrabold text-[#17201E] md:text-[38px]">
+            <h2 className="mt-1 text-[32px] font-extrabold text-[#17201E] md:text-[42px]">
               Book care in minutes.
             </h2>
           </div>
+
           {/* Dot decoration — top right */}
           <div className="hidden items-center gap-1.5 lg:flex">
-            <div className="h-9 w-9 rounded-full border-2 border-[#1bb6ae]/30 flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-0.5">
-                {[...Array(4)].map((_,i) => <div key={i} className="h-1 w-1 rounded-full bg-[#1bb6ae]/50"/>)}
+            <div className="h-10 w-10 rounded-full border-2 border-[#1bb6ae]/30 flex items-center justify-center bg-white/40 shadow-sm">
+              <div className="grid grid-cols-2 gap-1">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="h-1.5 w-1.5 rounded-full bg-[#1bb6ae]" />
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Steps row */}
-        <div className="relative grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-0">
+        {/* 3 Mobile Phone Cards Row */}
+        <div className="relative grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-8 lg:gap-12">
           {STEPS.map((step, i) => (
-            <div key={step.num} className="relative flex flex-col items-center text-center">
-              {/* Big background number */}
+            <div key={step.num} className="relative flex flex-col items-center">
+              {/* Big Faint Background Number */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none font-extrabold leading-none"
+                className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 select-none font-extrabold leading-none"
                 style={{
-                  fontSize: 150,
+                  fontSize: 165,
                   color: '#c5dce6',
-                  opacity: vis ? 0.9 : 0,
+                  opacity: vis ? 0.85 : 0,
                   transition: `opacity .7s ease ${i * 0.2}s`,
                   zIndex: 0,
                 }}
@@ -605,35 +994,32 @@ function StepsSection() {
                 {step.num}
               </span>
 
-              {/* Phone */}
-              <div className="relative z-10">
-                <PhoneMockup img={step.img} alt={step.title} label={step.label} index={i} vis={vis} />
+              {/* Large Mobile Phone Card */}
+              <div className="relative z-10 w-full flex justify-center">
+                <LargePhoneMockup step={step} index={i} vis={vis} />
               </div>
 
-              {/* Step text */}
-              <div
-                className="relative z-10 mt-5"
-                style={{
-                  opacity: vis ? 1 : 0,
-                  transform: vis ? 'none' : 'translateY(16px)',
-                  transition: `opacity .65s ease ${0.1 + i * 0.18}s, transform .65s ease ${0.1 + i * 0.18}s`,
-                }}
-              >
-                <h4 className="text-[18px] font-extrabold text-[#17201E]">{step.title}</h4>
-                <p className="mx-auto mt-2 max-w-[210px] text-[13px] leading-[1.65] text-[#66716D]">{step.text}</p>
-              </div>
-
-              {/* Dashed curved arrow to next step */}
+              {/* Curved Dashed Teal Arrow connecting Phone to next Phone */}
               {i < STEPS.length - 1 && (
-                <div aria-hidden className="absolute top-[28%] right-[-16%] z-20 hidden lg:block" style={{ width: '32%' }}>
-                  <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+                <div
+                  aria-hidden
+                  className="absolute top-[22%] -right-[22%] z-20 hidden lg:block pointer-events-none"
+                  style={{ width: '44%' }}
+                >
+                  <svg viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
                     <path
-                      d="M5 30 Q60 0 115 20"
-                      stroke="#1bb6ae" strokeWidth="2" strokeDasharray="6 5"
-                      fill="none" strokeLinecap="round"
-                      style={{ animation: vis ? 'drawDash 1.2s ease forwards' : 'none', strokeDashoffset: vis ? 0 : 400 }}
+                      d="M6 35 Q70 -5 132 24"
+                      stroke="#1bb6ae"
+                      strokeWidth="2.5"
+                      strokeDasharray="7 6"
+                      fill="none"
+                      strokeLinecap="round"
+                      style={{
+                        animation: vis ? 'drawDash 1.2s ease forwards' : 'none',
+                        strokeDashoffset: vis ? 0 : 400,
+                      }}
                     />
-                    <polygon points="112,14 118,22 106,23" fill="#1bb6ae" opacity="0.7"/>
+                    <polygon points="128,16 138,26 122,28" fill="#1bb6ae" />
                   </svg>
                 </div>
               )}
@@ -641,32 +1027,59 @@ function StepsSection() {
           ))}
         </div>
 
-        {/* Animals + speech bubble row */}
+        {/* Mascot Animals & Speech Bubble (Matching Image 3) */}
         <div
-          className="mt-14 flex items-end justify-center gap-12"
+          className="mt-16 flex items-end justify-center gap-8 md:gap-12"
           style={{
             opacity: vis ? 1 : 0,
             transition: 'opacity .7s ease .6s',
           }}
         >
-          {/* Dog */}
-          <img src={dog1} alt="" aria-hidden loading="lazy"
-            className="h-[80px] w-auto object-contain"
-            style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))', animation: 'float 5s ease-in-out infinite' }}
-          />
-          {/* Speech bubble */}
-          <div className="relative max-w-[320px] rounded-2xl bg-white px-5 py-3.5 shadow-lg">
-            <p className="text-[13px] leading-[1.6] text-[#17201E]">
+          {/* Dog Mascot on Left */}
+          <div className="relative group">
+            <img
+              src={dog1}
+              alt="Happy dog"
+              aria-hidden
+              loading="lazy"
+              className="h-[95px] md:h-[110px] w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              style={{
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.18))',
+                animation: 'float 5s ease-in-out infinite',
+              }}
+            />
+          </div>
+
+          {/* Speech Bubble */}
+          <div className="relative max-w-[340px] md:max-w-[380px] rounded-2xl bg-white px-5 py-4 shadow-xl border border-gray-100">
+            <p className="text-[13px] md:text-[14px] leading-[1.6] text-[#17201E]">
               🐾 <strong>Woof!</strong> Booking my groomer was so much easier than convincing my owner to give me a bath!
             </p>
-            {/* Tail */}
-            <div className="absolute -left-3 top-5 h-0 w-0" style={{ borderTop: '8px solid transparent', borderBottom: '8px solid transparent', borderRight: '12px solid white' }} />
+            {/* Pointer Tail */}
+            <div
+              className="absolute -left-3 top-6 h-0 w-0"
+              style={{
+                borderTop: '9px solid transparent',
+                borderBottom: '9px solid transparent',
+                borderRight: '13px solid white',
+              }}
+            />
           </div>
-          {/* Cat */}
-          <img src={cat1} alt="" aria-hidden loading="lazy"
-            className="h-[80px] w-auto object-contain"
-            style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))', animation: 'float 5.5s ease-in-out 0.8s infinite' }}
-          />
+
+          {/* Cat Mascot on Right */}
+          <div className="relative group">
+            <img
+              src={cat1}
+              alt="Curious cat"
+              aria-hidden
+              loading="lazy"
+              className="h-[95px] md:h-[110px] w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              style={{
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.18))',
+                animation: 'float 5.5s ease-in-out 0.8s infinite',
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -674,14 +1087,14 @@ function StepsSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SECTION 5 — WHY MUNGO / CHAT SECTION
-   Tiled pet pattern bg | "WHY DID WE CREATE MUNGO?" | Phone with chat
+   SECTION 5 — WHY MUNGO / CHAT SECTION (IMAGE 4)
+   Animated Pet Silhouettes Bg | Interactive 3D Phone Tilt |
+   Sequential Chat Pop Animation | Live Chat Input + Quick Replies |
+   Floating Attention Badges & Floating Emoji Particles
 ════════════════════════════════════════════════════════════════ */
-/* SVG tile pattern of pet silhouettes */
 const PET_PATTERN_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <!-- Dog silhouette -->
-  <g transform="translate(8,8) scale(0.55)" fill="#b8d9e8" opacity="0.7">
+  <g transform="translate(8,8) scale(0.55)" fill="#b8d9e8" opacity="0.75">
     <ellipse cx="30" cy="28" rx="18" ry="14"/>
     <ellipse cx="48" cy="22" rx="9" ry="12"/>
     <ellipse cx="14" cy="22" rx="9" ry="12"/>
@@ -691,28 +1104,24 @@ const PET_PATTERN_SVG = `
     <rect x="38" y="58" width="8" height="18" rx="4"/>
     <ellipse cx="50" cy="52" rx="8" ry="14"/>
   </g>
-  <!-- Paw print -->
-  <g transform="translate(75,10)" fill="#b8d9e8" opacity="0.7">
+  <g transform="translate(75,10)" fill="#b8d9e8" opacity="0.75">
     <ellipse cx="10" cy="10" rx="4" ry="5"/>
     <ellipse cx="22" cy="10" rx="4" ry="5"/>
     <ellipse cx="5"  cy="22" rx="3.5" ry="4.5"/>
     <ellipse cx="27" cy="22" rx="3.5" ry="4.5"/>
     <ellipse cx="16" cy="28" rx="8" ry="9"/>
   </g>
-  <!-- Heart -->
-  <g transform="translate(78,70)" fill="#b8d9e8" opacity="0.7">
+  <g transform="translate(78,70)" fill="#b8d9e8" opacity="0.75">
     <path d="M16,6 C14,2 8,2 8,8 C8,12 12,16 16,20 C20,16 24,12 24,8 C24,2 18,2 16,6Z"/>
   </g>
-  <!-- Bone -->
-  <g transform="translate(8,75)" fill="#b8d9e8" opacity="0.7">
+  <g transform="translate(8,75)" fill="#b8d9e8" opacity="0.75">
     <rect x="14" y="10" width="30" height="8" rx="2"/>
     <circle cx="10" cy="8" r="7"/>
     <circle cx="10" cy="20" r="7"/>
     <circle cx="48" cy="8" r="7"/>
     <circle cx="48" cy="20" r="7"/>
   </g>
-  <!-- Cat silhouette -->
-  <g transform="translate(55,55) scale(0.45)" fill="#b8d9e8" opacity="0.7">
+  <g transform="translate(55,55) scale(0.45)" fill="#b8d9e8" opacity="0.75">
     <ellipse cx="30" cy="35" rx="20" ry="18"/>
     <ellipse cx="30" cy="15" rx="14" ry="14"/>
     <polygon points="18,6 12,0 22,10"/>
@@ -726,16 +1135,114 @@ const patternUrl = `url("data:image/svg+xml,${encodeURIComponent(PET_PATTERN_SVG
 
 function ChatSection() {
   const [ref, vis] = useReveal(0.1);
+  const [msg1Visible, setMsg1Visible] = useState(false);
+  const [msg2Visible, setMsg2Visible] = useState(false);
+  const [providerTyping, setProviderTyping] = useState(false);
+  const [parentTyping, setParentTyping] = useState(false);
+
+  // 3D Parallax tilt state
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const phoneCardRef = useRef(null);
+
+  // Interactive Live Chat State
+  const [customMessages, setCustomMessages] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [reactions, setReactions] = useState([]);
+
+  // Animate chat messages automatically when user scrolls into view
+  useEffect(() => {
+    if (!vis) return;
+
+    // Phase 1: Provider typing indicator
+    const t1 = setTimeout(() => setProviderTyping(true), 350);
+    // Phase 2: Provider message 1 appears
+    const t2 = setTimeout(() => {
+      setProviderTyping(false);
+      setMsg1Visible(true);
+    }, 1100);
+    // Phase 3: Parent typing indicator
+    const t3 = setTimeout(() => setParentTyping(true), 1800);
+    // Phase 4: Parent message 2 appears
+    const t4 = setTimeout(() => {
+      setParentTyping(false);
+      setMsg2Visible(true);
+    }, 2600);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+    };
+  }, [vis]);
+
+  // Handle 3D mouse parallax tilt
+  const handleMouseMove = (e) => {
+    if (!phoneCardRef.current) return;
+    const rect = phoneCardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const tiltX = -(y / (rect.height / 2)) * 8;
+    const tiltY = (x / (rect.width / 2)) * 8;
+    setTilt({ x: tiltX, y: tiltY });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
+  // Add floating reaction particle on click
+  const triggerReaction = (emoji, x, y) => {
+    const id = Date.now() + Math.random();
+    setReactions(prev => [...prev.slice(-6), { id, emoji, x: x || 150, y: y || 200 }]);
+    setTimeout(() => {
+      setReactions(prev => prev.filter(r => r.id !== id));
+    }, 1500);
+  };
+
+  // Handle sending a live chat message
+  const handleSendMessage = (textToSend) => {
+    const text = textToSend || inputText.trim();
+    if (!text) return;
+
+    const userMsg = { id: Date.now(), text, sender: 'user', time: 'Just now' };
+    setCustomMessages(prev => [...prev, userMsg]);
+    setInputText('');
+    triggerReaction('💬', 200, 300);
+
+    // Simulate provider typing and smart response
+    setProviderTyping(true);
+    setTimeout(() => {
+      setProviderTyping(false);
+      let reply = "🐾 We'd love to take care of your pet! Opening slots are available tomorrow at 2:00 PM.";
+      if (text.toLowerCase().includes('price') || text.toLowerCase().includes('cost')) {
+        reply = '🛁 Full groom starts at $45 and includes warm bath, brush, ear clean & nail trim!';
+      } else if (text.toLowerCase().includes('book') || text.toLowerCase().includes('tomorrow')) {
+        reply = '✨ Perfect! We have a slot reserved tomorrow afternoon. Tap to confirm!';
+      } else if (text.toLowerCase().includes('love') || text.toLowerCase().includes('app')) {
+        reply = '💖 Thank you so much! Our groomers treat every pet like royalty!';
+      }
+      setCustomMessages(prev => [...prev, { id: Date.now() + 1, text: reply, sender: 'provider', time: 'Just now' }]);
+      triggerReaction('⭐', 220, 240);
+    }, 1100);
+  };
+
   return (
     <section
-      className="relative w-full overflow-hidden py-20 lg:py-28"
+      className="relative w-full overflow-hidden py-24 lg:py-32"
       style={{ background: '#ffffff' }}
     >
-      {/* Tiled pet icon pattern */}
+      {/* Drifting Pet Icon Pattern Background (Continuous smooth ambient drift!) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: patternUrl, backgroundSize: '120px 120px', backgroundRepeat: 'repeat', opacity: 0.5 }}
+        style={{
+          backgroundImage: patternUrl,
+          backgroundSize: '120px 120px',
+          backgroundRepeat: 'repeat',
+          opacity: 0.55,
+          animation: 'driftPattern 45s linear infinite',
+        }}
       />
 
       <div
@@ -743,101 +1250,266 @@ function ChatSection() {
         className="relative mx-auto max-w-[1380px] px-6 lg:px-16"
       >
         {/* Header */}
-        <p
-          className="mb-12 text-[13px] font-extrabold uppercase tracking-[4px] text-[#1bb6ae]"
-          style={{ opacity: vis ? 1 : 0, transition: 'opacity .5s' }}
-        >
-          WHY DID WE CREATE MUNGO?
-        </p>
+        <div className="text-center mb-12">
+          <p
+            className="text-[13px] md:text-[14px] font-extrabold uppercase tracking-[4px] text-[#1bb6ae] inline-block"
+            style={{ opacity: vis ? 1 : 0, transition: 'opacity .5s' }}
+          >
+            WHY DID WE CREATE MUNGO?
+          </p>
+        </div>
 
-        {/* Phone mockup — centered */}
-        <div className="flex justify-center">
+        {/* Central 3D Interactive Smartphone Container */}
+        <div className="relative flex justify-center items-center">
+          {/* Floating Attention Badges around Phone */}
           <div
+            className="hidden lg:flex absolute left-8 top-16 items-center gap-2.5 rounded-2xl bg-white/95 px-4 py-2.5 shadow-xl border border-gray-100 backdrop-blur-md"
+            style={{ animation: 'float 4.8s ease-in-out infinite' }}
+          >
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
+            </span>
+            <span className="text-[12px] font-bold text-[#17201E]">Groomer is Online</span>
+          </div>
+
+          <div
+            className="hidden lg:flex absolute right-8 top-24 items-center gap-2 rounded-2xl bg-white/95 px-4 py-2.5 shadow-xl border border-gray-100 backdrop-blur-md"
+            style={{ animation: 'float 5.2s ease-in-out 0.8s infinite' }}
+          >
+            <span className="text-base">⚡</span>
+            <span className="text-[12px] font-bold text-[#17201E]">Instant Booking Replies</span>
+          </div>
+
+          <div
+            className="hidden lg:flex absolute right-10 bottom-24 items-center gap-2 rounded-2xl bg-white/95 px-4 py-2.5 shadow-xl border border-gray-100 backdrop-blur-md"
+            style={{ animation: 'float 5.6s ease-in-out 1.2s infinite' }}
+          >
+            <span className="text-base">🛡️</span>
+            <span className="text-[12px] font-bold text-[#17201E]">100% Verified Pet Care</span>
+          </div>
+
+          {/* Glowing Ambient Halo behind phone */}
+          <div className="pointer-events-none absolute h-[460px] w-[380px] rounded-full bg-[#1bb6ae]/20 blur-3xl -z-10 animate-pulse" />
+
+          {/* Smartphone Mockup with 3D Tilt */}
+          <div
+            ref={phoneCardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             style={{
-              width: 320,
+              width: '100%',
+              maxWidth: '380px',
+              perspective: '1000px',
               opacity: vis ? 1 : 0,
-              transform: vis ? 'scale(1)' : 'scale(0.9)',
-              transition: 'opacity .7s .15s, transform .7s .15s',
+              transform: vis
+                ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1)`
+                : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(0.92)',
+              transition: 'opacity .7s .15s, transform 0.15s ease-out',
             }}
           >
-            {/* Phone frame */}
+            {/* Phone Chassis */}
             <div
+              className="relative overflow-hidden"
               style={{
-                borderRadius: 44,
-                border: '7px solid #1a1a2e',
-                background: '#1a1a2e',
-                overflow: 'hidden',
-                boxShadow: '0 24px 64px rgba(0,0,0,0.28)',
+                borderRadius: 48,
+                border: '8px solid #161729',
+                background: '#161729',
+                boxShadow: '0 32px 75px -12px rgba(22,23,41,0.4)',
               }}
             >
-              {/* Notch */}
-              <div className="flex items-center justify-between px-5 py-3" style={{ background: '#1a1a2e' }}>
-                <span className="text-[11px] text-white/70">9:41</span>
-                <div style={{ width: 80, height: 18, background: '#0d0d1e', borderRadius: 12 }} />
-                <span className="text-[11px] text-white/70">📶 🔋</span>
+              {/* Dynamic Island / Status Bar */}
+              <div className="flex items-center justify-between px-6 py-3 bg-[#161729] text-white">
+                <span className="text-[12px] font-bold tracking-tight text-white/80">9:41</span>
+                <div style={{ width: 85, height: 18, background: '#090a14', borderRadius: 12 }} />
+                <span className="text-[11px] text-white/80 flex items-center gap-1">
+                  <span>📶</span>
+                  <span>🔋</span>
+                </span>
               </div>
 
-              {/* Chat screen */}
-              <div style={{ background: '#e8f4ff' }}>
-                {/* Chat header */}
-                <div className="flex items-center gap-3 px-4 py-3" style={{ background: '#1bb6ae' }}>
-                  <span className="text-lg text-white">←</span>
-                  <div>
-                    <p className="text-[14px] font-bold text-white">Pet Chat</p>
-                    <p className="text-[10px] text-white/70">with your provider</p>
+              {/* Chat App Screen */}
+              <div className="relative" style={{ background: '#eef6fc' }}>
+                {/* Chat Top Header */}
+                <div className="flex items-center gap-3 px-4 py-3 text-white shadow-md" style={{ background: '#1bb6ae' }}>
+                  <span className="text-lg cursor-pointer">←</span>
+                  <div className="flex-1">
+                    <p className="text-[14px] font-bold leading-tight">Pet Chat</p>
+                    <p className="text-[10px] text-white/80 flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-ping" />
+                      with your provider
+                    </p>
                   </div>
-                  <div className="ml-auto text-white">⋮</div>
+                  <span className="text-lg opacity-80 cursor-pointer">⋮</span>
                 </div>
 
-                {/* Chat bg with pet silhouettes */}
+                {/* Chat Body with Silhouettes Pattern */}
                 <div
-                  className="relative px-4 py-4"
+                  className="relative px-4 py-5 flex flex-col justify-end"
                   style={{
-                    minHeight: 360,
+                    minHeight: 410,
                     backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(PET_PATTERN_SVG)}")`,
-                    backgroundSize: '80px 80px',
+                    backgroundSize: '75px 75px',
                     backgroundRepeat: 'repeat',
                   }}
                 >
-                  {/* Message 1 (provider — right, teal) */}
-                  <div className="mb-5 flex justify-end gap-2">
+                  {/* Floating emoji particles inside chat */}
+                  {reactions.map(r => (
                     <div
-                      className="max-w-[230px] rounded-2xl rounded-tr-sm px-4 py-3 shadow-md"
-                      style={{ background: '#1bb6ae' }}
+                      key={r.id}
+                      className="pointer-events-none absolute text-2xl font-bold animate-bounce"
+                      style={{
+                        left: r.x,
+                        top: r.y,
+                        animation: 'fadeUp 1.2s ease-out forwards',
+                      }}
                     >
-                      <p className="text-[13px] leading-[1.6] text-white">
-                        Hi! Have you ever had any problems finding or booking pet grooming appointments?
-                      </p>
+                      {r.emoji}
                     </div>
-                    <img src={home15} alt="" aria-hidden className="h-8 w-8 shrink-0 self-end rounded-full border-2 border-white object-cover shadow-sm"/>
+                  ))}
+
+                  {/* Provider Typing Indicator (Before Msg 1) */}
+                  {providerTyping && !msg1Visible && (
+                    <div className="mb-4 flex items-center gap-2">
+                      <img src={home15} alt="" className="h-7 w-7 rounded-full border border-white object-cover" />
+                      <div className="rounded-2xl rounded-tl-sm bg-white px-3 py-2 shadow-sm flex gap-1">
+                        <span className="h-2 w-2 rounded-full bg-[#1bb6ae]" style={{ animation: 'typingDot 1.4s infinite 0s' }} />
+                        <span className="h-2 w-2 rounded-full bg-[#1bb6ae]" style={{ animation: 'typingDot 1.4s infinite 0.2s' }} />
+                        <span className="h-2 w-2 rounded-full bg-[#1bb6ae]" style={{ animation: 'typingDot 1.4s infinite 0.4s' }} />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Message 1 (Provider — Teal Bubble) */}
+                  {msg1Visible && (
+                    <div
+                      className="mb-4 flex justify-end gap-2"
+                      style={{ animation: 'chatPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both' }}
+                    >
+                      <div
+                        onClick={() => triggerReaction('🐾', 240, 80)}
+                        className="max-w-[240px] rounded-2xl rounded-tr-sm px-4 py-3 shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                        style={{ background: '#1bb6ae' }}
+                      >
+                        <p className="text-[13px] leading-[1.6] text-white font-medium">
+                          Hi! Have you ever had any problems finding or booking pet grooming appointments?
+                        </p>
+                      </div>
+                      <img
+                        src={home15}
+                        alt="Provider avatar"
+                        className="h-8 w-8 shrink-0 self-end rounded-full border-2 border-white object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
+
+                  {/* Parent Typing Indicator (Before Msg 2) */}
+                  {parentTyping && (
+                    <div className="mb-4 flex items-center gap-2">
+                      <img src={home16} alt="" className="h-7 w-7 rounded-full border border-white object-cover" />
+                      <div className="rounded-2xl rounded-tl-sm bg-[#1e3a8a] px-3 py-2 shadow-sm flex gap-1">
+                        <span className="h-2 w-2 rounded-full bg-white" style={{ animation: 'typingDot 1.4s infinite 0s' }} />
+                        <span className="h-2 w-2 rounded-full bg-white" style={{ animation: 'typingDot 1.4s infinite 0.2s' }} />
+                        <span className="h-2 w-2 rounded-full bg-white" style={{ animation: 'typingDot 1.4s infinite 0.4s' }} />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Message 2 (Pet Parent — Navy Blue Bubble) */}
+                  {msg2Visible && (
+                    <div
+                      className="flex gap-2 mb-3"
+                      style={{ animation: 'chatPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both' }}
+                    >
+                      <img
+                        src={home16}
+                        alt="Pet parent avatar"
+                        className="h-8 w-8 shrink-0 self-end rounded-full border-2 border-white object-cover shadow-sm"
+                      />
+                      <div
+                        onClick={() => triggerReaction('❤️', 80, 160)}
+                        className="max-w-[240px] rounded-2xl rounded-tl-sm px-4 py-3 shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                        style={{ background: '#1e3a8a' }}
+                      >
+                        <p className="text-[13px] leading-[1.6] text-white font-medium">
+                          Meow! Yes, I always forget to call ahead and then my groomer is fully booked. A reminder would be so helpful!{' '}
+                          <span className="inline-block" style={{ animation: 'wiggle 2s ease-in-out infinite' }}>
+                            🐱
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Live Dynamic User Messages */}
+                  {customMessages.map(cm => (
+                    <div
+                      key={cm.id}
+                      className={`flex gap-2 mb-2.5 ${cm.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                      style={{ animation: 'chatPop 0.4s ease both' }}
+                    >
+                      {cm.sender !== 'user' && (
+                        <img src={home15} alt="" className="h-7 w-7 rounded-full self-end border border-white object-cover" />
+                      )}
+                      <div
+                        className={`max-w-[240px] px-3.5 py-2.5 rounded-2xl text-[12px] font-medium leading-relaxed shadow-sm ${cm.sender === 'user' ? 'bg-[#1e3a8a] text-white rounded-tr-none' : 'bg-[#1bb6ae] text-white rounded-tl-none'}`}
+                      >
+                        {cm.text}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Interactive Quick Suggestion Chips */}
+                  <div className="mt-3 mb-2 flex flex-wrap gap-1.5">
+                    {[
+                      { label: '🐶 Book tomorrow?', text: 'Hi! Can I book a grooming session tomorrow?' },
+                      { label: '✂️ Pricing?', text: 'What is the full grooming price?' },
+                      { label: '🐾 Love Mungo!', text: 'Love this app, so easy to use!' },
+                    ].map(chip => (
+                      <button
+                        key={chip.label}
+                        type="button"
+                        onClick={() => handleSendMessage(chip.text)}
+                        className="rounded-full bg-white/90 hover:bg-white px-2.5 py-1 text-[10px] font-bold text-[#0c7a75] shadow-sm border border-teal-100 transition-all hover:scale-105 active:scale-95"
+                      >
+                        {chip.label}
+                      </button>
+                    ))}
                   </div>
 
-                  {/* Message 2 (pet parent — left, blue) */}
-                  <div className="flex gap-2">
-                    <img src={home16} alt="" aria-hidden className="h-8 w-8 shrink-0 self-end rounded-full border-2 border-white object-cover shadow-sm"/>
-                    <div
-                      className="max-w-[230px] rounded-2xl rounded-tl-sm px-4 py-3 shadow-md"
-                      style={{ background: '#1e3a8a' }}
+                  {/* Message Input Bar with Pulsing Send Button */}
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }}
+                    className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md border border-gray-100"
+                  >
+                    <input
+                      type="text"
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      placeholder="Write a message to your groomer..."
+                      className="flex-1 bg-transparent text-[12px] text-[#17201E] placeholder-gray-400 focus:outline-none"
+                    />
+                    <button
+                      type="submit"
+                      className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-all hover:scale-110 active:scale-95"
+                      style={{
+                        background: '#1bb6ae',
+                        animation: 'pulseGlow 2.5s infinite',
+                      }}
+                      aria-label="Send message"
                     >
-                      <p className="text-[13px] leading-[1.6] text-white">
-                        Meow! Yes, I always forget to call ahead and then my groomer is fully booked. A reminder would be so helpful! 🐱
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Input bar */}
-                  <div className="mt-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-sm">
-                    <p className="flex-1 text-[12px] text-gray-400">Write a message...</p>
-                    <button className="flex h-7 w-7 items-center justify-center rounded-full text-white" style={{ background: '#1bb6ae' }} aria-label="Send">
                       ➤
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
 
-              {/* Home indicator */}
-              <div className="flex items-center justify-center py-2" style={{ background: '#1a1a2e' }}>
-                <div style={{ width: 70, height: 4, background: '#3a3a5a', borderRadius: 4 }} />
+              {/* Bottom Home Indicator */}
+              <div className="flex items-center justify-center py-2.5 bg-[#161729]">
+                <div style={{ width: 75, height: 4, background: '#3b3e5a', borderRadius: 4 }} />
               </div>
             </div>
           </div>
@@ -845,7 +1517,7 @@ function ChatSection() {
 
         {/* Caption below */}
         <p
-          className="mt-10 text-center text-[15px] leading-[1.7] text-[#66716D] mx-auto max-w-[480px]"
+          className="mt-12 text-center text-[15px] md:text-[16px] leading-[1.7] text-[#66716D] mx-auto max-w-[500px]"
           style={{ opacity: vis ? 1 : 0, transition: 'opacity .7s .3s' }}
         >
           Mungo was built because pet parents deserve a simpler, more reliable way to find and book quality pet care — and great providers deserve to be discovered.
